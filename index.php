@@ -24,7 +24,7 @@ if(isset($_POST['btn-login']))
  else
  {
   $msg = "
-        email or password does not exists !
+        email or password does not exist !
     ";
  }
  
