@@ -39,6 +39,7 @@ $MySQLi_CON->close();
           <ul class="nav navbar-nav">
             <li><a href="http://www.codingcage.com/search/label/jQuery">jQuery</a></li>
             <li><a href="http://www.codingcage.com/search/label/PHP">PHP</a></li>
+
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp; <?php echo $userRow['username']; ?></a></li>

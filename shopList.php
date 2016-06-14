@@ -1,17 +1,15 @@
 <?php
-$dbhost="localhost";
-$dbuser="root";
-$dbpass="";
-$dbname="dbtest";
-$connection=mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+session_start();
+include_once 'dbconnect.php';
 
-if(mysqli_connect_errno()){
-	die("Database connection failed: " .
-	mysqli_connect_error() . " (" . mysqli_connect_errno() . ")"
-	);
-}else{
-	echo "success";
+if(!isset($_SESSION['userSession']))
+{
+ header("Location: index.php");
 }
+
+$query = $MySQLi_CON->query("SELECT * FROM users WHERE user_id=".$_SESSION['userSession']);
+$userRow=$query->fetch_array();
+$MySQLi_CON->close();
 ?>
 
 <?php
@@ -26,7 +24,8 @@ $result = mysqli_query($connection, $query);
 if (!$result){
 	die("Database query failed.");
 }
-
+$query = $MySQLi_CON->query("SELECT * FROM users WHERE user_id=".$_SESSION['userSession']);
+$userRow=$query->fetch_array();
 $cart = 0;
 ?>
 
@@ -47,7 +46,7 @@ $cart = 0;
 <header>
 <nav>
 <ul>
-<li>username: </li>
+<li>username: <?php echo $userRow;?></li>
 <li>cart: <?php echo $cart;?> </li>
 </ul>
 </nav>
