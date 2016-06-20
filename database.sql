@@ -1,19 +1,18 @@
 USE dbtest;
 
-SET FOREIGN_KEY_CHECKS=0;
-
+DROP TABLE IF EXISTS orderDetails;
+DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS items;
   
-CREATE TABLE IF NOT EXISTS `users` (
-  `user_id` int(5) NOT NULL AUTO_INCREMENT,
-  `username` varchar(25) NOT NULL,
-  `email` varchar(35) NOT NULL,
-  `password` varchar(255) NOT NULL,
+CREATE TABLE IF NOT EXISTS users (
+  user_id int(5) NOT NULL AUTO_INCREMENT,
+  username varchar(25) NOT NULL,
+  email varchar(35) NOT NULL,
+  password varchar(255) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-  
-DROP TABLE IF EXISTS orders;
+) ENGINE=INNODB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 CREATE TABLE orders (
   orderNumber INTEGER NOT NULL AUTO_INCREMENT,
@@ -29,8 +28,6 @@ CREATE TABLE orders (
   PRIMARY KEY (orderNumber)
 ) AUTO_INCREMENT=1 ;
 
-DROP TABLE IF EXISTS items;
-
 CREATE TABLE items (
   item_id INT(5) NOT NULL AUTO_INCREMENT,
   itemName VARCHAR(255) NOT NULL,
@@ -40,8 +37,6 @@ CREATE TABLE items (
   PRIMARY KEY (item_id),
   UNIQUE KEY itemName (itemName)
 ) AUTO_INCREMENT=1 ;
-
-DROP TABLE IF EXISTS orderDetails;
 
 CREATE TABLE orderDetails (
   orderNumber INTEGER NOT NULL,
@@ -64,7 +59,5 @@ INSERT INTO items VALUES (2, 'Bastion', 39.99, 'http://example.com/images/Bastio
 INSERT INTO orders VALUES (1, 1, '2016-05-23T14:25:10', '2016-05-28T12:00:10', 'On Time', NULL);
 INSERT INTO orderDetails VALUES (1, 1, 2);
 INSERT INTO orderDetails VALUES (1, 2, 1);
-
-SET FOREIGN_KEY_CHECKS=1;
 
 SELECT orderDetails.orderNumber, SUM(items.price*orderDetails.quantityOrdered) FROM items JOIN orderDetails USING (item_id) GROUP BY orderNumber;
