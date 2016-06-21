@@ -1,5 +1,7 @@
 USE dbtest;
 
+/* Build tables */
+
 DROP TABLE IF EXISTS orderDetails;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS users;
@@ -53,6 +55,8 @@ CREATE TABLE orderDetails (
   PRIMARY KEY (orderNumber, item_id)
 );
 
+/* Insert test values */
+
 INSERT INTO users VALUES (1, 'JeremyCrook', 'jac13b@my.fsu.edu', 'secretpassword');
 INSERT INTO items VALUES (1, 'Overwatch', 39.99, 'http://example.com/images/Overwatch', 'FPS PC video game.');
 INSERT INTO items VALUES (2, 'Bastion', 39.99, 'http://example.com/images/Bastion', 'Top down PC video game.');
@@ -60,4 +64,11 @@ INSERT INTO orders VALUES (1, 1, '2016-05-23T14:25:10', '2016-05-28T12:00:10', '
 INSERT INTO orderDetails VALUES (1, 1, 2);
 INSERT INTO orderDetails VALUES (1, 2, 1);
 
+/* Test queries */
+
 SELECT orderDetails.orderNumber, SUM(items.price*orderDetails.quantityOrdered) FROM items JOIN orderDetails USING (item_id) GROUP BY orderNumber;
+
+SELECT a.user_id, a.orderNumber, c.itemName
+FROM orders AS a
+JOIN orderDetails AS b USING (orderNumber)
+JOIN items AS c USING (item_id);
