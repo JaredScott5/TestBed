@@ -68,7 +68,7 @@ INSERT INTO orderDetails VALUES (1, 2, 1);
 
 SELECT orderDetails.orderNumber, SUM(items.price*orderDetails.quantityOrdered) FROM items JOIN orderDetails USING (item_id) GROUP BY orderNumber;
 
-SELECT a.user_id, a.orderNumber, c.itemName
+SELECT a.user_id, b.orderNumber, c.itemName
 FROM orders AS a
 JOIN orderDetails AS b USING (orderNumber)
 JOIN items AS c USING (item_id);
