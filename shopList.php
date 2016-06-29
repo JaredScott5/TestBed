@@ -9,11 +9,17 @@ if(!isset($_SESSION['userSession']))
 
 $query = $MySQLi_CON->query("SELECT * FROM users WHERE user_id=".$_SESSION['userSession']);
 $userRow=$query->fetch_array();
-$cart = 0;
-//$MySQLi_CON->close();
-?>
 
-<?php
+//create an array of items from items table
+$itemQuery = $MySQLi_CON->query("SELECT * FROM items");
+$array = array();
+
+//look through query 
+while($itemRow = mysqli_fetch_assoc($itemQuery)){
+	//add each row returned into an array
+	$array[] = $itemRow;
+}
+
 $secondquery = "SELECT image, itemName, price, description ";
 $secondquery .= "FROM items ";
 
@@ -29,6 +35,7 @@ if (!$result){
 //$querytwo = $MySQLi_CON->query("SELECT * FROM items");
 //echo $querytwo;
 //$userRow=$query->fetch_array();
+$MySQLi_CON->close();
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -42,34 +49,6 @@ if (!$result){
 
 <html lang="en">
 <head>
-
-<script>
-function showUser(){
-	if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-			document.getElementById("notes").innerHTML = "testing2";
-        } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			document.getElementById("notes").innerHTML = "testing3";
-        }
-		
-					document.getElementById("notes").innerHTML = "goint to second part";
-
-        xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                document.getElementById("notes").innerHTML = xmlhttp.responseText;
-            }else{
-				document.getElementById("notes").innerHTML = "failed 3rd part";
-
-			}
-		};
-		
-		xmlhttp.open("GET","getuser.php?q="+str,true);
-        xmlhttp.send();
-}
-		</script>
 		
 <title>Shop</title>
 </head>
@@ -77,7 +56,7 @@ function showUser(){
 <header>
 <nav>
 <ul>
-<li id="cartItems">cart: <?php echo $cart;?> </li>
+<li id="filler">filler</li>
 </ul>
 </nav>
 </header>
@@ -103,7 +82,7 @@ function showUser(){
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp; <?php echo $userRow['username']; ?></a></li>
             <li><a href="logout.php?logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp; Logout</a></li>
-			<li><a=href="#" id="cart"><span></span></a></li>
+			<li><a href="#" id="cart"><span class="glyphicon"></span>&nbsp; Cart: </a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -113,7 +92,6 @@ function showUser(){
 
 <p></p>
 <p></p>
-
 <p></p>
 <p></p>
 <p></p>
@@ -125,10 +103,13 @@ $count = 1;
 while($row = mysqli_fetch_assoc($result)){
 	?>
 	<h1>Item <?php echo $count?></h1>
-		<li> <p><?php echo $row["image"]; echo $row["itemName"]; 
-	echo $row["price"]; echo $row["description"];  ?>
-	<a class="btn btn-lg btn-primary" href="#" role="button" onClick="myfunction()">Add To Cart</a></p> 
-	</li>
+		<li name="listItem"> 
+			<p id="image"> <?php echo $row["image"];?> </p> 
+			<p id="itemName"><?php echo $row["itemName"]; ?></p>
+			<p id="price"><?php echo $row["price"];?></p> 
+			<p id="desc"><?php echo $row["description"]; ?></p>
+			<a class="btn btn-lg btn-primary" href="#" role="button" onClick="myfunction(this.parentNode)">Add To Cart</a> 
+		</li>
 	
 	<?php $count = $count + 1;?>
 <?php
@@ -137,7 +118,7 @@ while($row = mysqli_fetch_assoc($result)){
 
 </ul>
 
-<p id="notes"></p>
+<p id="notes" onLoad="buttonName()"></p>
 
 <?php
 //release database
@@ -148,35 +129,60 @@ mysqli_free_result($result);
 <script language="javascript" type="text/javascript">
 <!-- Global Var-->
 var cartCount = 0;
+document.getElementById("notes").innerHTML = "testing";
 document.getElementById("cart").innerHTML = cartCount;
 
-function myfunction(){
-	document.getElementById("cart").innerHTML = ++cartCount;
-document.getElementById("notes").innerHTML = "testing";
+function showUser(){
+	if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+			document.getElementById("notes").innerHTML = "testing2";
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			document.getElementById("notes").innerHTML = "testing3";
+        }
+		
+					document.getElementById("notes").innerHTML = "goint to second part";
 
-showUser();
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("notes").innerHTML = xmlhttp.responseText;
+            }else{
+				document.getElementById("notes").innerHTML = "failed 3rd part";
+			}
+		};
+		
+		xmlhttp.open("GET","getuser.php?q="+str,true);
+        xmlhttp.send();
 }
-	//check if user has an entry in orders table,
-	//if so, choose one where STATUS != 'On Time'
-	//else, create a new order
-	//$orderQuery = "SELECT orderNumber";
-	//$orderQuery .= "FROM orders";
-	//$orderQuery .= "WHERE user_id = {$userRow['user_id']}";
+
+function myfunction(parent){
+	//part 1 known to work
+	document.getElementById("cart").innerHTML = ++cartCount;
+	document.getElementById("notes").innerHTML = "testing";
+
+	//part 2
+	var itemToAddToCart = <?php $array[parent]['item_id']?>;
+		document.getElementById("notes").innerHTML = "chldNode 1 value is" + itemToAddToCart;
+	//document.getElementById("notes").innerHTML = "testing";
+
+	//showUser();
+}
 	
-	//$oqResult = mysqli_query($MySQLi_CON, $orderQuery);
+function buttonName(){
 	
-	//check if we already have it in table orderDetails,
-	//if so, find the item number and increament quantityOrdered
-	
-	//if (!$result){
-	//echo "<p>order does not exist for a customer. Creating one...</p>";
-	//$insertQuery = "INSERT INTO orders VALUES ({$userRow['user_id']}, '2016-05-23T14:25:10', 
-	//'2016-05-28T12:00:10', 'In Cart', NULL)";
-//}else{
-	//increment
-	//echo "order does exist";
-	
-	
+		document.getElementById("notes2").innerHTML = "test again";
+		//give each li a name that is the item_id
+		//ex) LI1 is now item_id[0], LI2 is now item_id[1], etc
+	var length = document.getElementsByName("LI").length;
+
+	for(var i = 0; i < length; i++){
+		document.getElementsByName("LI")[i].setAttribute(<?php echo $array[i]['item_id']?>));
+		<?php echo $array[i]['item_id']?>
+	}//end for
+}//end function buttonName
+
 </script>
 
 </body>
