@@ -9,6 +9,7 @@ if(!isset($_SESSION['userSession']))
 
 $query = $MySQLi_CON->query("SELECT * FROM users WHERE user_id=".$_SESSION['userSession']);
 $userRow=$query->fetch_array();
+$cart = 0;
 //$MySQLi_CON->close();
 ?>
 
@@ -21,41 +22,13 @@ $result = mysqli_query($MySQLi_CON, $secondquery);
 //test if the query failed
 if (!$result){
 	die("Database query failed.");
+}else{
+	echo "<p></p>";
 }
 
 //$querytwo = $MySQLi_CON->query("SELECT * FROM items");
 //echo $querytwo;
 //$userRow=$query->fetch_array();
-$cart = 0;
-
-//function
-function incrementCart($itemNumber){
-	$cart = $cart + 1;
-	echo "Cart is {$cart}<br/>";
-	
-	//check if user has an entry in orders table,
-	//if so, choose one where STATUS != 'On Time'
-	//else, create a new order
-	$orderQuery = "SELECT orderNumber";
-	$orderQuery .= "FROM orders";
-	$orderQuery .= "WHERE user_id = {$userRow['user_id']}";
-	
-	$oqResult = mysqli_query($MySQLi_CON, $orderQuery);
-	
-	//check if we already have it in table orderDetails,
-	//if so, find the item number and increament quantityOrdered
-	
-	if (!$result){
-	echo "order does not exist for a customer. Creating one...";
-	$insertQuery= INSERT INTO orders VALUES ({$userRow['user_id']}, '2016-05-23T14:25:10', 
-	'2016-05-28T12:00:10', 'In Cart', NULL);
-}else{
-	//increment
-	
-}
-	
-	
-}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -69,13 +42,42 @@ function incrementCart($itemNumber){
 
 <html lang="en">
 <head>
+
+<script>
+function showUser(){
+	if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+			document.getElementById("notes").innerHTML = "testing2";
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			document.getElementById("notes").innerHTML = "testing3";
+        }
+		
+					document.getElementById("notes").innerHTML = "goint to second part";
+
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("notes").innerHTML = xmlhttp.responseText;
+            }else{
+				document.getElementById("notes").innerHTML = "failed 3rd part";
+
+			}
+		};
+		
+		xmlhttp.open("GET","getuser.php?q="+str,true);
+        xmlhttp.send();
+}
+		</script>
+		
 <title>Shop</title>
 </head>
 
 <header>
 <nav>
 <ul>
-<li>cart: <?php echo $cart;?> </li>
+<li id="cartItems">cart: <?php echo $cart;?> </li>
 </ul>
 </nav>
 </header>
@@ -101,13 +103,21 @@ function incrementCart($itemNumber){
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp; <?php echo $userRow['username']; ?></a></li>
             <li><a href="logout.php?logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp; Logout</a></li>
-			<li><a=href="#"><span></span>Cart <?php echo $cart; ?></a></li>
+			<li><a=href="#" id="cart"><span></span></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
 <ul>
+
+<p></p>
+<p></p>
+
+<p></p>
+<p></p>
+<p></p>
+<p></p>
 
 <?php
 $count = 1;
@@ -117,8 +127,9 @@ while($row = mysqli_fetch_assoc($result)){
 	<h1>Item <?php echo $count?></h1>
 		<li> <p><?php echo $row["image"]; echo $row["itemName"]; 
 	echo $row["price"]; echo $row["description"];  ?>
-	<a class="btn btn-lg btn-primary" href="#" role="button" onClick="incrementCart($row["item_id"])">Add To Cart</a></p> 
+	<a class="btn btn-lg btn-primary" href="#" role="button" onClick="myfunction()">Add To Cart</a></p> 
 	</li>
+	
 	<?php $count = $count + 1;?>
 <?php
 }
@@ -126,10 +137,48 @@ while($row = mysqli_fetch_assoc($result)){
 
 </ul>
 
+<p id="notes"></p>
+
 <?php
 //release database
 mysqli_free_result($result);
 ?>
+
+<!--JavaScript -->
+<script language="javascript" type="text/javascript">
+<!-- Global Var-->
+var cartCount = 0;
+document.getElementById("cart").innerHTML = cartCount;
+
+function myfunction(){
+	document.getElementById("cart").innerHTML = ++cartCount;
+document.getElementById("notes").innerHTML = "testing";
+
+showUser();
+}
+	//check if user has an entry in orders table,
+	//if so, choose one where STATUS != 'On Time'
+	//else, create a new order
+	//$orderQuery = "SELECT orderNumber";
+	//$orderQuery .= "FROM orders";
+	//$orderQuery .= "WHERE user_id = {$userRow['user_id']}";
+	
+	//$oqResult = mysqli_query($MySQLi_CON, $orderQuery);
+	
+	//check if we already have it in table orderDetails,
+	//if so, find the item number and increament quantityOrdered
+	
+	//if (!$result){
+	//echo "<p>order does not exist for a customer. Creating one...</p>";
+	//$insertQuery = "INSERT INTO orders VALUES ({$userRow['user_id']}, '2016-05-23T14:25:10', 
+	//'2016-05-28T12:00:10', 'In Cart', NULL)";
+//}else{
+	//increment
+	//echo "order does exist";
+	
+	
+</script>
+
 </body>
 
 </html>
