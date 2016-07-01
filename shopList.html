@@ -20,18 +20,6 @@ include_once 'shopList.php';
 <head>
 		
 <title>Shop</title>
-</head>
-
-<header>
-<nav>
-<ul>
-<li id="filler">filler</li>
-</ul>
-</nav>
-</header>
-
-<body>
-
 <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -56,43 +44,22 @@ include_once 'shopList.php';
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+</head>
 
-<ul>
+<body>
 
-<p></p>
-<p></p>
+<p  style="display: block; padding-top: 40px;"></p>
 <p></p>
 <p></p>
 <p></p>
 <p></p>
 
-<?php
-$count = 1;
-//return database database
-while($row = mysqli_fetch_assoc($result)){
-	?>
-	<h1>Item <?php echo $count?></h1>
-		<li name="listItem"> 
-			<p id="image"> <?php echo $row["image"];?> </p> 
-			<p id="itemName"><?php echo $row["itemName"]; ?></p>
-			<p id="price"><?php echo $row["price"];?></p> 
-			<p id="desc"><?php echo $row["description"]; ?></p>
-			<a class="btn btn-lg btn-primary" href="#" role="button" onClick="myfunction(this.parentNode)">Add To Cart</a> 
-		</li>
-	
-	<?php $count = $count + 1;?>
-<?php
-}
-?>
-
+<ul onLoad="displayItems()">
+displayItems();
 </ul>
 
 <p id="notes" onLoad="buttonName()"> </p>
 
-<?php
-//release database
-mysqli_free_result($result);
-?>
 
 </body>
 
