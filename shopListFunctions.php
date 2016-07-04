@@ -1,6 +1,6 @@
 <?php
-session_start();
-require_once 'dbconnect.php';
+//session_start();
+include_once 'dbconnect.php';
 
 if(!isset($_SESSION['userSession']))
 {
@@ -11,6 +11,7 @@ $query = $MySQLi_CON->query("SELECT * FROM users WHERE user_id=".$_SESSION['user
 $userRow=$query->fetch_array();
 
 $user = $userRow['username'];
+
 //variabel for nuber of items from the db that will be displayed
 $itemCount = 1;
 
@@ -36,9 +37,14 @@ if (!$result){
 }else{
 }
 
-function displayItems(){
+//function displayItems(){
 	global $result;
 $count = 1;
+
+echo "<ul>";
+
+echo "<p  style='display: block; padding-top: 40px;'></p>";
+
 //return database database
 while($row = mysqli_fetch_assoc($result)){
 	
@@ -53,8 +59,9 @@ while($row = mysqli_fetch_assoc($result)){
 	
 $count = $count + 1;
 }//enbd while
-//mysqli_free_result($result);
-}//end function
+mysqli_free_result($result);
+//}//end function
+echo "</ul>";
 
 function getUserName(){
 	global $foo;
@@ -62,8 +69,7 @@ function getUserName(){
 return $foo;
 	}//return username
 
-//release database
-mysqli_free_result($result);
+
 
 $MySQLi_CON->close();
 ?>
