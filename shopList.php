@@ -56,7 +56,10 @@ include_once 'shopListFunctions.php';
 </ul>
 
 <p id="notes" onLoad="buttonName()"> </p>
+<p id="notes2"> </p>
 
+
+<script src="shopList.js"></script>
 
 </body>
 
