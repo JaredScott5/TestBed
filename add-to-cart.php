@@ -26,6 +26,7 @@ if($count==0){
  
   $MySQLi_CON->query($query);
  
+  // Fetch the new order's orderNumber
   $order = $MySQLi_CON->query(
     "
     SELECT *
@@ -35,14 +36,17 @@ if($count==0){
   );
   $orderNumber = $order[orderNumber];
   
+  // add orderDetails for the added item to the newly created order
   $query = "INSERT INTO orderDetails(orderNumber,item_id,quantityOrdered)
   VALUES('$orderNumber',$item_id,'$quantity')";
  
   $MySQLi_CON->query($query);
 }
 
-// If the cart is not empty, check cart for duplicate item_id
+// If the cart is not empty, check orders with status 'In Cart' for duplicate item_id
 else{
+	// If duplicate exists, increment quantityOrdered accordingly
+	// If duplicate does not exist, insert new orderDetails
 }
  
 $MySQLi_CON->close();
