@@ -55,11 +55,14 @@ include_once 'shopListFunctions.php';
 <ul>
 </ul>
 
-<p id="notes" onLoad="buttonName()"> </p>
-<p id="notes2"> </p>
+<p id="notes" onload="buttonName()"> </p>
+<p id="notes2" > </p>
 
 
-<script src="shopList.js"></script>
+<!-- the passed array is what we use in shopList.js for using the data from array $row-->
+<script src="shopList.js"> 
+<?php $js_array = json_encode($row); echo "var javascript_array = ".$js_array."\n";?>
+</script>
 
 </body>
 

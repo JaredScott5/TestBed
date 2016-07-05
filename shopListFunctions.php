@@ -54,7 +54,8 @@ while($row = mysqli_fetch_assoc($result)){
 			echo "<p id='itemName'>"; echo $row["itemName"] . "</p>";
 			echo "<p id='price'>"; echo $row["price"] . "</p>"; 
 			echo "<p id='desc'>"; echo $row["description"] . "</p>";
-			echo "<a class='btn btn-lg btn-primary' href='#' role='button' onClick='myfunction(this.parentNode)'>Add To Cart" . "</a>"; 
+			echo "<a class='btn btn-lg btn-primary' href='#' role='button' 
+			  onClick='myfunction(this.parentNode)'>Add To Cart" . "</a>"; 
 		echo "</li>";
 	
 $count = $count + 1;
