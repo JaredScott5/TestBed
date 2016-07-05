@@ -25,7 +25,7 @@ while($itemRow = mysqli_fetch_assoc($itemQuery)){
 	$array[] = $itemRow;
 }
 
-$secondquery = "SELECT image, itemName, price, description ";
+$secondquery = "SELECT item_id, image, itemName, price, description ";
 $secondquery .= "FROM items ";
 
 
@@ -49,13 +49,13 @@ echo "<p  style='display: block; padding-top: 40px;'></p>";
 while($row = mysqli_fetch_assoc($result)){
 	
 	echo "<h1>" ."Item" . $count . "</h1>";
-		echo "<li name='listItem'"; echo ">"; 
+		echo "<li id=" . $row["item_id"] . " class='listItem'"; echo ">"; 
 			echo "<p id='image'>"; echo $row["image"] . "</p>"; 
 			echo "<p id='itemName'>"; echo $row["itemName"] . "</p>";
 			echo "<p id='price'>"; echo $row["price"] . "</p>"; 
 			echo "<p id='desc'>"; echo $row["description"] . "</p>";
 			echo "<a class='btn btn-lg btn-primary' href='#' role='button' 
-			  onClick='myfunction(this.parentNode)'>Add To Cart" . "</a>"; 
+			  onClick='addToCart(this.parentNode)'>Add To Cart" . "</a>"; 
 		echo "</li>";
 	
 $count = $count + 1;

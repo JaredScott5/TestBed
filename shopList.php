@@ -60,8 +60,7 @@ include_once 'shopListFunctions.php';
 
 
 <!-- the passed array is what we use in shopList.js for using the data from array $row-->
-<script src="shopList.js"> 
-<?php $js_array = json_encode($row); echo "var javascript_array = ".$js_array."\n";?>
+<script src="shopList.js">
 </script>
 
 </body>

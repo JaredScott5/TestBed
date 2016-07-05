@@ -6,6 +6,7 @@ window.onload = function(){
 	document.getElementById("cart").innerHTML = "Cart " + 0;
 };
 
+/*
 function buttonName(){
 	var stringData = document.getElementById("notes2");
 	stringData.innerHTML = "testing function buttonName";
@@ -15,12 +16,12 @@ function buttonName(){
 	document.getElementsByTagName("LI")[i].setAttribute(javascript_array['item_id']);
 	}
 }
-
-function myfunction(parent){
+*/
+function addToCart(parent){
 	document.getElementById("cart").innerHTML = ++cartCount;
 	document.getElementById("notes").innerHTML = "testing";
 
-	var itemToAddToCart = javascript_array['item_id'];
+	var itemToAddToCart = parent.id;
 	
 	document.getElementById("notes").innerHTML = "chldNode 1 value is" + itemToAddToCart;
 }
