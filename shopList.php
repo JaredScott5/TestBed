@@ -1,6 +1,7 @@
 <?php
-//session_start();
+session_start();
 include_once 'shopListFunctions.php';
+//include_once 'dbconnect.php';
 ?>
 
 <!-- Call shopList.js -->
@@ -49,17 +50,16 @@ include_once 'shopListFunctions.php';
 <body>
 
 <p  style="display: block; padding-top: 40px;"></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
 
-<ul onLoad="displayItems()">
-<?php displayItems(); ?>
+
+<ul>
 </ul>
 
 <p id="notes" onLoad="buttonName()"> </p>
+<p id="notes2"> </p>
 
+
+<script src="shopList.js"></script>
 
 </body>
 
