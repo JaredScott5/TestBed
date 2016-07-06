@@ -17,12 +17,12 @@ $check_cart = $MySQLi_CON->query(
 );
 
 $count=$check_cart->num_rows;
+mysqli_free_result($check_cart);
 
 // If the cart is empty, create a new order with status 'In Cart'
 if($count==0){
- 
   $query = "INSERT INTO orders(user_id,orderDate,status)
-  VALUES('$user_id',$time,'In Cart')";
+  VALUES('$user_id','$time','In Cart')";
  
   $MySQLi_CON->query($query);
  
@@ -31,15 +31,16 @@ if($count==0){
     "
     SELECT *
     FROM orders
-    WHERE user_id='$user_id' AND status='In Cart' AND orderDate=$time
+    WHERE user_id='$user_id' AND status='In Cart' AND orderDate='$time'
     "
   );
-  $orderNumber = $order[orderNumber];
+  $row = mysqli_fetch_assoc($order);
+  $orderNumber = $row['orderNumber'];
   
   // add orderDetails for the added item to the newly created order
   $query = "INSERT INTO orderDetails(orderNumber,item_id,quantityOrdered)
-  VALUES('$orderNumber',$item_id,'$quantity')";
- 
+  VALUES('$orderNumber','$item_id','$quantity')";
+  
   $MySQLi_CON->query($query);
 }
 
@@ -47,7 +48,8 @@ if($count==0){
 else{
 	// If duplicate exists, increment quantityOrdered accordingly
 	// If duplicate does not exist, insert new orderDetails
+	echo "else";
 }
- 
+
 $MySQLi_CON->close();
 ?>
