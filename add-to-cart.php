@@ -9,15 +9,12 @@ $time = date("Y-m-d H:i:s");
 
 // Check if the cart is empty
 $check_cart = $MySQLi_CON->query(
-  "
-  SELECT orderNumber, status
+  "SELECT orderNumber, status
   FROM orders
-  WHERE user_id='$user_id' AND status='In Cart'
-  "
+  WHERE user_id='$user_id' AND status='In Cart'"
 );
 
 $count=$check_cart->num_rows;
-mysqli_free_result($check_cart);
 
 // If the cart is empty, create a new order with status 'In Cart'
 if($count==0){
@@ -28,11 +25,9 @@ if($count==0){
  
   // Fetch the new order's orderNumber
   $order = $MySQLi_CON->query(
-    "
-    SELECT *
+    "SELECT *
     FROM orders
-    WHERE user_id='$user_id' AND status='In Cart' AND orderDate='$time'
-    "
+    WHERE user_id='$user_id' AND status='In Cart' AND orderDate='$time'"
   );
   $row = mysqli_fetch_assoc($order);
   $orderNumber = $row['orderNumber'];
@@ -42,14 +37,48 @@ if($count==0){
   VALUES('$orderNumber','$item_id','$quantity')";
   
   $MySQLi_CON->query($query);
+  mysqli_free_result($order);
 }
 
-// If the cart is not empty, check orders with status 'In Cart' for duplicate item_id
+// If the cart is not empty, check order with status 'In Cart' for duplicate item_id
 else{
-	// If duplicate exists, increment quantityOrdered accordingly
-	// If duplicate does not exist, insert new orderDetails
-	echo "else";
-}
+  // echo "Cart not empty, ";
+  // Check 'In Cart' order for duplicate item
+  $row = mysqli_fetch_assoc($check_cart); // $check_cart only has one row, the 'In Cart' order
+  $orderNumber = $row['orderNumber'];
+  // echo "quantityIn is" . $quantity;
 
+  
+  $check_duplicate = $MySQLi_CON->query(
+    "SELECT *
+    FROM orderDetails
+    WHERE item_id = '$item_id' AND orderNumber = '$orderNumber'"
+  );
+  $count=$check_duplicate->num_rows;
+  // If duplicate exists, increment quantityOrdered accordingly
+  if(!$count==0){
+    // echo "Duplicate item found";
+    $row = mysqli_fetch_assoc($check_duplicate);
+    $quantityInCart = $row['quantityOrdered'];
+    // echo "quantityInCart is" . $quantityInCart;
+    $quantityTotal = $quantityInCart + $quantity;
+    // echo "quantityTotal is " . $quantityTotal;
+    $query = 
+      "UPDATE orderDetails
+      SET quantityOrdered = '$quantityTotal'
+      WHERE item_id = '$item_id' AND orderNumber = '$orderNumber'";
+    $MySQLi_CON->query($query);
+  }
+	// If duplicate does not exist, insert new orderDetails
+  else{
+    // echo "No duplicate item";
+    $query = "INSERT INTO orderDetails(orderNumber,item_id,quantityOrdered)
+    VALUES('$orderNumber','$item_id','$quantity')";
+    
+    $MySQLi_CON->query($query);
+  }
+  mysqli_free_result($check_duplicate);
+}
+mysqli_free_result($check_cart);
 $MySQLi_CON->close();
 ?>
