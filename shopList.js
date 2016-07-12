@@ -25,7 +25,7 @@ function addToCart(parent){
 	var item_id = parent.id;
 	
 	httpRequest = new XMLHttpRequest();
-	httpRequest.onreadystatechange = alertContents;
+	//httpRequest.onreadystatechange = alertContents;
 	httpRequest.open('POST', 'add-to-cart.php');
 	httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	httpRequest.send("item_id="+item_id+"&quantity=1");
