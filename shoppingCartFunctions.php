@@ -30,18 +30,30 @@ $rowCount=$check_cart->num_rows;
 if($rowCount!=0){
  //look through query and display 
  //change this to a table
+ echo "<table style='width:75%>";
  while($itemRow = mysqli_fetch_assoc($check_cart)){
-	echo "<h1>" ."Item" . $count . "</h1>";
-		echo "<li id=" . $itemRow["item_id"] . " class='listItem'"; echo ">"; 
-			echo "<p id='image'>"; echo $itemRow["image"] . "</p>"; 
-			echo "<p id='itemName'>"; echo $itemRow["itemName"] . "</p>";
-			echo "<p id='price'>"; echo $itemRow["price"] . "</p>"; 
-			echo "<p id='desc'>"; echo $itemRow["description"] . "</p>";
-			echo "<a class='btn btn-lg btn-primary' href='#' role='button' 
-			  onClick=''>Edit" . "</a>"; 
-			  echo "<a class='btn btn-lg btn-primary' href='#' role='button' 
-			  onClick=''>Cancel" . "</a>"; 
-		echo "</li>";
+	 echo "<tr>";
+		echo "<th>" . "Item" . "</th>";
+		echo "<th>" . "Item ID" . "</th>"; 
+		echo "<th>" . "Image" . "</th>"; 
+		echo "<th>" . "Item Name" . "</th>";
+		echo "<th>" . "Item Price" . "</th>"; 
+		echo "<th>" . "Description" . "</th>";
+	echo "</tr>";	
+	
+	echo "<tr>";
+		echo "<th>" . $count . "</th>";
+		echo "<th>" . $itemRow["item_id"] . "</th>";
+		echo "<th>" . $itemRow["image"] . "</th>";
+		echo "<th>" . $itemRow["itemName"] . "</th>";
+		echo "<th>" . $itemRow["price"] . "</th>";
+		echo "<th>" . $itemRow["description"] . "</th>";
+		echo "<th>" . "<a class='btn btn-lg btn-primary' href='#' role='button' 
+			  onClick=''>Edit" . "</a>" . "</th>";
+		echo "<th>" . "<a class='btn btn-lg btn-primary' href='#' role='button' 
+			  onClick=''>Cancel" . "</th>";
+	echo "</tr>";	
+	
 		$count = $count + 1;
  }
 }else{
