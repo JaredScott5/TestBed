@@ -40,7 +40,7 @@ include_once 'shopListFunctions.php';
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp; <?php require_once 'shopList.php'; echo $user; ?></a></li>
             <li><a href="logout.php?logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp; Logout</a></li>
-			<li><a href="#" id="cart"><span class="glyphicon"></span>&nbsp; Cart: </a></li>
+			<li><a href="shoppingCart.php" id="cart"><span class="glyphicon"></span>&nbsp; Cart: </a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
