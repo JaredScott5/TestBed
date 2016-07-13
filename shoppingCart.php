@@ -46,13 +46,13 @@ include_once 'shoppingCartFunctions.php';
 
 <body>
 
-<p  style="display: block; padding-top: 40px;"></p>
+<p  style="display: block; padding-top: 100px;">testing</p>
 
 
 <ul>
 </ul>
 
-<p id="notes" onload="buttonName()"> </p>
+<p id="notes" onload=""> </p>
 <p id="notes2" > </p>
 
 
