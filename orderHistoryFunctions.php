@@ -21,7 +21,7 @@ $check_cart = $MySQLi_CON->query(
   "
   SELECT orderNumber, status
   FROM orders
-  WHERE user_id='$user_id' AND status='In Cart'
+  WHERE user_id='$user_id'
   "
 );
 
@@ -54,7 +54,7 @@ if (!$result){
 }else{
 }
 
- //change this to a table
+ //table 1 for 'in cart' items
  echo "<p  style='display: block; padding-top: 100px;'></p>";
  
  echo "<table style='width:75%' align='center' cellpadding='2' cellspacing='2' border='2'>";
@@ -64,7 +64,7 @@ if (!$result){
 		echo "<th style='text-align:center'> Item </th>"; 
 		echo "<th style='text-align:center'> Price </th>"; 
 		echo "<th style='text-align:center'> Quantity </th>";
-		echo "<th style='text-align:center'> Sub Total</th>";
+		echo "<th style='text-align:center'> Order Total</th>";
 		echo "<th style='text-align:center'> </th>";
 		echo "<th style='text-align:center'> </th>";
 	echo "</tr>";
@@ -72,7 +72,6 @@ if (!$result){
 	$totalCost = 0;
 	
  while($itemRow = mysqli_fetch_assoc($result)){
-		
 	
 	echo "<tr>";
 		echo "<th style='text-align:center'>" . $itemRow["orderNumber"] . "</th>";
