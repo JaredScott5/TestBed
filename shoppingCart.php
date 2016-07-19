@@ -1,9 +1,6 @@
-<?php
-session_start();
-include_once 'orderHistoryFunctions.php';
-
+<?php 
+include_once '';
 ?>
-
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
@@ -17,7 +14,7 @@ include_once 'orderHistoryFunctions.php';
 <html lang="en">
 <head>
 		
-<title>Order History</title>
+<title>Shopping Cart</title>
 <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -35,6 +32,7 @@ include_once 'orderHistoryFunctions.php';
             <li><a href="http://www.codingcage.com/search/label/PHP">PHP</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+		  /*change this line below*/
             <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp; <?php require_once 'orderHistory.php'; echo $user; ?></a></li>
             <li><a href="logout.php?logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp; Logout</a></li>
 			<li><a href="shoppingCart.php" id="cart"><span class="glyphicon"></span>&nbsp; Cart: </a></li>
