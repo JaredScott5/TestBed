@@ -9,48 +9,7 @@ $quantity = $_POST['quantity'];
 $time = date("Y-m-d H:i:s");
 
 // Check if the cart is empty
-$cart = json_decode($_COOKIE['cart'], true);
-$result = mysqli_query ( $MySQLi_CON, "SELECT * FROM items WHERE item_id=" . $item_id );
-$row = mysqli_fetch_object( $result );
-$item = new Item();
-$item->id = $row->item_id;
-$item->name = $row->itemName;
-$item->price = $row->price;
-$item->quantity = 1;
-if (count($cart)==0){
-  echo "Cart is empty";
-  $cart[] = $item;
-  $_COOKIE['cart'] = json_encode($cart);
-} else {
-  echo "Cart is not empty";
-  // Check cart for duplicate item
-  $index = -1;
-  echo count($cart);
-  for($i = 0; $i < count($cart); $i++) {
-    if ($cart[$i]->id == $item_id) {
-      $index = $i;
-      break;
-    }
-  }
-  if ($index == -1) {
-    $cart[] = $item;
-    $_COOKIE['cart'] = json_encode($cart);
-  } else {
-    $cart[$index]->quantity++;
-    $_COOKIE['cart'] = $cart;
-  }
-}
 
-$cart = json_decode($_COOKIE['cart'], true);
-foreach($cart as $cartitem) {
-  foreach($cartitem as $element){
-    echo $element;
-  }
-}
-mysqli_free_result($result);
-
-// Deprecated code
-/*
   $check_cart = $MySQLi_CON->query(
   "SELECT orderNumber, status
   FROM orders
@@ -59,12 +18,9 @@ mysqli_free_result($result);
 );
 
 $count=$check_cart->num_rows;
-*/
 
 // If the cart is empty, create a new order with status 'In Cart'
 
-
-/*
 if($count==0){
   $query = "INSERT INTO orders(user_id,orderDate,status)
   VALUES('$user_id','$time','In Cart')";
@@ -126,8 +82,8 @@ else{
   }
   mysqli_free_result($check_duplicate);
 }
-mysqli_free_result($result);
+mysqli_free_result($check_cart);
 $MySQLi_CON->close();
-*/
+
 
 ?>
