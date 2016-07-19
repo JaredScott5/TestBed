@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'shoppingCartFunctions.php';
+include_once 'orderHistoryFunctions.php';
 
 ?>
 
@@ -35,7 +35,7 @@ include_once 'shoppingCartFunctions.php';
             <li><a href="http://www.codingcage.com/search/label/PHP">PHP</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp; <?php require_once 'shoppingCart.php'; echo $user; ?></a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp; <?php require_once 'orderHistory.php'; echo $user; ?></a></li>
             <li><a href="logout.php?logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp; Logout</a></li>
 			<li><a href="shoppingCart.php" id="cart"><span class="glyphicon"></span>&nbsp; Cart: </a></li>
           </ul>
@@ -45,16 +45,6 @@ include_once 'shoppingCartFunctions.php';
 </head>
 
 <body>
-
-<p  style="display: block; padding-top: 100px;">testing</p>
-
-
-<ul>
-</ul>
-
-<p id="notes" onload=""> </p>
-<p id="notes2" > </p>
-
 
 <script src="">
 </script>
