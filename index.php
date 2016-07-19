@@ -19,6 +19,10 @@ if(isset($_POST['btn-login']))
  if(password_verify($upass, $row['password']))
  {
   $_SESSION['userSession'] = $row['user_id'];
+  if(!isset($_COOKIE['cart'])) {
+    $cart = []; // create empty cart
+    setcookie('cart', json_encode($cart), time()+3600); // create cart cookie
+  }
   header("Location: home.php");
  }
  else
