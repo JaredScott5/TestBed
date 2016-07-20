@@ -3,7 +3,7 @@ var cartCount = 0;
 window.onload = function(){
 	var note = document.getElementById("notes");
 	note.innerHTML = "testing windows.onload from js";
-	document.getElementById("cart").innerHTML = "Cart " + 0;
+	//document.getElementById("cart").innerHTML = "Cart " + 0;
 };
 
 /*
@@ -19,13 +19,13 @@ function buttonName(){
 */
 
 function addToCart(parent){
-	document.getElementById("cart").innerHTML = ++cartCount;
+	//document.getElementById("cart").innerHTML = ++cartCount;
 	document.getElementById("notes").innerHTML = "testing";
 
 	var item_id = parent.id;
 	
 	httpRequest = new XMLHttpRequest();
-	httpRequest.onreadystatechange = alertContents;
+	//httpRequest.onreadystatechange = alertContents;
 	httpRequest.open('POST', 'add-to-cart.php');
 	httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	httpRequest.send("item_id="+item_id+"&quantity=1");
