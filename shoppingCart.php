@@ -1,5 +1,6 @@
 <?php 
-include_once '';
+session_start();
+include_once 'shoppingCartFunctions.php';
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -12,35 +13,7 @@ include_once '';
 
 
 <html lang="en">
-<head>
-		
-<title>Shopping Cart</title>
-<nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="http://www.codingcage.com">Coding Cage</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="http://www.codingcage.com/search/label/jQuery">jQuery</a></li>
-            <li><a href="http://www.codingcage.com/search/label/PHP">PHP</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-		  /*change this line below*/
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp; <?php require_once 'orderHistory.php'; echo $user; ?></a></li>
-            <li><a href="logout.php?logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp; Logout</a></li>
-			<li><a href="shoppingCart.php" id="cart"><span class="glyphicon"></span>&nbsp; Cart: </a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-</head>
+
 
 <body>
 
