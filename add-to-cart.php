@@ -1,7 +1,6 @@
 <?php
 session_start();
 include_once 'dbconnect.php';
-include_once 'item.php';
 
 $user_id = $_SESSION['userSession'];
 $item_id = $_POST['item_id'];
@@ -11,11 +10,10 @@ $time = date("Y-m-d H:i:s");
 // Check if the cart is empty
 
   $check_cart = $MySQLi_CON->query(
-  "SELECT orderNumber, status
-  FROM orders
-  WHERE user_id='$user_id' AND status='In Cart'"
-
-);
+    "SELECT orderNumber, status
+    FROM orders
+    WHERE user_id='$user_id' AND status='In Cart'"
+  );
 
 $count=$check_cart->num_rows;
 
@@ -84,6 +82,5 @@ else{
 }
 mysqli_free_result($check_cart);
 $MySQLi_CON->close();
-
-
+$_SESSION['cartCount'] = $_SESSION['cartCount'] + 1;
 ?>

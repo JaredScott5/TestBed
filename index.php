@@ -19,10 +19,27 @@ if(isset($_POST['btn-login']))
  if(password_verify($upass, $row['password']))
  {
   $_SESSION['userSession'] = $row['user_id'];
-  if(!isset($_COOKIE['cart'])) {
-    $cart = []; // create empty cart
-    setcookie('cart', json_encode($cart), time()+3600); // create cart cookie
+  $user_id = $_SESSION['userSession'];
+  $check_cart = $MySQLi_CON->query(
+    "SELECT *
+    FROM orders
+    WHERE user_id='$user_id' AND status='In Cart'"
+  );
+  $count=$check_cart->num_rows;
+  $cartCount = 0;
+  if ($count!=0){
+    $row = mysqli_fetch_assoc($check_cart); // $check_cart only has one row, the 'In Cart' order
+    $orderNumber = $row['orderNumber'];
+    $check_items = $MySQLi_CON->query(
+    "SELECT *
+    FROM orderDetails
+    WHERE orderNumber = '$orderNumber'"
+    );
+    while ($row = mysqli_fetch_assoc($check_items)){
+      $cartCount++;
+    }
   }
+  $_SESSION['cartCount'] = $cartCount;
   header("Location: home.php");
  }
  else
