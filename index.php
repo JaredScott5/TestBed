@@ -36,7 +36,7 @@ if(isset($_POST['btn-login']))
     WHERE orderNumber = '$orderNumber'"
     );
     while ($row = mysqli_fetch_assoc($check_items)){
-      $cartCount++;
+      $cartCount=$cartCount + $row['quantityOrdered'];
     }
   }
   $_SESSION['cartCount'] = $cartCount;
