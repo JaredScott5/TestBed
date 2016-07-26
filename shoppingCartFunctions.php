@@ -83,9 +83,9 @@ if (!$result){
 			"'style='width: 50px;'> </th>"; 
 		echo "<th style='text-align:center'>" . $itemRow["price"]  * $itemRow['quantityOrdered'] . "</th>"; 	
 		echo "<th style='text-align:center'>" . "<a class='btn btn-lg btn-primary' href='#' role='button' 
-			  onClick=''>Update Quantity" . "</a>" . "</th>";
+			  onClick='updateQuantity($orderNumber)'>Update Quantity" . "</a>" . "</th>";
 		echo "<th style='text-align:center'>" . "<a class='btn btn-lg btn-primary' href='#' role='button' 
-			  onClick=''>Remove Item" .  "</a>" . "</th>";
+			  onClick='removeItem($orderNum)'>Remove Item" .  "</a>" . "</th>";
 	echo "</tr>";	
 	
 		$totalCost = $totalCost + ($itemRow["price"] * $itemRow["quantityOrdered"]);
