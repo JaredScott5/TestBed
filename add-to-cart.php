@@ -82,5 +82,6 @@ else{
 }
 mysqli_free_result($check_cart);
 $MySQLi_CON->close();
-$_SESSION['cartCount'] = $_SESSION['cartCount'] + 1;
+$_SESSION['cartCount'] = $_SESSION['cartCount'] + $quantity;
+echo $_SESSION['cartCount'];
 ?>

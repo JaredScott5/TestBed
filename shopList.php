@@ -40,7 +40,7 @@ include_once 'shopListFunctions.php';
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp; <?php require_once 'shopList.php'; echo $user; ?></a></li>
             <li><a href="logout.php?logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp; Logout</a></li>
-			<li><a href="shoppingCart.php" id="cart"><span class="glyphicon"></span>&nbsp; <?php echo "Cart: " . $_SESSION['cartCount']; ?> </a></li>
+			<li><a href="shoppingCart.php" id="cart"><span class="glyphicon"></span>&nbsp; <?php echo "Cart(" . $_SESSION['cartCount'] . ")"; ?> </a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -55,8 +55,6 @@ include_once 'shopListFunctions.php';
 <ul>
 </ul>
 
-<p id="notes" onload="buttonName()"> </p>
-<p id="notes2" > <?php echo $_SESSION['cartCount']?></p>
 
 
 <!-- the passed array is what we use in shopList.js for using the data from array $row-->
