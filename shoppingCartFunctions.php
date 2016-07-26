@@ -12,22 +12,22 @@ $query = $MySQLi_CON->query("SELECT * FROM users WHERE user_id=".$_SESSION['user
 $userRow=$query->fetch_array();
 
 $user = $userRow['username'];
-
+$status = "In Cart";
 $count = 1;
 
-// Check for any orders the user has ever made
+// Check if the cart is empty
 $check_cart = $MySQLi_CON->query(
   "
   SELECT orderNumber, status
   FROM orders
-  WHERE user_id='$user_id'
+  WHERE user_id='$user_id' AND status='$status'
   "
 );
 
 //1 or higher means it is not empty
 $rowCount=$check_cart->num_rows;
 
-//store the orderNumber variable from the past table orders
+//store orderNumber from table orders
 	$tempItemRow = mysqli_fetch_assoc($check_cart);
 	$orderNum=$tempItemRow["orderNumber"];
 	echo "assigned data to orderNum: $orderNum";
@@ -43,6 +43,7 @@ if($rowCount!=0){
  FROM orderdetails
  INNER JOIN items
  ON orderdetails.item_id = items.item_id
+ WHERE orderdetails.orderNumber='$orderNum'
  ";
  
  $result=mysqli_query($MySQLi_CON, $secondQuery);
@@ -53,7 +54,7 @@ if (!$result){
 }else{
 }
 
- //table for past orders
+ //table 1 for 'in cart' items
  echo "<p  style='display: block; padding-top: 100px;'></p>";
  
  echo "<table style='width:75%' align='center' cellpadding='2' cellspacing='2' border='2'>";

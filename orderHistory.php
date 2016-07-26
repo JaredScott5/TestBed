@@ -1,9 +1,7 @@
 <?php
 session_start();
 include_once 'orderHistoryFunctions.php';
-
 ?>
-
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
@@ -17,7 +15,7 @@ include_once 'orderHistoryFunctions.php';
 <html lang="en">
 <head>
 		
-<title>Shopping Cart</title>
+<title>Order History</title>
 <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
