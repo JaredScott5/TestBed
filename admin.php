@@ -17,6 +17,14 @@ integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En
 <head>
 		
 <title>Admin Page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Welcome - <?php echo $userRow['email']; ?></title>
+
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"> 
+<link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen"> 
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
 <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -26,20 +34,21 @@ integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="http://www.codingcage.com">Coding Cage</a>
+          <a class="navbar-brand" href="shopList.php">Shop List</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="http://www.codingcage.com/search/label/jQuery">jQuery</a></li>
-            <li><a href="http://www.codingcage.com/search/label/PHP">PHP</a></li>
+            <li><a href="http://www.codingcage.com/search/label/jQuery">Account Info</a></li>
+            <li><a href="http://www.codingcage.com/search/label/PHP">Order History</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp; <?php require_once 'admin.php';?></a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp; <?php  ?></a></li>
             <li><a href="logout.php?logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp; Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
-    </nav>
+</nav>
+
 </head>
 
 <body>
