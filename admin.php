@@ -1,6 +1,5 @@
 <?php 
 session_start();
-include_once 'adminFunctions.php';
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -35,7 +34,7 @@ integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En
             <li><a href="http://www.codingcage.com/search/label/PHP">PHP</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp; <?php require_once 'admin.php'; echo $user; ?></a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp; <?php require_once 'admin.php';?></a></li>
             <li><a href="logout.php?logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp; Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -46,8 +45,11 @@ integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En
 <body>
 <h2 style="display: block; padding-top: 40px;"> Search by user_id, email, or username </h2>
     <input type='text' id='search_bar'>
-        <input type='button' id='search_string' value='Search'>	
-<script src="">
+        <input type='button' id='search_string' value='Search' onClick="search()">	
+		
+		<p id ="finalResult"></p>
+		<div id="debug"> </div>
+<script src="admin.js">
 </script>
 
 </body>
