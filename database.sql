@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS users (
   username varchar(25) NOT NULL,
   email varchar(35) NOT NULL,
   password varchar(255) NOT NULL,
+  admin_flag boolean DEFAULT FALSE,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=INNODB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
