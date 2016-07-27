@@ -43,7 +43,7 @@ $MySQLi_CON->close();
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="http://www.codingcage.com/search/label/jQuery">Account Info</a></li>
-            <li><a href="http://www.codingcage.com/search/label/PHP">Order History</a></li>
+            <li><a href="orderHistory.php">Order History</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp; <?php echo $userRow['username']; ?></a></li>

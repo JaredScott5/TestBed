@@ -25,18 +25,20 @@ include_once 'orderHistoryFunctions.php';
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="http://www.codingcage.com">Coding Cage</a>
+         <a class="navbar-brand" href="shopList.php">Shop List</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="http://www.codingcage.com/search/label/jQuery">jQuery</a></li>
-            <li><a href="http://www.codingcage.com/search/label/PHP">PHP</a></li>
+            <li><a href="http://www.codingcage.com/search/label/jQuery">Account Info</a></li>
+            <li><a href="orderHistory.php">Order History</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp; <?php require_once 'orderHistory.php'; echo $user; ?></a></li>
             <li><a href="logout.php?logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp; Logout</a></li>
 			<li><a href="shoppingCart.php" id="cart"><span class="glyphicon"></span>&nbsp; Cart: </a></li>
-          </ul>
+			<li><a href="shoppingCart.php" id="cart"><span class="glyphicon"></span>&nbsp; <?php echo "Cart(" . $_SESSION['cartCount'] . ")"; ?> </a></li>
+
+		  </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>

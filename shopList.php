@@ -34,12 +34,14 @@ include_once 'shopListFunctions.php';
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="http://www.codingcage.com/search/label/jQuery">Account Info</a></li>
-            <li><a href="http://www.codingcage.com/search/label/PHP">Order History</a></li>
+            <li><a href="">Account Info</a></li>
+            <li><a href="orderHistory.php">Order History</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp; <?php echo $userRow['username']; ?></a></li>
             <li><a href="logout.php?logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp; Logout</a></li>
+			<li><a href="shoppingCart.php" id="cart"><span class="glyphicon"></span>&nbsp; <?php echo "Cart(" . $_SESSION['cartCount'] . ")"; ?> </a></li>
+
           </ul>
         </div><!--/.nav-collapse -->
       </div>
