@@ -28,19 +28,23 @@ if(isset($_POST['btn-login']))
   $count=$check_cart->num_rows;
   $cartCount = 0;
   if ($count!=0){
-    $row = mysqli_fetch_assoc($check_cart); // $check_cart only has one row, the 'In Cart' order
-    $orderNumber = $row['orderNumber'];
+    $cartRow = mysqli_fetch_assoc($check_cart); // $check_cart only has one row, the 'In Cart' order
+    $orderNumber = $cartRow['orderNumber'];
     $check_items = $MySQLi_CON->query(
     "SELECT *
     FROM orderDetails
     WHERE orderNumber = '$orderNumber'"
     );
-    while ($row = mysqli_fetch_assoc($check_items)){
-      $cartCount=$cartCount + $row['quantityOrdered'];
+    while ($cartRow = mysqli_fetch_assoc($check_items)){
+      $cartCount=$cartCount + $cartRow['quantityOrdered'];
     }
   }
   $_SESSION['cartCount'] = $cartCount;
-  header("Location: home.php");
+  if($row['admin_flag'] == 1){
+    header("Location: admin.php");
+  } else {
+    header("Location: home.php");
+  }
  }
  else
  {
@@ -48,7 +52,8 @@ if(isset($_POST['btn-login']))
         email or password does not exist !
     ";
  }
- 
+ mysqli_free_result($query);
+ mysqli_free_result($check_cart);
  $MySQLi_CON->close();
  
 }
