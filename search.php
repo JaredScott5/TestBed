@@ -8,7 +8,7 @@ if(isset($_POST['searchTerm']))
 	echo "invalid search";
 }
 
-$searchTerm = $_POST['searchTerm'];
+$searchTerm = $MySQLi_CON->real_escape_string(trim($_POST['searchTerm']));
 
 //TODO: include order details for total cost, # of each item, id of each item 
 //group by order number
