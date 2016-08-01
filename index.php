@@ -40,6 +40,7 @@ if(isset($_POST['btn-login']))
     }
   }
   $_SESSION['cartCount'] = $cartCount;
+  //this line determines if the user is an admin or not
   if($row['admin_flag'] == 1){
     header("Location: admin.php");
   } else {
