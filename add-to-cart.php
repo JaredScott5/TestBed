@@ -6,7 +6,7 @@ $user_id = $_SESSION['userSession'];
 $item_id = $_POST['item_id'];
 $quantity = $_POST['quantity'];
 $time = date("Y-m-d H:i:s");
-$quantity2 = 0; 
+$quantityToRemove = 0; 
 // Check if the cart is empty
 
   $check_cart = $MySQLi_CON->query(
@@ -26,10 +26,11 @@ if($quantity==0){
   
   $itemQuantityQuery = "SELECT quantityOrdered FROM orderDetails
 	WHERE orderNumber='$orderNumber' AND item_id='$item_id'";
-  $row2 = mysqli_query($MySQLi_CON, $itemQuantityQuery);
-  $result = mysqli_fetch_assoc($row2);
+  $result = mysqli_query($MySQLi_CON, $itemQuantityQuery);
+  $q = mysqli_fetch_assoc($result);
+  $quantityToRemove = $q["quantityOrdered"];
   
-  echo "result is" .  $result['quantityOrdered'];
+  echo "<p  style='display: block; padding-top: 100px;'> result is" . $quantityToRemove . "</p>";
   
 	echo "orderNumber is $orderNumber and item id is $item_id...";
 	// change this inserstion into a removal
@@ -111,7 +112,7 @@ else{
 mysqli_free_result($check_cart);
 $MySQLi_CON->close();
 
-$_SESSION['cartCount'] = $_SESSION['cartCount'] + $quantity;
+$_SESSION['cartCount'] = $_SESSION['cartCount'] + $quantity - $quantityToRemove;
 
 echo $_SESSION['cartCount'];
 ?>
