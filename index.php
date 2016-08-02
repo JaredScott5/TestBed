@@ -19,6 +19,7 @@ if(isset($_POST['btn-login']))
  if(password_verify($upass, $row['password']))
  {
   $_SESSION['userSession'] = $row['user_id'];
+  $_SESSION['username'] = $row['username'];
   $user_id = $_SESSION['userSession'];
   $check_cart = $MySQLi_CON->query(
     "SELECT *
@@ -38,6 +39,7 @@ if(isset($_POST['btn-login']))
     while ($cartRow = mysqli_fetch_assoc($check_items)){
       $cartCount=$cartCount + $cartRow['quantityOrdered'];
     }
+    mysqli_free_result($check_cart);
   }
   $_SESSION['cartCount'] = $cartCount;
   if($row['admin_flag'] == 1){
@@ -53,9 +55,7 @@ if(isset($_POST['btn-login']))
     ";
  }
  mysqli_free_result($query);
- mysqli_free_result($check_cart);
  $MySQLi_CON->close();
- 
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -63,8 +63,8 @@ if(isset($_POST['btn-login']))
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Login & Registration</title>
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen"> 
+<link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="libs/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen"> 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 <body>
