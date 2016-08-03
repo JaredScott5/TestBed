@@ -48,17 +48,16 @@ echo "<p  style='display: block; padding-top: 40px;'></p>";
 //return database database
 while($row = mysqli_fetch_assoc($result)){
 	
-	echo "<h1>" ."Item" . $count . "</h1>";
+	echo "<h1>" ."Item " . $row["item_id"] . "</h1>";
 		echo "<li id=" . $row["item_id"] . " class='listItem'"; echo ">"; 
-			echo "<p id='image'>"; echo $row["image"] . "</p>"; 
+			echo "<img class=\"img-responsive\" width=\"150\" height=\"150\" src=" . $row["image"] . " id='image'>" . "</img>"; 
 			echo "<p id='itemName'>"; echo $row["itemName"] . "</p>";
 			echo "<p id='price'>"; echo $row["price"] . "</p>"; 
 			echo "<p id='desc'>"; echo $row["description"] . "</p>";
 			echo "<a class='btn btn-lg btn-primary' href='#' role='button' 
 			  onClick='addToCart(this.parentNode)'>Add To Cart" . "</a>"; 
 		echo "</li>";
-	
-$count = $count + 1;
+
 }//enbd while
 mysqli_free_result($result);
 //}//end function

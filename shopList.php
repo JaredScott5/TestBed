@@ -41,7 +41,3 @@ include_once 'shopListFunctions.php';
 </body>
 
 </html>
-
-<?php
-//mysqli_close($connection);
-?>
