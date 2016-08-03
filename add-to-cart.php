@@ -2,13 +2,38 @@
 session_start();
 include_once 'dbconnect.php';
 
+$quantityToRemove = 0;
 $user_id = $_SESSION['userSession'];
+
+
+if(isset($_POST['q']) && isset($_POST['iN'])){
+$quantity = $MySQLi_CON->real_escape_string(trim($_POST['q']));
+$item_id = $MySQLi_CON->real_escape_string(trim($_POST['iN']));
+echo $quantity;
+echo $item_id;
+
+$check_cart = $MySQLi_CON->query(
+    "SELECT orderNumber, status
+    FROM orders
+    WHERE user_id='$user_id' AND status='In Cart'"
+  );
+$row = mysqli_fetch_assoc($check_cart); // $check_cart only has one row, the 'In Cart' order
+  $orderNumber = $row['orderNumber'];
+  
+$query = 
+      "UPDATE orderDetails
+      SET quantityOrdered = '$quantity'
+      WHERE item_id = '$item_id' AND orderNumber = '$orderNumber'";
+    $MySQLi_CON->query($query);
+	
+}else{
+
 $item_id = $_POST['item_id'];
 $quantity = $_POST['quantity'];
 $time = date("Y-m-d H:i:s");
-$quantityToRemove = 0; 
-// Check if the cart is empty
+ 
 
+// Check if the cart is empty
   $check_cart = $MySQLi_CON->query(
     "SELECT orderNumber, status
     FROM orders
@@ -43,9 +68,6 @@ if($quantity==0){
 	}else{
 	echo "error deleting record" . $MySQLi_CON->error;
 }
-	//(orderNumber,item_id,quantityOrdered)
-   // VALUES('$orderNumber','$item_id','$quantity')";
-    //$MySQLi_CON->query($query);
 	
 }else if($count==0){// If the cart is empty, create a new order with status 'In Cart'
 
@@ -109,10 +131,13 @@ else{
   }
   mysqli_free_result($check_duplicate);
 }
+
 mysqli_free_result($check_cart);
-$MySQLi_CON->close();
+}//outer most if/very first if
 
 $_SESSION['cartCount'] = $_SESSION['cartCount'] + $quantity - $quantityToRemove;
+
+$MySQLi_CON->close();
 
 echo $_SESSION['cartCount'];
 ?>

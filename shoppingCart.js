@@ -1,21 +1,17 @@
-function updateQuantity(){
-	
+function updateQuantity(item_id, quantity){
+	httpRequest = new XMLHttpRequest();
+	httpRequest.onreadystatechange = updateCart;
+	httpRequest.open('POST', 'add-to-cart.php');
+	httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	httpRequest.send("item_id="+item_id+"&quantity="+quantity);
 }
 
 
 
 function removeItem(itemID){
-	//look at addtoCart.php to properly update the 'cart'
-	
-	//1 get the mysql id of what you want removed
-	
-	//2 on the php side of 
-	
-	//var item_id = parent.id;
 	var item_id = itemID;
 	httpRequest = new XMLHttpRequest();
 	httpRequest.onreadystatechange = updateCart;
-	
 	httpRequest.open('POST', 'add-to-cart.php');
 	httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	//we are completly removing the item, so quantity BECOMES 0

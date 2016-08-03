@@ -79,10 +79,15 @@ if (!$result){
 		echo "<th style='text-align:center'>" . $itemRow["itemName"] . "</th>"; 
 		echo "<th style='text-align:center'>" . $itemRow["price"] . "</th>"; 
 		echo "<th style='text-align:center'>
-			<input type='text' value='" . $itemRow['quantityOrdered'] . 
-			"'style='width: 50px;'> </th>"; 
+			<form action='add-to-cart.php' method='post'>
+			<input type='hidden' name='iN' value='" . $itemRow["item_id"] . "' />
+			<input type='text' name='q' value='" . $itemRow['quantityOrdered'] . 
+			"'style='width: 50px;'/> 
+			<input type='submit'>
+			</form>
+			</th>"; 
 		echo "<th style='text-align:center'>" . $itemRow['price']  * $itemRow['quantityOrdered'] . "</th>"; 	
-		echo "<th style='text-align:center'>" . "<a class='btn btn-lg btn-primary' href='#' role='button' 
+		echo "<th style='text-align:center'>" . "<a class='btn btn-lg btn-primary' href='add-to-cart.php' role='button' 
 			  onClick='updateQuantity(" . $itemRow["item_id"] . ")'>Update Quantity" . "</a>" . "</th>";
 		echo "<th style='text-align:center'>" . "<a class='btn btn-lg btn-primary' href='#' role='button' 
 			  onClick='removeItem(" . $itemRow["item_id"] . ")'>Remove Item" .  "</a>" . "</th>";
