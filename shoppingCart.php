@@ -28,7 +28,7 @@ include_once 'shoppingCartFunctions.php';
 
 <body>
 
-<script src="">
+<script src="shoppingCart.js">
 </script>
 
 </body>

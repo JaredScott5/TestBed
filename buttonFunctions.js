@@ -1,7 +1,0 @@
-function updateQuantity(){
-	
-}
-
-function removeItem(){
-	
-}

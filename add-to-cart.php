@@ -6,7 +6,7 @@ $user_id = $_SESSION['userSession'];
 $item_id = $_POST['item_id'];
 $quantity = $_POST['quantity'];
 $time = date("Y-m-d H:i:s");
-
+$quantityToRemove = 0; 
 // Check if the cart is empty
 
   $check_cart = $MySQLi_CON->query(
@@ -17,9 +17,38 @@ $time = date("Y-m-d H:i:s");
 
 $count=$check_cart->num_rows;
 
-// If the cart is empty, create a new order with status 'In Cart'
+//if 'quantity' == 0, we know that we want to completly remove an EXISTING item in an order
+if($quantity==0){
+	echo "removing $item_id from order...";
+	
+	$row = mysqli_fetch_assoc($check_cart); // $check_cart only has one row, the 'In Cart' order
+  $orderNumber = $row['orderNumber'];
+  
+  $itemQuantityQuery = "SELECT quantityOrdered FROM orderDetails
+	WHERE orderNumber='$orderNumber' AND item_id='$item_id'";
+  $result = mysqli_query($MySQLi_CON, $itemQuantityQuery);
+  $q = mysqli_fetch_assoc($result);
+  $quantityToRemove = $q["quantityOrdered"];
+  
+  echo "<p  style='display: block; padding-top: 100px;'> result is" . $quantityToRemove . "</p>";
+  
+	echo "orderNumber is $orderNumber and item id is $item_id...";
+	// change this inserstion into a removal
+    $deleteQuery = "DELETE FROM orderDetails
+	WHERE orderNumber='$orderNumber' AND item_id='$item_id'";
+	echo "made it past delete statement...";
+	
+	if($MySQLi_CON->query($deleteQuery) === TRUE){
+		echo "delete worked...";
+	}else{
+	echo "error deleting record" . $MySQLi_CON->error;
+}
+	//(orderNumber,item_id,quantityOrdered)
+   // VALUES('$orderNumber','$item_id','$quantity')";
+    //$MySQLi_CON->query($query);
+	
+}else if($count==0){// If the cart is empty, create a new order with status 'In Cart'
 
-if($count==0){
   $query = "INSERT INTO orders(user_id,orderDate,status)
   VALUES('$user_id','$time','In Cart')";
  
@@ -82,6 +111,8 @@ else{
 }
 mysqli_free_result($check_cart);
 $MySQLi_CON->close();
-$_SESSION['cartCount'] = $_SESSION['cartCount'] + $quantity;
+
+$_SESSION['cartCount'] = $_SESSION['cartCount'] + $quantity - $quantityToRemove;
+
 echo $_SESSION['cartCount'];
 ?>
