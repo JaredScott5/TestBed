@@ -33,7 +33,29 @@ $MySQLi_CON->close();
 
 </head>
 <body>
-
+  <div class="jumbotron text-center">
+    <br/><h1>Test Shop</h1><br/>
+    <p>This website serves as an interface for testing our order processing software.</p> 
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <h3>Shop List</h3>
+        <p>Contains the list of items available for sale.</p>
+        <p>Add to Cart adds items to the current customer's cart.</p>
+      </div>
+      <div class="col-sm-4">
+        <h3>Order History</h3>
+        <p>Allows the user to check the status of their orders.</p>
+        <p>Contains all orders the user has ever checked out.</p>
+      </div>
+      <div class="col-sm-4">
+        <h3>Cart</h3> 
+        <p>Contains all items the user has added to their unprocessed order.</p>
+        <p>The cart is persistent across user sessions.</p>
+      </div>
+    </div>
+  </div>
 
 
 
