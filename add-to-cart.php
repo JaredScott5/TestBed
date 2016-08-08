@@ -42,7 +42,7 @@ $time = date("Y-m-d H:i:s");
 
 $count=$check_cart->num_rows;
 
-//if 'quantity' == 0, we know that we want to completly remove an EXISTING item in an order
+//if 'quantity' == 0, we know that we want to completely remove an EXISTING item in an order
 if($quantity==0){
 	echo "removing $item_id from order...";
 	
