@@ -49,10 +49,10 @@ $updateQuery =
       SET quantityOrdered = '$updatedQuantity'
       WHERE item_id = '$item_id' AND orderNumber = '$orderNumber'";
 	  
-if($MySQLi_CON->query($updateQuery) === true){
-$_SESSION['cartCount'] = $newCart;
-//header("Location: shoppingCart.php");
-}
+	if($MySQLi_CON->query($updateQuery) === true){
+		$_SESSION['cartCount'] = $newCart;
+		header("Location: shoppingCart.php");
+	}
 }else{
 
 $item_id = $_POST['item_id'];
