@@ -66,7 +66,6 @@ if (!$result){
 		echo "<th style='text-align:center'> Quantity </th>";
 		echo "<th style='text-align:center'> Order Total</th>";
 		echo "<th style='text-align:center'> </th>";
-		echo "<th style='text-align:center'> </th>";
 	echo "</tr>";
 	
 	$totalCost = 0;
@@ -87,8 +86,6 @@ if (!$result){
 			</form>
 			</th>"; 
 		echo "<th style='text-align:center'>" . $itemRow['price']  * $itemRow['quantityOrdered'] . "</th>"; 	
-		echo "<th style='text-align:center'>" . "<a class='btn btn-lg btn-primary' href='add-to-cart.php' role='button' 
-			  onClick='updateQuantity(" . $itemRow["item_id"] . ")'>Update Quantity" . "</a>" . "</th>";
 		echo "<th style='text-align:center'>" . "<a class='btn btn-lg btn-primary' href='#' role='button' 
 			  onClick='removeItem(" . $itemRow["item_id"] . ")'>Remove Item" .  "</a>" . "</th>";
 	echo "</tr>";	
@@ -102,7 +99,6 @@ if (!$result){
  echo "<th> </th>";
  echo "<th> </th>";
  echo "<th> Total Cost: " . $totalCost . "</th>";
- echo "<th> </th>";
  echo "<th> </th>";
  echo "</table>";
 

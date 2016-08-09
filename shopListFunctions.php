@@ -7,7 +7,9 @@ if(!isset($_SESSION['userSession']))
  header("Location: index.php");
 }
 
-$query = $MySQLi_CON->query("SELECT * FROM users WHERE user_id=".$_SESSION['userSession']);
+$query = $MySQLi_CON->query("SELECT * FROM users 
+WHERE user_id=".$_SESSION['userSession']);
+
 $userRow=$query->fetch_array();
 
 $user = $userRow['username'];
