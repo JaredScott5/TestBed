@@ -4,14 +4,15 @@ include_once 'dbconnect.php';
 
 $quantity = 0;
 $user_id = $_SESSION['userSession'];
+$updatedQuantity = 0;
 
 $check_cart = $MySQLi_CON->query(
     "SELECT orderNumber, status
     FROM orders
     WHERE user_id='$user_id' AND status='In Cart'"
   );
-  
-//this statement updates the quantity of a single item in the cart
+
+//this statement checks if we need to UPDATE the quantity of a single item in the cart
 if(isset($_POST['q']) && isset($_POST['iN'])){
 $updatedQuantity = $MySQLi_CON->real_escape_string(trim($_POST['q']));
 $item_id = $MySQLi_CON->real_escape_string(trim($_POST['iN']));
@@ -19,14 +20,14 @@ $item_id = $MySQLi_CON->real_escape_string(trim($_POST['iN']));
 $row = mysqli_fetch_assoc($check_cart);
 $orderNumber = $row['orderNumber'];
   
-  //create a query for ALL items
+  //create a query for ALL items in cart
   $totalOrderQuantity = $MySQLi_CON->query(
   "SELECT SUM(quantityOrdered) AS value_sum
   FROM orderDetails
   WHERE orderNumber='$orderNumber'"
   );
   
-  //create query for only the ONE item 
+  //create query for only the ONE item that we want to update 
   $singleOrderQuantity = $MySQLi_CON->query(
   "SELECT SUM(quantityOrdered) AS value_sum
   FROM orderdetails
@@ -39,8 +40,8 @@ $orderNumber = $row['orderNumber'];
   
   $var1 = $total1['value_sum'];
   $var2 = $total2['value_sum'];
-  
   $newCart = ($var1 - $var2) + $updatedQuantity;
+  
   //add the new quantity and use it to update the cart properly
 $updateQuery = 
       "UPDATE orderDetails
@@ -59,7 +60,7 @@ $time = date("Y-m-d H:i:s");
 
 $count=$check_cart->num_rows;
 
-//if 'quantity' == 0, we know that we want to completely remove 
+//if 'quantity' == 0, we know that we want to completely REMOVE 
 //an EXISTING item in an order
 if($quantity==0){
 
@@ -91,13 +92,13 @@ if($quantity==0){
     $deleteQuery = "DELETE FROM orderDetails
 	WHERE orderNumber='$orderNumber' AND item_id='$item_id'";
 	
-	if($MySQLi_CON->query($deleteQuery) === TRUE){
+	if($MySQLi_CON->query($deleteQuery) === true){
 		$_SESSION['cartCount'] = $newCart;
-		header("Location: shoppingCart.php");
-	}else{
-	}//end deleteQuery end/else
+		echo "<meta http-equiv='refresh' content='0'>";//header("Location: shoppingCart.php");
+	}
 	
 }else if($count==0){
+ 
 	// If the cart is empty, create a new order with status 'In Cart'
 
   $query = "INSERT INTO orders(user_id,orderDate,status)
@@ -126,6 +127,7 @@ if($quantity==0){
 // If the cart is not empty, check order with status 'In Cart' for duplicate item_id
 else{
   // Check 'In Cart' order for duplicate item
+  
   $row = mysqli_fetch_assoc($check_cart); // $check_cart only has one row, the 'In Cart' order
   $orderNumber = $row['orderNumber'];
   

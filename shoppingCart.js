@@ -6,16 +6,13 @@ function updateQuantity(item_id, quantity){
 	httpRequest.send("item_id="+item_id+"&quantity="+quantity);
 }
 
-
-
 function removeItem(item_id){
 	httpRequest = new XMLHttpRequest();
 	httpRequest.onreadystatechange = updateCart;
 	httpRequest.open('POST', 'add-to-cart.php');
 	httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	httpRequest.send("item_id="+item_id+"&quantity=0");
+	httpRequest.send("item_id="+item_id+"&quantity="+0);
 }
-
 
 function updateCart() {
   try {
