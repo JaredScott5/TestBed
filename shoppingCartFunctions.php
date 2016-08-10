@@ -24,7 +24,7 @@ $check_cart = $MySQLi_CON->query(
   "
 );
 
-//1 or higher means it is not empty
+//if rowCount comes back as 1 or higher, it means the cart is not empty
 $rowCount=$check_cart->num_rows;
 
 //store orderNumber from table orders
