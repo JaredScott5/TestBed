@@ -93,9 +93,8 @@ if($quantity==0){
 	
 	if($MySQLi_CON->query($deleteQuery) === TRUE){
 		$_SESSION['cartCount'] = $newCart;
-		header("Location: shoppingCart.php");
-	}else{
-	}//end deleteQuery end/else
+		echo "<meta http-equiv='refresh' content='0'>";
+	}
 	
 }else if($count==0){
 	// If the cart is empty, create a new order with status 'In Cart'
