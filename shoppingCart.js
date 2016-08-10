@@ -8,13 +8,11 @@ function updateQuantity(item_id, quantity){
 
 
 
-function removeItem(itemID){
-	var item_id = itemID;
+function removeItem(item_id){
 	httpRequest = new XMLHttpRequest();
 	httpRequest.onreadystatechange = updateCart;
 	httpRequest.open('POST', 'add-to-cart.php');
 	httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	//we are completly removing the item, so quantity BECOMES 0
 	httpRequest.send("item_id="+item_id+"&quantity=0");
 }
 
