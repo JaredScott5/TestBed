@@ -30,7 +30,6 @@ $rowCount=$check_cart->num_rows;
 //store orderNumber from table orders
 	$tempItemRow = mysqli_fetch_assoc($check_cart);
 	$orderNum=$tempItemRow["orderNumber"];
-	echo "assigned data to orderNum: $orderNum";
 	
 //if not empty display the order as a table 
 if($rowCount!=0){
