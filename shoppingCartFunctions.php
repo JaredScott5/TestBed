@@ -102,7 +102,7 @@ if (!$result){
  echo "</table>";
 
 }else{
-	echo "<p  style='display: block; padding-top: 100px;'>Row Count is not 0</p>";
+	//echo "<p  style='display: block; padding-top: 100px;'>Row Count is not 0</p>";
 }
 
 //free the variable, we should not need it now
