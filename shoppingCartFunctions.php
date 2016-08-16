@@ -85,7 +85,7 @@ if (!$result){
 			</form>
 			</th>"; 
 		echo "<th style='text-align:center'>" . $itemRow['price']  * $itemRow['quantityOrdered'] . "</th>"; 	
-		echo "<th style='text-align:center'>" . "<a class='btn btn-lg btn-primary' href='#' role='button' 
+		echo "<th style='text-align:center'>" . "<a class='btn btn-sm btn-primary' href='#' role='button' 
 			  onClick='removeItem(" . $itemRow["item_id"] . ")'>Remove Item" .  "</a>" . "</th>";
 	echo "</tr>";	
 	
@@ -99,7 +99,7 @@ if (!$result){
  echo "<th> </th>";
  echo "<th>" . $itemRow["orderNumber"] . "</th>";
  echo "<th> Total Cost: " . $totalCost . "</th>";
- echo "<th style='text-align:center'>" . "<a class='btn btn-lg btn-primary' href='#' role='button' 
+ echo "<th style='text-align:center'>" . "<a class='btn btn-sm btn-primary' href='#' role='button' 
 			  onClick='checkOut(" . $orderNumber . ")'>Check Out" .  "</a>" .  "</th>";
  echo "</table>";
 

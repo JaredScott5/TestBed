@@ -7,12 +7,9 @@ if(!isset($_SESSION['userSession']))
 }
 
 $user_id = $_SESSION['userSession'];
-
 $query = $MySQLi_CON->query("SELECT * FROM users WHERE user_id= '$user_id'");
 $userRow=$query->fetch_array();
-
 $user = $userRow['username'];
-
 $count = 1;
 
 // Check for any orders the user has ever made
@@ -30,7 +27,6 @@ $rowCount=$check_cart->num_rows;
 //store the orderNumber variable from the past table orders
 	$tempItemRow = mysqli_fetch_assoc($check_cart);
 	$orderNum=$tempItemRow["orderNumber"];
-	echo "assigned data to orderNum: $orderNum";
 	
 //if not empty display the order as a table 
 if($rowCount!=0){
@@ -39,7 +35,8 @@ if($rowCount!=0){
  $secondQuery =
  "
  SELECT orderdetails.orderNumber, orderdetails.item_id, orderdetails.quantityOrdered,
-		items.itemName, items.price, items.image 
+		items.itemName, items.price, items.image, orders.orderDate, orders.shippedDate,
+		orders.comments
  FROM orderdetails
  INNER JOIN items
  ON orderdetails.item_id = items.item_id
@@ -61,14 +58,15 @@ if (!$result){
  
  echo "<table style='width:75%' align='center' cellpadding='2' cellspacing='2' border='2'>";
  echo "<tr>";
-		echo "<th style='text-align:center'> Order # </th>"; 
+		echo "<th style='text-align:center'> Order # </th>";
+		echo "<th style='text-align:center'> Date Ordered </th>";
+		echo "<th style='text-align:center'> Date Received</th>";		
 		echo "<th style='text-align:center'> Image </th>";
 		echo "<th style='text-align:center'> Item </th>"; 
 		echo "<th style='text-align:center'> Price </th>"; 
 		echo "<th style='text-align:center'> Quantity </th>";
 		echo "<th style='text-align:center'> Order Total</th>";
-		echo "<th style='text-align:center'> </th>";
-		echo "<th style='text-align:center'> </th>";
+		echo "<th style='text-align:center'> Comments</th>";
 	echo "</tr>";
 	
 	$totalCost = 0;
@@ -77,17 +75,14 @@ if (!$result){
 	
 	echo "<tr>";
 		echo "<th style='text-align:center'>" . $itemRow["orderNumber"] . "</th>";
+		echo "<th style='text-align:center'>" . $itemRow["orderDate"] . "</th>";
+		echo "<th style='text-align:center'>" . $itemRow["shippedDate"] . "</th>";
 		echo "<th style='text-align:center'>" . $itemRow["image"] . "</th>";
 		echo "<th style='text-align:center'>" . $itemRow["itemName"] . "</th>"; 
 		echo "<th style='text-align:center'>" . $itemRow["price"] . "</th>"; 
-		echo "<th style='text-align:center'>
-			<input type='text' value='" . $itemRow['quantityOrdered'] . 
-			"'style='width: 50px;'> </th>"; 
+		echo "<th style='text-align:center'>" . $itemRow['quantityOrdered'] . "</th>"; 
 		echo "<th style='text-align:center'>" . $itemRow["price"]  * $itemRow['quantityOrdered'] . "</th>"; 	
-		//echo "<th style='text-align:center'>" . "<a class='btn btn-lg btn-primary' href='#' role='button' 
-		//	  onClick=''>Update Quantity" . "</a>" . "</th>";
-		//echo "<th style='text-align:center'>" . "<a class='btn btn-lg btn-primary' href='#' role='button' 
-		//	  onClick=''>Remove Item" .  "</a>" . "</th>";
+		echo "<th style='text-align:center'>" . $itemRow["comments"] . "</th>"; 
 	echo "</tr>";	
 	
 		$totalCost = $totalCost + ($itemRow["price"] * $itemRow["quantityOrdered"]);
@@ -98,8 +93,9 @@ if (!$result){
  echo "<th> </th>";
  echo "<th> </th>";
  echo "<th> </th>";
- echo "<th> Total Cost: " . $totalCost . "</th>";
  echo "<th> </th>";
+ echo "<th> </th>";
+ echo "<th> Total Cost: " . $totalCost . "</th>";
  echo "<th> </th>";
  echo "</table>";
 

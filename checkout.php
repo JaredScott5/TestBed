@@ -24,8 +24,6 @@ $orderQuery =
 		}
 	}
   
- 
-
 $MySQLi_CON->close();
 
 echo $_SESSION['cartCount'];
