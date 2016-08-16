@@ -2,25 +2,31 @@
 session_start();
 include_once 'dbconnect.php';
 
+$orderNO = $_POST['order_number'];
 //first check that the order exists and is STILL 'In Cart'
-$orderQuery = $MySQLi_CON->query(
+$orderQuery = 
     "SELECT *
     FROM orders
-    WHERE orderNumber='$order_number' AND status='In Cart'"
-  );
-  
-  if($MySQLi_CON->query($orderQuery) === true){
+    WHERE orderNumber='$orderNO' AND status='In Cart'";
+    
+  if($MySQLi_CON->query($orderQuery)){
 	  //change 'status' to 'Shipped'
 	  $updatedOrderQuery = 
 	  "UPDATE orders
 	  SET status = 'Shipped'
-	  WHERE orderNumber = $order_number";
+	  WHERE orderNumber = $orderNO";
 	  
-		if($MySQLi_CON->query($updatedOrderQuery))
-			echo "order was not updated to SHIPPED!!!";
-		else
-			header("Location: orderHistory.php");
+		if($MySQLi_CON->query($updatedOrderQuery) === false)
+		else{
+			 $_SESSION['cartCount'] = 0;
+			//header("Location: home.php");
+			//echo "<meta http-equiv='refresh' content='0'>";//header("Location: orderHistory.php");
+		}
 	}
   
-  $MySQLi_CON->close();
+ 
+
+$MySQLi_CON->close();
+
+echo $_SESSION['cartCount'];
 ?>

@@ -10,7 +10,7 @@ $user_id = $_SESSION['userSession'];
 
 $query = $MySQLi_CON->query("SELECT * FROM users WHERE user_id=".$_SESSION['userSession']);
 $userRow=$query->fetch_array();
-
+$orderNumber = 0;
 $user = $userRow['username'];
 $status = "In Cart";
 $count = 1;
@@ -91,15 +91,16 @@ if (!$result){
 	
 		$totalCost = $totalCost + ($itemRow["price"] * $itemRow["quantityOrdered"]);
 		$count = $count + 1;
+		$orderNumber = $itemRow["orderNumber"];
  }
  echo "<th> </th>";
  echo "<th> </th>";
  echo "<th> </th>";
  echo "<th> </th>";
- echo "<th> </th>";
+ echo "<th>" . $itemRow["orderNumber"] . "</th>";
  echo "<th> Total Cost: " . $totalCost . "</th>";
- echo "<th> style='text-align:center'>" . "<a class='btn btn-lg btn-primary' href='#' role='button' 
-			  onClick='checkOut(" . $itemRow["orderNumber"] . ")'>Check Out" .  "</a>" .  "</th>";
+ echo "<th style='text-align:center'>" . "<a class='btn btn-lg btn-primary' href='#' role='button' 
+			  onClick='checkOut(" . $orderNumber . ")'>Check Out" .  "</a>" .  "</th>";
  echo "</table>";
 
 }else{
