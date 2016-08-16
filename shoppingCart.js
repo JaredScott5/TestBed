@@ -13,10 +13,6 @@ function removeItem(item_id){
 	httpRequest.open('POST', 'add-to-cart.php');
 	httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	httpRequest.send("item_id="+item_id+"&quantity="+0);
-<<<<<<< HEAD
-  window.location.replace(location)
-=======
->>>>>>> origin/master
 }
 
 function updateCart() {

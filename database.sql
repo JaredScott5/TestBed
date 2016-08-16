@@ -59,7 +59,7 @@ CREATE TABLE orderDetails (
 /* Insert test values */
 
 INSERT INTO items VALUES (1, 'Overwatch', 39.99, 'http://example.com/images/Overwatch', 'FPS PC video game.');
-INSERT INTO items VALUES (2, 'Bastion', 39.99, 'http://example.com/images/Bastion', 'Top down PC video game.');
+INSERT INTO items VALUES (2, 'Bastion', 29.99, 'http://example.com/images/Bastion', 'Top down PC video game.');
 
 /* Test queries */
 

@@ -94,11 +94,7 @@ if($quantity==0){
 	
 	if($MySQLi_CON->query($deleteQuery) === true){
 		$_SESSION['cartCount'] = $newCart;
-<<<<<<< HEAD
 		echo "<meta http-equiv='refresh' content='0'>";
-=======
-		echo "<meta http-equiv='refresh' content='0'>";//header("Location: shoppingCart.php");
->>>>>>> origin/master
 	}
 	
 }else if($count==0){

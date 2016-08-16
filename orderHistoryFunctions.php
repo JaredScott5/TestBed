@@ -8,7 +8,7 @@ if(!isset($_SESSION['userSession']))
 
 $user_id = $_SESSION['userSession'];
 
-$query = $MySQLi_CON->query("SELECT * FROM users WHERE user_id=".$_SESSION['userSession']);
+$query = $MySQLi_CON->query("SELECT * FROM users WHERE user_id= '$user_id'");
 $userRow=$query->fetch_array();
 
 $user = $userRow['username'];
@@ -43,6 +43,9 @@ if($rowCount!=0){
  FROM orderdetails
  INNER JOIN items
  ON orderdetails.item_id = items.item_id
+ INNER JOIN orders
+ ON orderdetails.orderNumber = orders.orderNumber
+ WHERE user_id = '$user_id' AND status <> 'In Cart' 
  ";
  
  $result=mysqli_query($MySQLi_CON, $secondQuery);
@@ -81,10 +84,10 @@ if (!$result){
 			<input type='text' value='" . $itemRow['quantityOrdered'] . 
 			"'style='width: 50px;'> </th>"; 
 		echo "<th style='text-align:center'>" . $itemRow["price"]  * $itemRow['quantityOrdered'] . "</th>"; 	
-		echo "<th style='text-align:center'>" . "<a class='btn btn-lg btn-primary' href='#' role='button' 
-			  onClick=''>Update Quantity" . "</a>" . "</th>";
-		echo "<th style='text-align:center'>" . "<a class='btn btn-lg btn-primary' href='#' role='button' 
-			  onClick=''>Remove Item" .  "</a>" . "</th>";
+		//echo "<th style='text-align:center'>" . "<a class='btn btn-lg btn-primary' href='#' role='button' 
+		//	  onClick=''>Update Quantity" . "</a>" . "</th>";
+		//echo "<th style='text-align:center'>" . "<a class='btn btn-lg btn-primary' href='#' role='button' 
+		//	  onClick=''>Remove Item" .  "</a>" . "</th>";
 	echo "</tr>";	
 	
 		$totalCost = $totalCost + ($itemRow["price"] * $itemRow["quantityOrdered"]);
