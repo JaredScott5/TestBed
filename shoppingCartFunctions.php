@@ -98,7 +98,8 @@ if (!$result){
  echo "<th> </th>";
  echo "<th> </th>";
  echo "<th> Total Cost: " . $totalCost . "</th>";
- echo "<th> </th>";
+ echo "<th> style='text-align:center'>" . "<a class='btn btn-lg btn-primary' href='#' role='button' 
+			  onClick='checkOut(" . $itemRow["orderNumber"] . ")'>Check Out" .  "</a>" .  "</th>";
  echo "</table>";
 
 }else{

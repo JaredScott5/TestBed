@@ -15,6 +15,14 @@ function removeItem(item_id){
 	httpRequest.send("item_id="+item_id+"&quantity="+0);
 }
 
+function checkOut(order_number){
+	httpRequest = new XMLHttpRequest();
+	httpRequest.onreadystatechange = updateCart;
+	httpRequest.open('POST', 'checkout.php');
+	httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	httpRequest.send("order_number="+order_number);
+}
+
 function updateCart() {
   try {
     if (httpRequest.readyState === XMLHttpRequest.DONE) {
