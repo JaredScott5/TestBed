@@ -14,13 +14,15 @@ $searchTerm = $MySQLi_CON->real_escape_string(trim($_POST['searchTerm']));
 //group by order number
 $query =
 "SELECT users.user_id, users.username, users.email, 
-orders.orderNumber, orders.shippedDate, orders.status, orders.comments
+orders.orderNumber, orders.orderDate, orders.shippedDate, orders.status, orders.comments
 FROM orders 
 LEFT JOIN users
 ON orders.user_id = users.user_id
-WHERE users.username = '$searchTerm' 
-OR users.email = '$searchTerm'
-OR orders.orderNumber = '$searchTerm'";
+WHERE users.username LIKE '%$searchTerm%' 
+OR users.email LIKE '%$searchTerm%'
+OR orders.orderNumber = '$searchTerm'
+OR orders.orderDate LIKE '%$searchTerm%'
+";
 
 //store query into readable form and send it to admin.js as a php echo
 
@@ -39,6 +41,7 @@ if (!$result){
 		echo "<th style='text-align:center'> Order # </th>"; 
 		echo "<th style='text-align:center'> User Id </th>";
 		echo "<th style='text-align:center'> Email </th>"; 
+    echo "<th style='text-align:center'> Order Date </th>"; 
 		echo "<th style='text-align:center'> Shipped Date </th>"; 
 		echo "<th style='text-align:center'> Status </th>";
 		echo "<th style='text-align:center'> Comments</th>";
@@ -50,6 +53,7 @@ if (!$result){
 		echo "<th style='text-align:center'>" . $itemRow["orderNumber"] . "</th>";
 		echo "<th style='text-align:center'>" . $itemRow["user_id"] . "</th>";
 		echo "<th style='text-align:center'>" . $itemRow["email"] . "</th>"; 
+    echo "<th style='text-align:center'>" . $itemRow["orderDate"] . "</th>"; 
 		echo "<th style='text-align:center'>" . $itemRow["shippedDate"] . "</th>"; 
 		echo "<th style='text-align:center'>" . $itemRow["status"] . "</th>"; 
 		echo "<th style='text-align:center'>" . $itemRow["comments"] . "</th>"; 
