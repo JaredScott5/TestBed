@@ -22,6 +22,7 @@ CREATE TABLE orders (
   user_id int(5) NOT NULL,
   orderDate DATETIME NOT NULL,
   shippedDate DATETIME NULL,
+  price DECIMAL(65,2) NULL,
   status VARCHAR(15) NOT NULL,
   comments TEXT NULL,
   FOREIGN KEY (user_id)
@@ -58,8 +59,8 @@ CREATE TABLE orderDetails (
 
 /* Insert test values */
 
-INSERT INTO items VALUES (1, 'Overwatch', 39.99, 'http://example.com/images/Overwatch', 'FPS PC video game.');
-INSERT INTO items VALUES (2, 'Bastion', 29.99, 'http://example.com/images/Bastion', 'Top down PC video game.');
+INSERT INTO items VALUES (1, 'Overwatch', 39.99, 'imgs/overwatch_logo.jpg', 'FPS PC video game.');
+INSERT INTO items VALUES (2, 'Bastion', 29.99, 'imgs/bastion_logo.png', 'Top down PC video game.');
 
 /* Test queries */
 
