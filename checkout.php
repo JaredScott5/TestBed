@@ -16,8 +16,9 @@ $orderQuery =
 	  SET status = 'Shipped'
 	  WHERE orderNumber = $orderNO";
 	  
-		if($MySQLi_CON->query($updatedOrderQuery) === false)
-		else{
+		if($MySQLi_CON->query($updatedOrderQuery) === false){
+		//do nothing
+		}else{
 			 $_SESSION['cartCount'] = 0;
 			//header("Location: home.php");
 			//echo "<meta http-equiv='refresh' content='0'>";//header("Location: orderHistory.php");
