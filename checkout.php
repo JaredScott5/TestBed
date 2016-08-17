@@ -20,8 +20,7 @@ $orderQuery =
 		//do nothing
 		}else{
 			 $_SESSION['cartCount'] = 0;
-			//header("Location: home.php");
-			//echo "<meta http-equiv='refresh' content='0'>";//header("Location: orderHistory.php");
+      echo "<meta http-equiv=\"refresh\" content=\"0;URL=orderHistory.php\">";
 		}
 	}
   
