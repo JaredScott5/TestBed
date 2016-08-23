@@ -58,7 +58,7 @@ if (!$result){
  
  echo "<table style='width:75%' align='center' cellpadding='2' cellspacing='2' border='2'>";
  echo "<tr>";
-		echo "<th style='text-align:center'> Order # </th>"; 
+		//echo "<th style='text-align:center'> Order # </th>"; 
 		echo "<th style='text-align:center'> Image </th>";
 		echo "<th style='text-align:center'> Item </th>"; 
 		echo "<th style='text-align:center'> Price </th>"; 
@@ -72,8 +72,8 @@ if (!$result){
  while($itemRow = mysqli_fetch_assoc($result)){
 	
 	echo "<tr>";
-		echo "<th style='text-align:center'>" . $itemRow["orderNumber"] . "</th>";
-		echo "<th style='text-align:center'>" . $itemRow["image"] . "</th>";
+		//echo "<th style='text-align:center'>" . $itemRow["orderNumber"] . "</th>";
+		echo "<th style='text-align:center'>" . "<img class=\"img-responsive\" width=\"150\" height=\"150\" src=" . $itemRow["image"] . " id='image'>" . "</img>" . "</th>";
 		echo "<th style='text-align:center'>" . $itemRow["itemName"] . "</th>"; 
 		echo "<th style='text-align:center'>" . $itemRow["price"] . "</th>"; 
 		echo "<th style='text-align:center'>
@@ -93,12 +93,12 @@ if (!$result){
 		$count = $count + 1;
 		$orderNumber = $itemRow["orderNumber"];
  }
- echo "<th> </th>";
+ //echo "<th> </th>";
  echo "<th> </th>";
  echo "<th> </th>";
  echo "<th> </th>";
  echo "<th>" . $itemRow["orderNumber"] . "</th>";
- echo "<th> Total Cost: " . $totalCost . "</th>";
+ echo "<th> Total: " . $totalCost . "</th>";
  echo "<th style='text-align:center'>" . "<a class='btn btn-sm btn-primary' href='#' role='button' 
 			  onClick='checkOut(" . $orderNumber . ")'>Check Out" .  "</a>" .  "</th>";
  echo "</table>";
