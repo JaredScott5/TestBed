@@ -44,7 +44,10 @@ function updateCart() {
   try {
     if (httpRequest.readyState === XMLHttpRequest.DONE) {
       if (httpRequest.status === 200) {
-        cart.innerHTML = "Cart(" + httpRequest.responseText + ")";
+        var node = document.createElement("span");
+        node.className = "glyphicon glyphicon-shopping-cart";
+        cart.appendChild(node);
+        cart.innerHTML = "&nbsp;" + "Cart(" + httpRequest.responseText + ")";
       } else {
         alert('There was a problem with the request.');
       }

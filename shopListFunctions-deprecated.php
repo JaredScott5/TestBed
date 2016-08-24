@@ -14,7 +14,7 @@ $userRow=$query->fetch_array();
 
 $user = $userRow['username'];
 
-//variabel for nuber of items from the db that will be displayed
+//variable for number of items from the db that will be displayed
 $itemCount = 1;
 
 //create an array of items from items table
@@ -63,7 +63,7 @@ while($row = mysqli_fetch_assoc($result)){
 			  href=\"item-page.php?item_id=$item_id\">New Page" . "</a>"; 
 		echo "</li>";
 
-}//enbd while
+}//end while
 mysqli_free_result($result);
 //}//end function
 echo "</ul>";
