@@ -22,16 +22,16 @@ $orderNumber = $row['orderNumber'];
   
   //create a query for ALL items in cart
   $totalOrderQuantity = $MySQLi_CON->query(
-  "SELECT SUM(quantityOrdered) AS value_sum
-  FROM orderDetails
-  WHERE orderNumber='$orderNumber'"
+    "SELECT SUM(quantityOrdered) AS value_sum
+    FROM orderDetails
+    WHERE orderNumber='$orderNumber'"
   );
   
   //create query for only the ONE item that we want to update 
   $singleOrderQuantity = $MySQLi_CON->query(
-  "SELECT SUM(quantityOrdered) AS value_sum
-  FROM orderdetails
-  WHERE orderNumber='$orderNumber' AND item_id='$item_id'"
+    "SELECT SUM(quantityOrdered) AS value_sum
+    FROM orderdetails
+    WHERE orderNumber='$orderNumber' AND item_id='$item_id'"
   );
   
   //subtract them and store them in a variable
@@ -43,10 +43,10 @@ $orderNumber = $row['orderNumber'];
   $newCart = ($var1 - $var2) + $updatedQuantity;
   
   //add the new quantity and use it to update the cart properly
-$updateQuery = 
-      "UPDATE orderDetails
-      SET quantityOrdered = '$updatedQuantity'
-      WHERE item_id = '$item_id' AND orderNumber = '$orderNumber'";
+  $updateQuery = 
+    "UPDATE orderDetails
+    SET quantityOrdered = '$updatedQuantity'
+    WHERE item_id = '$item_id' AND orderNumber = '$orderNumber'";
 	  
 	if($MySQLi_CON->query($updateQuery) === true){
 		$_SESSION['cartCount'] = $newCart;
@@ -69,16 +69,16 @@ if($quantity==0){
   
     //create a query for ALL items
   $totalOrderQuantity = $MySQLi_CON->query(
-  "SELECT SUM(quantityOrdered) AS value_sum
-  FROM orderDetails
-  WHERE orderNumber='$orderNumber'"
+    "SELECT SUM(quantityOrdered) AS value_sum
+    FROM orderDetails
+    WHERE orderNumber='$orderNumber'"
   );
   
   //create query for only the ONE item 
   $singleOrderQuantity = $MySQLi_CON->query(
-  "SELECT SUM(quantityOrdered) AS value_sum
-  FROM orderdetails
-  WHERE orderNumber='$orderNumber' AND item_id='$item_id'"
+    "SELECT SUM(quantityOrdered) AS value_sum
+    FROM orderdetails
+    WHERE orderNumber='$orderNumber' AND item_id='$item_id'"
   );
   
   //subtract them and store them in a variable
@@ -89,8 +89,8 @@ if($quantity==0){
   $var2 = $total2['value_sum'];
   $newCart = ($var1 - $var2) + $updatedQuantity;
 
-    $deleteQuery = "DELETE FROM orderDetails
-	WHERE orderNumber='$orderNumber' AND item_id='$item_id'";
+  $deleteQuery = "DELETE FROM orderDetails
+    WHERE orderNumber='$orderNumber' AND item_id='$item_id'";
 	
 	if($MySQLi_CON->query($deleteQuery) === true){
 		$_SESSION['cartCount'] = $newCart;
