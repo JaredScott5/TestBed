@@ -16,6 +16,16 @@ function buttonName(){
 }
 */
 
+function goToItemPage(parent){
+	var item_id = parent.id;
+	
+	httpRequest = new XMLHttpRequest();
+	httpRequest.onreadystatechange = updateCart;
+	httpRequest.open('POST', 'item-page.php');
+	httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	httpRequest.send("item_id="+item_id);
+}
+
 function addToCart(parent){
 	//document.getElementById("cart").innerHTML = ++cartCount;
 	//document.getElementById("notes").innerHTML = "testing";

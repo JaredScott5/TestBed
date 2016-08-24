@@ -104,8 +104,27 @@ if (!$result){
  echo "</table>";
 
 }else{
-	//echo "<p  style='display: block; padding-top: 100px;'>Row Count is not 0</p>";
-}
+echo "<p  style='display: block; padding-top: 100px;'></p>";
+ 
+ echo "<table style='width:75%' align='center' cellpadding='2' cellspacing='2' border='2'>";
+ echo "<tr>";
+		echo "<th style='text-align:center'> Order # </th>"; 
+		echo "<th style='text-align:center'> Image </th>";
+		echo "<th style='text-align:center'> Item </th>"; 
+		echo "<th style='text-align:center'> Price </th>"; 
+		echo "<th style='text-align:center'> Quantity </th>";
+		echo "<th style='text-align:center'> Order Total</th>";
+	echo "</tr>";
+	
+	echo "<tr>";
+	echo "<th style='text-align:center'> --- </th>";
+	echo "<th style='text-align:center'> --- </th>";
+	echo "<th style='text-align:center'> --- </th>";
+	echo "<th style='text-align:center'> --- </th>";
+	echo "<th style='text-align:center'> --- </th>";
+	echo "<th style='text-align:center'> --- </th>";
+	echo "</tr>";
+	}
 
 //free the variable, we should not need it now
 mysqli_free_result($check_cart);
