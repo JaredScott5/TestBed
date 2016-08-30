@@ -1,6 +1,7 @@
 <?php 
 session_start();
 include_once 'dbconnect.php';
+include ('navbar.php');
 
 if(!isset($_SESSION['userSession']))
 {
@@ -132,8 +133,6 @@ $MySQLi_CON->close();
 <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen"> 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
-
-<?php include ('navbar.php'); ?>
 
 </head>
 

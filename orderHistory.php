@@ -32,28 +32,41 @@ $rowCount=$check_cart->num_rows;
 //if not empty display the order as a table 
 if($rowCount!=0){
 	
- //look through join query based off orderdetails and items and display 
- $secondQuery =
- "
- SELECT orderdetails.orderNumber, orderdetails.item_id, orderdetails.quantityOrdered,
-		items.itemName, items.price, items.image, orders.orderDate, orders.shippedDate,
-		orders.comments
- FROM orderdetails
- INNER JOIN items
- ON orderdetails.item_id = items.item_id
- INNER JOIN orders
- ON orderdetails.orderNumber = orders.orderNumber
- WHERE user_id = '$user_id' AND status <> 'In Cart' 
- ";
+  //look through join query based off orderdetails and items and display 
+  $secondQuery =
+  "
+  SELECT orderdetails.orderNumber, orderdetails.item_id, orderdetails.quantityOrdered,
+    items.itemName, items.price, items.image, orders.orderDate, orders.shippedDate,
+    orders.comments
+  FROM orderdetails
+  INNER JOIN items
+  ON orderdetails.item_id = items.item_id
+  INNER JOIN orders
+  ON orderdetails.orderNumber = orders.orderNumber
+  WHERE user_id = '$user_id' AND status <> 'In Cart' 
+  ORDER BY orders.orderNumber
+  ";
+
+  $result=mysqli_query($MySQLi_CON, $secondQuery);
+  $finfo = $result->fetch_fields();
+  
+  $query =
+  "
+  SELECT orders.orderNumber, COUNT(orderdetails.item_id) AS UniqueItems
+  FROM orders
+  INNER JOIN orderdetails
+  ON orders.orderNumber = orderdetails.orderNumber
+  WHERE user_id = '$user_id' AND status <> 'In Cart' 
+  GROUP BY orderNumber
+  ";
+
+  $newResult = mysqli_query($MySQLi_CON, $query);
  
- $result=mysqli_query($MySQLi_CON, $secondQuery);
- $finfo = $result->fetch_fields();
- 
- //test if the query failed
-if (!$result){
-	die("Database query failed.");
-}else{
-}
+  //test if the query failed
+  if (!$result){
+  die("Database query failed.");
+  }else{
+  }
 /*
  //table for past orders
  echo "<p  style='display: block; padding-top: 100px;'></p>";
@@ -160,6 +173,13 @@ $MySQLi_CON->close();
     <?php endwhile; ?>
   </table>
 <h3 style='text-align:center'> Total Cost: <?php echo $totalCost ?> </h3>
+
+
+
+<?php //foreach ($orders as $val1) : ?>
+  <?php //foreach $details as $val2) : ?>
+  <?php //endforeach; ?>
+<?php //endforeach; ?>
 
 <script src="">
 </script>
