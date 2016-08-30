@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once 'navbar.php';
 include_once 'dbconnect.php';
 
 if(isset($_GET['item_id'])){
@@ -38,53 +39,59 @@ $item_desc = $row['description'];
 <html lang="en">
 <head>
 <title><?php echo $item_name ?></title>
-<?php include ('navbar.php'); ?>
+
 </head>
 
 <body>
 
-<p  style="display: block; padding-top: 40px;"></p>
- <div class="item" style="display:block; border:1px solid  black">
-	<div class="item-image" style="display:inline-block; border:1px solid  black;
-	position: relative; left: 30px;">
-		<?php echo $item_image ?>
-	</div>
-	<br>
-	<br>
-    <div class="item-name" style="display:inline-block; border:1px solid  black;
-	position: relative; left: 30px;">
+<p  style="display: block; padding-top: 50px;"></p>
+
+<div class="item-name" style="display:inline-block; border:1px solid  black;
+	position: relative; left: 30px; font-size:50px;">
 		<?php echo $item_name ?> 
 	</div>
-	<br>
-	<br>
-	<div class="item-id" style="display:inline-block; border:1px solid  black;
-	position: relative; left: 30px;">
+	
+ <div id=<?php echo $row["item_id"];?> class="item" style="display:block; border:1px solid  black">
+	<div class="item-image" style="display:inline-block; border:1px solid  black;
+	position: relative; left: 5px;">
+		<img class="img-responsive" 
+		width="300" 
+		height="300"  
+		src=<?php echo $row["image"]; ?> 
+		id='image'>
+		</img>
+	</div>
+	
+	<br><br>
+	
+	<div style="font-size:25px;"> 
+	About this item:
+	</div>
+	
+	<div class="item-id" style="display:block; border:1px solid  black;
+	position: relative; left: 30px; font-size:25px;">
 		Item ID#: <?php echo $item_id ?>
 	</div>
-	<br>
-	<br>
-    <div class="item-price" style="display:inline-block; border:1px solid  black;
-	position: relative; left: 30px;">
+
+    <div class="item-price" style="display:block; border:1px solid  black;
+	position: relative; left: 30px; font-size:25px;">
 		$<?php echo $item_price ?>
 	</div>
-	<br>
-	<br>
-	<div class="item-desc" style="display:inline-block; border:1px solid  black;
-	position: relative; left: 30px;">
+	
+	<div class="item-desc" style="display:block; border:1px solid  black;
+	position: relative; left: 30px; font-size:25px;">
 		Description: <br>
 		<?php echo $item_desc ?>
 	</div>
-	<br><br>
-    <div class="item-add-to-cart" style="position: relative; left: 30px;">
-       <a class='btn btn-lg btn-primary' href='#' role='button' 
-		  onClick='addToCart(this.parentNode)'>Add To Cart</a>
+
+    <div class="item-add-to-cart" style="position: relative; left: 30px; font-size:25px;">
+       <a class='btn btn-lg btn-primary' href='#' role='button' onClick='addToCart(this.parentNode)'>Add To Cart</a>
     </div>
   </div>
 
-<ul>
-</ul>
+<ul></ul>
 
-
+<script src="shopList.js"></script>
 
 </body>
 

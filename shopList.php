@@ -45,7 +45,15 @@ if (!$result){
 
 		<li id=<?php echo $row["item_id"]; ?> class='listItem'>
     <h1>Item <?php echo $row["item_id"]; ?></h1>
-    <img class="img-responsive" width="150" height="150" src= <?php echo $row["image"]; ?> id='image'></img>
+	<a href="item-page.php?item_id=<?php echo $row["item_id"]; ?>">
+		<img class="img-responsive" 
+		width="150" 
+		height="150"  
+		src=<?php echo $row["image"]; ?> 
+		id='image'>
+		</img>
+		</a>
+		
     <p id='itemName'><?php echo $row["itemName"]; ?></p>
     <p id='price'><?php echo $row["price"]; ?></p>
     <p id='desc'><?php echo $row["description"]; ?></p>
@@ -57,8 +65,7 @@ if (!$result){
   </ul>
   
 <!-- the passed array is what we use in shopList.js for using the data from array $row-->
-<script src="shopList.js">
-</script>
+<script src="shopList.js"></script>
 
 </body>
 
