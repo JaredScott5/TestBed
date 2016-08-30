@@ -47,13 +47,14 @@ if($rowCount!=0){
  ";
  
  $result=mysqli_query($MySQLi_CON, $secondQuery);
+ $finfo = $result->fetch_fields();
  
  //test if the query failed
 if (!$result){
 	die("Database query failed.");
 }else{
 }
-
+/*
  //table for past orders
  echo "<p  style='display: block; padding-top: 100px;'></p>";
  
@@ -99,7 +100,7 @@ if (!$result){
  echo "<th> Total Cost: " . $totalCost . "</th>";
  echo "<th> </th>";
  echo "</table>";
-
+*/
 }else{
 	echo "<p  style='display: block; padding-top: 100px;'>Row Count is not 0</p>";
 }
@@ -126,6 +127,39 @@ $MySQLi_CON->close();
 </head>
 
 <body>
+  <!-- table for past orders -->
+  <p  style='display: block; padding-top: 100px;'></p>
+  
+  <table style='width:75%' align='center' cellpadding='2' cellspacing='2' border='2'>
+    <tr>
+      <?php foreach ($finfo as $val) : ?>
+        <th style='text-align:center'><?php $name = str_replace('_', ' ', $val->name); echo $name; ?></th>
+      <?php endforeach; ?>
+    </tr>
+    
+    <?php $totalCost = 0; ?>
+    
+    <?php while($itemRow = mysqli_fetch_assoc($result)): ?>
+    
+    <tr>
+      <?php foreach ($finfo as $val) : ?>
+        <th style='text-align:center'>
+          <?php
+            if ($val->name === 'image') {
+              echo "<img class=\"img-responsive\" width=\"150\" height=\"150\" src=" . $itemRow[$val->name] . "></img>";
+            } else {
+            echo $itemRow[$val->name];
+            }
+          ?>
+      <?php endforeach; ?>
+    </tr>
+    <?php
+		$totalCost = $totalCost + ($itemRow["price"] * $itemRow["quantityOrdered"]);
+		$count = $count + 1;
+    ?>
+    <?php endwhile; ?>
+  </table>
+<h3 style='text-align:center'> Total Cost: <?php echo $totalCost ?> </h3>
 
 <script src="">
 </script>
