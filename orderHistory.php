@@ -140,19 +140,26 @@ $MySQLi_CON->close();
 </head>
 
 <body>
-  <!-- table for past orders -->
+  <!-- tables for past orders -->
   <p  style='display: block; padding-top: 100px;'></p>
+
+  <?php $prev = NULL; ?>
+  <?php $totalCost = 0; ?>
+  <?php while($itemRow = mysqli_fetch_assoc($result)): ?>
+    <?php if ($itemRow['orderNumber'] != $prev) :?>
   
-  <table style='width:75%' align='center' cellpadding='2' cellspacing='2' border='2'>
-    <tr>
+      <table style='width:75%' align='center' cellpadding='2' cellspacing='2' border='2'>
+      <tr>
       <?php foreach ($finfo as $val) : ?>
         <th style='text-align:center'><?php $name = str_replace('_', ' ', $val->name); echo $name; ?></th>
       <?php endforeach; ?>
-    </tr>
-    
-    <?php $totalCost = 0; ?>
-    
-    <?php while($itemRow = mysqli_fetch_assoc($result)): ?>
+      </tr>
+      <?php if ($totalCost != 0) :?>
+        <h4 style='text-align:center'> Total Cost: <?php echo $totalCost ?> </h4>
+      <?php endif; ?>
+      <?php $totalCost = 0; ?>
+    <?php endif; ?>
+    <?php //while($itemRow = mysqli_fetch_assoc($result)): ?>
     
     <tr>
       <?php foreach ($finfo as $val) : ?>
@@ -169,10 +176,11 @@ $MySQLi_CON->close();
     <?php
 		$totalCost = $totalCost + ($itemRow["price"] * $itemRow["quantityOrdered"]);
 		$count = $count + 1;
+    $prev = $itemRow['orderNumber'];
     ?>
     <?php endwhile; ?>
   </table>
-<h3 style='text-align:center'> Total Cost: <?php echo $totalCost ?> </h3>
+<h4 style='text-align:center'> Total Cost: <?php echo $totalCost ?> </h4>
 
 
 
