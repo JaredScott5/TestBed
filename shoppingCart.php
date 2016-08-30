@@ -101,7 +101,7 @@ if (!$result){
  echo "<th>" . $itemRow["orderNumber"] . "</th>";
  echo "<th> Total: " . $totalCost . "</th>";
  echo "<th style='text-align:center'>" . "<a class='btn btn-sm btn-primary' href='#' role='button' 
-			  onClick='checkOut(" . $orderNumber . ")'>Check Out" .  "</a>" .  "</th>";
+			  onClick='checkOut(" . $orderNumber . ',' . $totalCost . ")'>Check Out" .  "</a>" .  "</th>";
  echo "</table>";
 
 }else{
