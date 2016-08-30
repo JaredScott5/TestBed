@@ -42,7 +42,7 @@ if (!$result){
     <!-- return items table entries -->
     <?php while($row = mysqli_fetch_assoc($result)) : ?>
     
-    
+
 		<li id=<?php echo $row["item_id"]; ?> class='listItem'>
     <h1>Item <?php echo $row["item_id"]; ?></h1>
     <img class="img-responsive" width="150" height="150" src= <?php echo $row["image"]; ?> id='image'></img>
