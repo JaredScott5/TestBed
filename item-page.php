@@ -39,59 +39,60 @@ $item_desc = $row['description'];
 <html lang="en">
 <head>
 <title><?php echo $item_name ?></title>
-
+<script src="headerfooter.js"></script>
 </head>
 
 <body>
 
 <p  style="display: block; padding-top: 50px;"></p>
 
-<div class="item-name" style="display:inline-block; border:1px solid  black;
-	position: relative; left: 30px; font-size:50px;">
-		<?php echo $item_name ?> 
+<div class="item-name" style="display:inline-block;
+	position: relative; left: 30px; font-size:45px;">
+		<h1><?php echo $item_name ?> </h1>
 	</div>
 	
- <div id=<?php echo $row["item_id"];?> class="item" style="display:block; border:1px solid  black">
-	<div class="item-image" style="display:inline-block; border:1px solid  black;
-	position: relative; left: 5px;">
+ <div id=<?php echo $row["item_id"];?> class="item" style="display:block;">
+	<div class="item-image" style="position: relative; left: 30px;">
 		<img class="img-responsive" 
-		width="300" 
-		height="300"  
+		width="200" 
+		height="200"  
 		src=<?php echo $row["image"]; ?> 
 		id='image'>
 		</img>
 	</div>
 	
-	<br><br>
+	<br>
 	
-	<div style="font-size:25px;"> 
-	About this item:
+	<div style="position: relative; left: 30px; font-size:20px;"> 
+	<hr><p style="border-left: 6px solid red; background-color: lightgrey">About this item:<br><?php echo $item_desc; ?></p></hr>
 	</div>
 	
-	<div class="item-id" style="display:block; border:1px solid  black;
-	position: relative; left: 30px; font-size:25px;">
-		Item ID#: <?php echo $item_id ?>
+	<div class="item-id" style="position: relative; left: 30px; font-size:20px;">
+		<hr><p style="border-left: 6px solid red; background-color: lightgrey">Item ID#: <?php echo $item_id ?></p></hr>
 	</div>
 
-    <div class="item-price" style="display:block; border:1px solid  black;
-	position: relative; left: 30px; font-size:25px;">
-		$<?php echo $item_price ?>
+    <div class="item-price" style="position: relative; left: 30px; font-size:20px;">
+		<hr><p style="border-left: 6px solid red; background-color: lightgrey">$<?php echo $item_price ?></p></hr>
 	</div>
 	
-	<div class="item-desc" style="display:block; border:1px solid  black;
-	position: relative; left: 30px; font-size:25px;">
-		Description: <br>
-		<?php echo $item_desc ?>
+	<div class="item-desc" style="position: relative; left: 30px; font-size:20px;">
+		<hr><p style="border-left: 6px solid red; background-color: lightgrey">Description: <br> <?php echo $item_desc ?></p></hr>
 	</div>
 
-    <div class="item-add-to-cart" style="position: relative; left: 30px; font-size:25px;">
-       <a class='btn btn-lg btn-primary' href='#' role='button' onClick='addToCart(this.parentNode)'>Add To Cart</a>
+    <div class="item-add-to-cart" style="position: relative; left: 30px; font-size:20px;">
+      <hr> <a class='btn btn-lg btn-primary' href='#' role='button' onClick='addToCart(this.parentNode)'>Add To Cart</a></hr>
     </div>
   </div>
 
 <ul></ul>
 
 <script src="shopList.js"></script>
+
+
+<footer>
+<div style="float:left">Created by Jeremy Crooke and Jared Scott</div>
+<div style="float:right">Contact Information: <a href="mailto:jeremy@example.com"> jeremy@example.com | </a> <a href="mailto:jmsmm92@gmail.com">jmsmm92@gmail.com</a>.</div>
+</footer>
 
 </body>
 

@@ -37,29 +37,25 @@ if (!$result){
 <body>
   <ul>
     
-    <p  style='display: block; padding-top: 40px;'></p>
+    <p  style='display: block; padding-top: 50px;'></p>
     
     <!-- return items table entries -->
     <?php while($row = mysqli_fetch_assoc($result)) : ?>
     
 
-		<li id=<?php echo $row["item_id"]; ?> class='listItem'>
-    <h1>Item <?php echo $row["item_id"]; ?></h1>
-	<a href="item-page.php?item_id=<?php echo $row["item_id"]; ?>">
-		<img class="img-responsive" 
-		width="150" 
-		height="150"  
-		src=<?php echo $row["image"]; ?> 
-		id='image'>
-		</img>
-		</a>
+	<div id=<?php echo $row["item_id"]; ?> class='listItem'>
+		<h1>Item <?php echo $row["item_id"]; ?></h1>
+		<p><a href="item-page.php?item_id=<?php echo $row["item_id"]; ?>">
+			<img class="img-responsive" width="150" height="150"  src=<?php echo $row["image"];?> 
+			id='image'align="top" style="float:left"/></a></p>
 		
-    <p id='itemName'><?php echo $row["itemName"]; ?></p>
-    <p id='price'><?php echo $row["price"]; ?></p>
-    <p id='desc'><?php echo $row["description"]; ?></p>
-    <a class='btn btn-lg btn-primary' href='#' role='button' onClick='addToCart(this.parentNode)'>Add To Cart</a>
-		</li>
-    
+		<p id='itemName' style="font-size:20px; float:middle;"><?php echo $row["itemName"]; ?></p>
+		<p id='price' style="font-size:20px; float:middle;">$<?php echo $row["price"]; ?></p>
+		<p id='desc' style="font-size:20px; float:middle;"><?php echo $row["description"]; ?></p>
+		
+		<p style="" align="bottom"><a class='btn btn-lg btn-primary' href='#' role='button' onClick='addToCart(this.parentNode)'>Add To Cart</a></p>
+	</div>
+    <hr>
     <?php endwhile; ?>
     
   </ul>
