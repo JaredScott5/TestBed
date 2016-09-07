@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once 'navbar.php';
+include_once 'footer.php';
 include_once 'dbconnect.php';
 
 if(isset($_GET['item_id'])){
@@ -39,7 +40,6 @@ $item_desc = $row['description'];
 <html lang="en">
 <head>
 <title><?php echo $item_name ?></title>
-<script src="headerfooter.js"></script>
 </head>
 
 <body>
@@ -87,12 +87,6 @@ $item_desc = $row['description'];
 <ul></ul>
 
 <script src="shopList.js"></script>
-
-
-<footer>
-<div style="float:left">Created by Jeremy Crooke and Jared Scott</div>
-<div style="float:right">Contact Information: <a href="mailto:jeremy@example.com"> jeremy@example.com | </a> <a href="mailto:jmsmm92@gmail.com">jmsmm92@gmail.com</a>.</div>
-</footer>
 
 </body>
 

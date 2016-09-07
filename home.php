@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once 'dbconnect.php';
+include_once 'footer.php';
 
 if(!isset($_SESSION['userSession']))
 {
