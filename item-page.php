@@ -48,42 +48,48 @@ $item_desc = $row['description'];
 
 <div class="item-name" style="display:inline-block;
 	position: relative; left: 30px; font-size:45px;">
-		<h1><?php echo $item_name ?> </h1>
+		
 	</div>
 	
- <div id=<?php echo $row["item_id"];?> class="item" style="display:block;">
-	<div class="item-image" style="position: relative; left: 30px;">
-		<img class="img-responsive" 
-		width="200" 
-		height="200"  
-		src=<?php echo $row["image"]; ?> 
-		id='image'>
-		</img>
+	<div id="leftColumn" class="leftColumn" style="display:block; width:34.5%; float:left">
+	<h1><?php echo $item_name ?> </h1>
+		<div class="item-image" style="position: relative; left: 30px;">
+			<img class="img-responsive" 
+			width="200" 
+			height="200"  
+			src=<?php echo $row["image"]; ?> 
+			id='image'>
+			</img>
+		</div>
 	</div>
-	
 	<br>
 	
-	<div style="position: relative; left: 30px; font-size:20px;"> 
-	<hr><p style="border-left: 6px solid red; background-color: lightgrey">About this item:<br><?php echo $item_desc; ?></p></hr>
-	</div>
+	<div id="centerColumn" class="centerColumn" style="display:block; margin-left: 36.0%; margin-right: 270px;">
+		<div style="position: relative; left: 30px; font-size:20px;"> 
+		<hr><p style="border-left: 6px solid red; background-color: lightgrey">About this item:<br><?php echo $item_desc; ?></p></hr>
+		</div>
 	
-	<div class="item-id" style="position: relative; left: 30px; font-size:20px;">
-		<hr><p style="border-left: 6px solid red; background-color: lightgrey">Item ID#: <?php echo $item_id ?></p></hr>
-	</div>
+		<div class="item-id" style="position: relative; left: 30px; font-size:20px;">
+			<hr><p style="border-left: 6px solid red; background-color: lightgrey">Item ID#: <?php echo $item_id ?></p></hr>
+		</div>
 
-    <div class="item-price" style="position: relative; left: 30px; font-size:20px;">
-		<hr><p style="border-left: 6px solid red; background-color: lightgrey">$<?php echo $item_price ?></p></hr>
-	</div>
+		<div class="item-price" style="position: relative; left: 30px; font-size:20px;">
+			<hr><p style="border-left: 6px solid red; background-color: lightgrey">$<?php echo $item_price ?></p></hr>
+		</div>
 	
-	<div class="item-desc" style="position: relative; left: 30px; font-size:20px;">
-		<hr><p style="border-left: 6px solid red; background-color: lightgrey">Description: <br> <?php echo $item_desc ?></p></hr>
-	</div>
+		<div class="item-desc" style="position: relative; left: 30px; font-size:20px;">
+			<hr><p style="border-left: 6px solid red; background-color: lightgrey">Description: <br> <?php echo $item_desc ?></p></hr>
+		</div>
 
-    <div class="item-add-to-cart" style="position: relative; left: 30px; font-size:20px;">
-      <hr> <a class='btn btn-lg btn-primary' href='#' role='button' onClick='addToCart(this.parentNode)'>Add To Cart</a></hr>
-    </div>
+		
+		</div>
   </div>
 
+  <div id="rightColumn" class="rightColumn" style="display:block; float:right; width: 34.5%; margin-left: 20px;">
+  <div class="item-add-to-cart" style=" font-size:20px;">
+		<hr> <a class='btn btn-lg btn-primary' href='#' role='button' onClick='addToCart(this.parentNode)'>Add To Cart</a></hr>
+  </div>
+  
 <ul></ul>
 
 <script src="shopList.js"></script>
