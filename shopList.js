@@ -25,7 +25,8 @@ function updateCart() {
         cart.textContent = "Cart(" + httpRequest.responseText + ")";
         var node = document.createElement("span");
         node.className = "glyphicon glyphicon-shopping-cart";
-        cart.appendChild(node);
+        node.textContent = '\xa0';
+        cart.insertBefore(node, cart.firstChild);
       } else {
         alert('There was a problem with the request.');
       }
