@@ -46,44 +46,66 @@ $item_desc = $row['description'];
 
 <p  style="display: block; padding-top: 50px;"></p>
 
-<div class="item-name" style="display:inline-block;
-	position: relative; left: 30px; font-size:45px;">
-		<h1><?php echo $item_name ?> </h1>
+<div class="item-name" style="display:inline-block;position: relative; left: 30px; font-size:45px;">
+		
 	</div>
 	
- <div id=<?php echo $row["item_id"];?> class="item" style="display:block;">
-	<div class="item-image" style="position: relative; left: 30px;">
-		<img class="img-responsive" 
-		width="200" 
-		height="200"  
-		src=<?php echo $row["image"]; ?> 
-		id='image'>
-		</img>
+	
+	<div class="container" id="topContainer">
+		<div class="row">
+		<div id="firstCol" class="col-lg-2 col-md-4 col-sm-2" style="display:block; width:34.5%; float:left">
+			<h1><?php echo $item_name ?> </h1>
+			<div class="item-image" style="position: relative; left: 30px;">
+				<img class="img-responsive" 
+				width="200" 
+				height="200"  
+				src=<?php echo $row["image"]; ?> 
+				id='image'>
+				</img>
+			</div>
+		</div>
+	
+		<div id="secondCol" class="col-lg-8 col-md-6 col-sm-8" style="">
+		</div>
+	
+		<div id="rightColumn" class="col-lg-2 col-md-2 col-sm-2" style="">
+			<div id="item-price" class="" style="position: relative; font-size:20px;">
+				<p style="">$<?php echo $item_price ?></p>
+			</div>
+			<div class="item-add-to-cart" style="">
+				<a class='btn btn-lg btn-primary' href='#' role='button' onClick='addToCart(this.parentNode)'>Add To Cart</a>
+			</div>
+		</div>
+	
+		</div>  
+  
+	</div>
+  
+  
+	<div class="container" id="midContainer">
+		<div class="" style="position: relative; font-size:20px;"> 
+			<hr><h2>About This Item:</h2></hr>
+				<div id="features">
+					<p style="border-left: 6px solid red;"><?php echo $item_desc; ?></p>
+				</div>
+		</div>
 	</div>
 	
-	<br>
-	
-	<div style="position: relative; left: 30px; font-size:20px;"> 
-	<hr><p style="border-left: 6px solid red; background-color: lightgrey">About this item:<br><?php echo $item_desc; ?></p></hr>
+	<div class="container" id="midContainer">
+		<div id="item-id" class="" style="position: relative; font-size:20px;">
+			<hr><h2>Item ID#: </h2></hr>
+			<p style="border-left: 6px solid red;"><?php echo $item_id ?></p>
+		</div>
 	</div>
 	
-	<div class="item-id" style="position: relative; left: 30px; font-size:20px;">
-		<hr><p style="border-left: 6px solid red; background-color: lightgrey">Item ID#: <?php echo $item_id ?></p></hr>
+	<div class="container" id="midContainer">
+		<div id="item-desc" class="" style="position: relative; font-size:20px;">
+			<hr><h2>Description: <br></h2></hr>
+			<p style="border-left: 6px solid red;"><?php echo $item_desc ?></p>
+		</div>
 	</div>
-
-    <div class="item-price" style="position: relative; left: 30px; font-size:20px;">
-		<hr><p style="border-left: 6px solid red; background-color: lightgrey">$<?php echo $item_price ?></p></hr>
-	</div>
-	
-	<div class="item-desc" style="position: relative; left: 30px; font-size:20px;">
-		<hr><p style="border-left: 6px solid red; background-color: lightgrey">Description: <br> <?php echo $item_desc ?></p></hr>
-	</div>
-
-    <div class="item-add-to-cart" style="position: relative; left: 30px; font-size:20px;">
-      <hr> <a class='btn btn-lg btn-primary' href='#' role='button' onClick='addToCart(this.parentNode)'>Add To Cart</a></hr>
-    </div>
-  </div>
-
+  
+  
 <ul></ul>
 
 <script src="shopList.js"></script>
