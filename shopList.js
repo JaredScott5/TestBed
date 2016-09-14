@@ -6,9 +6,9 @@ window.onload = function(){
 
 function addToCart(parent){
 	//document.getElementById("cart").innerHTML = ++cartCount;
-	//document.getElementById("notes").innerHTML = "testing";
+	//document.getElementById("notes").innerHTML = parent;
 
-	var item_id = parent.id;
+	var item_id = parent;
 	
 	httpRequest = new XMLHttpRequest();
 	httpRequest.onreadystatechange = updateCart;
