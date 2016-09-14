@@ -49,7 +49,7 @@ if($rowCount!=0){
 
   $result=mysqli_query($MySQLi_CON, $secondQuery);
   $finfo = $result->fetch_fields();
-  
+  /*
   $query =
   "
   SELECT orders.orderNumber, COUNT(orderdetails.item_id) AS UniqueItems
@@ -59,61 +59,37 @@ if($rowCount!=0){
   WHERE user_id = '$user_id' AND status <> 'In Cart' 
   GROUP BY orderNumber
   ";
-
+  */
   $newResult = mysqli_query($MySQLi_CON, $query);
- 
+
+  $ordersQuery =
+  "
+  SELECT *
+  FROM orders
+  WHERE user_id = '$user_id' AND status <> 'In Cart' 
+  GROUP BY orderNumber
+  ";
+  
+  $ordersResult = mysqli_query($MySQLi_CON, $ordersQuery);
+  
+  $detailsQuery =
+  "
+  SELECT *
+  FROM orders
+  INNER JOIN orderdetails
+  ON orders.orderNumber = orderdetails.orderNumber
+  WHERE user_id = '$user_id' AND status <> 'In Cart' 
+  GROUP BY orderNumber
+  ";
+  
+  $detailsResult = mysqli_query($MySQLi_CON, $detailsQuery);
+  
   //test if the query failed
   if (!$result){
   die("Database query failed.");
   }else{
   }
-/*
- //table for past orders
- echo "<p  style='display: block; padding-top: 100px;'></p>";
- 
- echo "<table style='width:75%' align='center' cellpadding='2' cellspacing='2' border='2'>";
- echo "<tr>";
-		echo "<th style='text-align:center'> Order # </th>";
-		echo "<th style='text-align:center'> Date Ordered </th>";
-		echo "<th style='text-align:center'> Date Received</th>";		
-		echo "<th style='text-align:center'> Image </th>";
-		echo "<th style='text-align:center'> Item </th>"; 
-		echo "<th style='text-align:center'> Price </th>"; 
-		echo "<th style='text-align:center'> Quantity </th>";
-		echo "<th style='text-align:center'> Order Total</th>";
-		echo "<th style='text-align:center'> Comments</th>";
-	echo "</tr>";
-	
-	$totalCost = 0;
-	
- while($itemRow = mysqli_fetch_assoc($result)){
-	
-	echo "<tr>";
-		echo "<th style='text-align:center'>" . $itemRow["orderNumber"] . "</th>";
-		echo "<th style='text-align:center'>" . $itemRow["orderDate"] . "</th>";
-		echo "<th style='text-align:center'>" . $itemRow["shippedDate"] . "</th>";
-		echo "<th style='text-align:center'>" . $itemRow["image"] . "</th>";
-		echo "<th style='text-align:center'>" . $itemRow["itemName"] . "</th>"; 
-		echo "<th style='text-align:center'>" . $itemRow["price"] . "</th>"; 
-		echo "<th style='text-align:center'>" . $itemRow['quantityOrdered'] . "</th>"; 
-		echo "<th style='text-align:center'>" . $itemRow["price"]  * $itemRow['quantityOrdered'] . "</th>"; 	
-		echo "<th style='text-align:center'>" . $itemRow["comments"] . "</th>"; 
-	echo "</tr>";	
-	
-		$totalCost = $totalCost + ($itemRow["price"] * $itemRow["quantityOrdered"]);
-		$count = $count + 1;
- }
- echo "<th> </th>";
- echo "<th> </th>";
- echo "<th> </th>";
- echo "<th> </th>";
- echo "<th> </th>";
- echo "<th> </th>";
- echo "<th> </th>";
- echo "<th> Total Cost: " . $totalCost . "</th>";
- echo "<th> </th>";
- echo "</table>";
-*/
+
 }else{
 	echo "<p  style='display: block; padding-top: 100px;'>Row Count is not 0</p>";
 }
@@ -133,6 +109,9 @@ $MySQLi_CON->close();
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- CSS -->
+<link rel="stylesheet" href="orderHistory.css">
 
 <head>
 <title>Order History</title>
@@ -184,13 +163,58 @@ $MySQLi_CON->close();
 
 
 
+<!-- Bootstrap/CSS Work In Progress
+
+<div class="order">
+  <div class="summary row">
+    <div class="col-xs-2">
+      <p class="order number"><?php //echo $itemRow['orderNumber'] ?></p>
+    </div>
+    <div class="col-xs-2">
+      <p class="order date"><?php //echo $itemRow['orderDate'] ?></p>
+    </div>
+    <div class="col-xs-2">
+      <p class="shipped date"><?php //echo $itemRow['shippedDate'] ?></p>
+    </div>
+    <div class="col-xs-2">
+      <p class="total cost"><?php //echo $totalCost ?></p>
+    </div>
+    <div class="col-xs-2">
+      <p class="comments"><?php //echo $itemRow['comments'] ?></p>
+    </div>
+    <div class="col-xs-2">
+      <p class="whitepace">&nbsp;</p>
+    </div>  
+  </div>
+  <div class="detail row">
+    <div class="col-xs-2">
+      <p class="whitepace">&nbsp;</p>
+    </div>    
+    <div class="col-xs-2">
+      <p class="item img"><?php //echo "<img class=\"img-responsive\" width=\"150\" height=\"150\" src=" . $itemRow[$val->name] . "></img>"; ?></p>
+    </div>
+    <div class="col-xs-2">
+      <p class="item name"><?php //echo $itemRow['itemName'] ?></p>
+    </div>
+    <div class="col-xs-2">
+      <p class="quantity ordered"><?php //echo $itemRow['quantityOrdered'] ?></p>
+    </div>
+    <div class="col-xs-2">
+      <p class="price per item"><?php //echo $itemRow['price'] ?></p>
+    </div>
+    <div class="col-xs-2">
+      <p class="total item price"><?php //echo $totalItemPrice ?></p>
+    </div>    
+  </div>
+  
+-->
 <?php //foreach ($orders as $val1) : ?>
   <?php //foreach $details as $val2) : ?>
   <?php //endforeach; ?>
 <?php //endforeach; ?>
 
-<script src="">
-</script>
+<script src="libs/jquery/jquery-3.0.0.min.js"></script>
+<script src="orderHistory.js"></script>
 
 </body>
 
