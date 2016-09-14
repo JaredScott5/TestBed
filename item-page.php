@@ -68,11 +68,12 @@ $item_desc = $row['description'];
 		<div id="secondCol" class="col-lg-8 col-md-6 col-sm-8" style="">
 		</div>
 	
-		<div id="rightColumn" class="col-lg-2 col-md-2 col-sm-2" style="">
+		<div id=<?php echo $item_id?> class="col-lg-2 col-md-2 col-sm-2" style="">
 			<div id="item-price" class="" style="position: relative; font-size:20px;">
-				<p style="">$<?php echo $item_price ?></p>
+				<p style="border-left: 6px solid red;">$<?php echo $item_price ?></p>
 			</div>
-			<div class="item-add-to-cart" style="">
+			
+			<div class="item-add-to-cart" style="" id=<?php echo $item_id?>>
 				<a class='btn btn-lg btn-primary' href='#' role='button' onClick='addToCart(this.parentNode)'>Add To Cart</a>
 			</div>
 		</div>

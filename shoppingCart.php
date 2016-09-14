@@ -15,7 +15,6 @@ $query = $MySQLi_CON->query("SELECT * FROM users WHERE user_id=".$_SESSION['user
 $userRow=$query->fetch_array();
 $orderNumber = 0;
 $user = $userRow['username'];
-$status = "In Cart";
 $count = 1;
 
 // Check if the cart is empty
@@ -23,7 +22,7 @@ $check_cart = $MySQLi_CON->query(
   "
   SELECT orderNumber, status
   FROM orders
-  WHERE user_id='$user_id' AND status='$status'
+  WHERE user_id='$user_id' AND status='In Cart'
   "
 );
 
@@ -105,7 +104,6 @@ if (!$result){
  echo "<th style='text-align:center'>" . "<a class='btn btn-sm btn-primary' href='#' role='button' 
 			  onClick='checkOut(" . $orderNumber . ',' . $totalCost . ")'>Check Out" .  "</a>" .  "</th>";
  echo "</table>";
-
 }else{
 	//echo "<p  style='display: block; padding-top: 100px;'>Row Count is not 0</p>";
 }

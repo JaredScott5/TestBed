@@ -61,7 +61,7 @@ $time = date("Y-m-d H:i:s");
 $count=$check_cart->num_rows;
 
 //if 'quantity' == 0, we know that we want to completely REMOVE 
-//an EXISTING item in an order
+//an EXISTING item in an EXISTING order
 if($quantity==0){
 
   $row = mysqli_fetch_assoc($check_cart);
