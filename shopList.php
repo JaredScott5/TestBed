@@ -1,7 +1,6 @@
 <?php
 session_start();
 include_once 'navbar.php';
-include_once 'footer.php';
 include_once 'dbconnect.php';
 
 if(!isset($_SESSION['userSession']))
@@ -60,6 +59,8 @@ if (!$result){
     <?php endwhile; ?>
     
   </ul>
+  
+  <div id="footer"><?php include_once 'footer.php'; ?></div>
   
 <!-- the passed array is what we use in shopList.js for using the data from array $row-->
 <script src="shopList.js"></script>

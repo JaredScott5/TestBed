@@ -1,7 +1,6 @@
 <?php
 session_start();
 include_once 'dbconnect.php';
-include_once 'footer.php';
 
 if(isset($_SESSION['userSession'])!="")
 {
@@ -113,7 +112,7 @@ if(isset($_POST['btn-login']))
     </div>
 </div>
 
-<div id="footer"></div>
+<div id="footer"><?php include_once 'footer.php'; ?></div>
 
 </body>
 </html>

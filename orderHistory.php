@@ -1,7 +1,6 @@
 <?php
 session_start();
 include_once 'dbconnect.php';
-include_once 'footer.php';
 if(!isset($_SESSION['userSession']))
 {
  header("Location: index.php");
@@ -79,7 +78,7 @@ if($rowCount!=0){
   INNER JOIN orderdetails
   ON orders.orderNumber = orderdetails.orderNumber
   WHERE user_id = '$user_id' AND status <> 'In Cart' 
-  GROUP BY orderNumber
+  GROUP BY orders.orderNumber
   ";
   
   $detailsResult = mysqli_query($MySQLi_CON, $detailsQuery);
@@ -212,6 +211,8 @@ $MySQLi_CON->close();
   <?php //foreach $details as $val2) : ?>
   <?php //endforeach; ?>
 <?php //endforeach; ?>
+
+<div id="footer"><?php include_once 'footer.php'; ?></div>
 
 <script src="libs/jquery/jquery-3.0.0.min.js"></script>
 <script src="orderHistory.js"></script>
