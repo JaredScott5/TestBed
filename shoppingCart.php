@@ -1,7 +1,6 @@
 <?php 
 session_start();
 include_once 'dbconnect.php';
-include_once 'footer.php';
 include ('navbar.php');
 
 if(!isset($_SESSION['userSession']))
@@ -136,7 +135,7 @@ $MySQLi_CON->close();
 </head>
 
 <body>
-
+<div id="footer"><?php include_once 'footer.php'; ?></div>
 <script src="shoppingCart.js">
 </script>
 
