@@ -53,7 +53,7 @@ if (!$result){
 		<p id='price' style="font-size:20px; float:middle;">$<?php echo $row["price"]; ?></p>
 		<p id='desc' style="font-size:20px; float:middle;"><?php echo $row["description"]; ?></p>
 		
-		<a class='btn btn-lg btn-primary' href='#' role='button' onClick='addToCart(this.parentNode)'>Add To Cart</a>
+		<a class='btn btn-lg btn-primary' href='#' role='button' onClick='addToCart(<?php echo $row["item_id"]; ?>)'>Add To Cart</a>
 	</div>
     <hr>
     <?php endwhile; ?>

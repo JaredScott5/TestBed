@@ -73,7 +73,7 @@ $item_desc = $row['description'];
 			</div>
 			
 			<div class="item-add-to-cart" style="" id=<?php echo $item_id?>>
-				<a class='btn btn-lg btn-primary' href='#' role='button' onClick='addToCart(this.parentNode)'>Add To Cart</a>
+				<a class='btn btn-lg btn-primary' href='#' role='button' onClick='addToCart(<?php echo $row["item_id"]; ?>)'>Add To Cart</a>
 			</div>
 		</div>
 	
