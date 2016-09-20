@@ -8,7 +8,7 @@ function addToCart(parent){
 	//document.getElementById("cart").innerHTML = ++cartCount;
 	//document.getElementById("notes").innerHTML = parent;
 
-	var item_id = parent;
+	var item_id = parent.id;
 	
 	httpRequest = new XMLHttpRequest();
 	httpRequest.onreadystatechange = updateCart;
