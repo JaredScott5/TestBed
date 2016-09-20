@@ -4,11 +4,11 @@ window.onload = function(){
 	//document.getElementById("cart").innerHTML = "Cart " + 0;
 };
 
-function addToCart(parent){
+function addToCart(item){
 	//document.getElementById("cart").innerHTML = ++cartCount;
 	//document.getElementById("notes").innerHTML = parent;
 
-	var item_id = parent.id;
+	var item_id = item;
 	
 	httpRequest = new XMLHttpRequest();
 	httpRequest.onreadystatechange = updateCart;
