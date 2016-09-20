@@ -173,7 +173,7 @@ $MySQLi_CON->close();
       <p class="shipped date"><?php //echo $itemRow['shippedDate'] ?></p>
     </div>
     <div class="col-xs-2">
-      <p class="total cost"><?php //echo $totalCost ?></p>
+      <p class="total cost"><?php //echo $itemRow['total'] ?></p>
     </div>
     <div class="col-xs-2">
       <p class="comments"><?php //echo $itemRow['comments'] ?></p>
