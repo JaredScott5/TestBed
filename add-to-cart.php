@@ -170,7 +170,8 @@ else{
 	  echo "we are going to insert into the database table orderDetails";
     $query = "INSERT INTO orderDetails(orderNumber,item_id,quantityOrdered)
     VALUES('$orderNumber','$item_id','$quantity')";
-    
+    echo "values inserted are orderNumber: " . $orderNumber . ", item_id: " .
+	$item_id . ", and quantity: " . $quantity;
     $MySQLi_CON->query($query);
 	
   }
