@@ -22,7 +22,7 @@ CREATE TABLE orders (
   user_id int(5) NOT NULL,
   orderDate DATETIME NOT NULL,
   shippedDate DATETIME NULL,
-  price DECIMAL(65,2) NULL,
+  total DECIMAL(65,2) NULL,
   status VARCHAR(15) NOT NULL,
   comments TEXT NULL,
   FOREIGN KEY (user_id)
@@ -43,7 +43,7 @@ CREATE TABLE items (
 ) AUTO_INCREMENT=1 ;
 
 CREATE TABLE orderDetails (
-  orderNumber INTEGER NOT NULL,
+  orderNumber INTEGER NOT NULL,s
   item_id INT(5) NOT NULL,
   quantityOrdered INTEGER NOT NULL,
   FOREIGN KEY (orderNumber)
@@ -61,6 +61,11 @@ CREATE TABLE orderDetails (
 
 INSERT INTO items VALUES (1, 'Overwatch', 39.99, 'imgs/overwatch_logo.jpg', 'FPS PC video game.');
 INSERT INTO items VALUES (2, 'Bastion', 29.99, 'imgs/bastion_logo.png', 'Top down PC video game.');
+
+INSERT INTO orders VALUES(44, 1, '1990-09-19 19:57:06', '1990-09-20 19:57:06', 309.91, 'Delivered', NULL);
+INSERT INTO orderDetails VALUES(44, 1, 4);
+INSERT INTO orderDetails VALUES(44, 2, 5);
+)
 
 /* Test queries */
 

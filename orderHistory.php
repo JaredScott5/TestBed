@@ -36,7 +36,7 @@ if($rowCount!=0){
   "
   SELECT orderdetails.orderNumber, orderdetails.item_id, orderdetails.quantityOrdered,
     items.itemName, items.price, items.image, orders.orderDate, orders.shippedDate,
-    orders.comments
+    orders.comments, orders.total
   FROM orderdetails
   INNER JOIN items
   ON orderdetails.item_id = items.item_id
@@ -122,7 +122,7 @@ $MySQLi_CON->close();
   <p  style='display: block; padding-top: 100px;'></p>
 
   <?php $prev = NULL; ?>
-  <?php $totalCost = 0; ?>
+  <?php //$totalCost = 0; ?>
   <?php while($itemRow = mysqli_fetch_assoc($result)): ?>
     <?php if ($itemRow['orderNumber'] != $prev) :?>
   
@@ -132,10 +132,8 @@ $MySQLi_CON->close();
         <th style='text-align:center'><?php $name = str_replace('_', ' ', $val->name); echo $name; ?></th>
       <?php endforeach; ?>
       </tr>
-      <?php if ($totalCost != 0) :?>
-        <h4 style='text-align:center'> Total Cost: <?php echo $totalCost ?> </h4>
-      <?php endif; ?>
-      <?php $totalCost = 0; ?>
+
+      <?php //$totalCost = 0; ?>
     <?php endif; ?>
     <?php //while($itemRow = mysqli_fetch_assoc($result)): ?>
     
@@ -152,13 +150,12 @@ $MySQLi_CON->close();
       <?php endforeach; ?>
     </tr>
     <?php
-		$totalCost = $totalCost + ($itemRow["price"] * $itemRow["quantityOrdered"]);
+		//$totalCost = $totalCost + ($itemRow["price"] * $itemRow["quantityOrdered"]);
 		$count = $count + 1;
     $prev = $itemRow['orderNumber'];
     ?>
     <?php endwhile; ?>
   </table>
-<h4 style='text-align:center'> Total Cost: <?php echo $totalCost ?> </h4>
 
 
 

@@ -14,7 +14,7 @@ $orderQuery =
 	  //change 'status' to 'Shipped'
 	  $updatedOrderQuery = 
 	  "UPDATE orders
-	  SET status = 'Shipped', price = $finalCost
+	  SET status = 'Shipped', total = $finalCost
 	  WHERE orderNumber = $orderNO";
 	  
 		if($MySQLi_CON->query($updatedOrderQuery) === false){
