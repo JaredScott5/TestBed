@@ -1,7 +1,6 @@
 <?php
 session_start();
 include_once 'navbar.php';
-include_once 'footer.php';
 include_once 'dbconnect.php';
 
 if(isset($_GET['item_id'])){
@@ -108,6 +107,8 @@ $item_desc = $row['description'];
   
   
 <ul></ul>
+
+<div id="footer"><?php include_once 'footer.php'; ?></div>
 
 <script src="shopList.js"></script>
 

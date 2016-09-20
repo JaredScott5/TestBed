@@ -1,6 +1,5 @@
 <?php 
 session_start();
-include_once 'footer.php';
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -37,6 +36,7 @@ integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En
 		
 		<p id ="finalResult"></p>
 		<div id="debug"> </div>
+    <div id="footer"><?php include_once 'footer.php'; ?></div>
 <script src="admin.js">
 </script>
 

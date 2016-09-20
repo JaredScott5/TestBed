@@ -6,6 +6,9 @@ $quantity = 0;
 $user_id = $_SESSION['userSession'];
 $updatedQuantity = 0;
 
+echo "quantity, user_id and updatedQuantity is " . $quantity . " "
+. $user_id . " " . $updatedQuantity . "<p></p>";
+
 $check_cart = $MySQLi_CON->query(
     "SELECT orderNumber, status
     FROM orders
@@ -58,7 +61,13 @@ $item_id = $_POST['item_id'];
 $quantity = $_POST['quantity'];
 $time = date("Y-m-d H:i:s");
 
+echo "line64: item id, quantity, and time are " . $item_id . ", "
+. $quantity . ", " . $time;
+
 $count=$check_cart->num_rows;
+
+
+echo "count is " . $count;
 
 //if 'quantity' == 0, we know that we want to completely REMOVE 
 //an EXISTING item in an EXISTING order
@@ -126,11 +135,12 @@ if($quantity==0){
 
 // If the cart is not empty, check order with status 'In Cart' for duplicate item_id
 else{
+	echo "cart is not empty";
   // Check 'In Cart' order for duplicate item
   
   $row = mysqli_fetch_assoc($check_cart); // $check_cart only has one row, the 'In Cart' order
   $orderNumber = $row['orderNumber'];
-  
+  echo "orderNumber that we are looking into is " . $orderNumber;
   $check_duplicate = $MySQLi_CON->query(
     "SELECT *
     FROM orderDetails
@@ -138,8 +148,11 @@ else{
   );
   $count=$check_duplicate->num_rows;
   
+  echo "there are " . $count . "duplicate orders";
+  
   // If duplicate exists, increment quantityOrdered accordingly
   if(!$count==0){
+	  echo "duplicate exists";
     $row = mysqli_fetch_assoc($check_duplicate);
     $quantityInCart = $row['quantityOrdered'];
 
@@ -154,10 +167,12 @@ else{
   }
 	// If duplicate does not exist, insert new orderDetails
   else{
+	  echo "we are going to insert into the database table orderDetails";
     $query = "INSERT INTO orderDetails(orderNumber,item_id,quantityOrdered)
     VALUES('$orderNumber','$item_id','$quantity')";
     
     $MySQLi_CON->query($query);
+	
   }
   mysqli_free_result($check_duplicate);
 }
