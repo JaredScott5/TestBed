@@ -10,7 +10,6 @@ if(!isset($_SESSION['userSession']))
 
 $query = "SELECT item_id, image, itemName, price, description ";
 $query .= "FROM items ";
-
 $result = mysqli_query($MySQLi_CON, $query);
 
 //test if the query failed
@@ -43,17 +42,24 @@ if (!$result){
     <?php while($row = mysqli_fetch_assoc($result)) : ?>
     
 
-	<div id=<?php echo $row["item_id"]; ?> class='listItem'>
-		<h1>Item <?php echo $row["item_id"]; ?></h1>
-		<p><a href="item-page.php?item_id=<?php echo $row["item_id"]; ?>">
-			<img class="img-responsive" width="150" height="150"  src=<?php echo $row["image"];?> 
-			id='image'align="top" style="float:left"/></a></p>
+	<div id=<?php echo $row["item_id"]; ?> class='container'>
+		<h1><?php echo $row["itemName"]; ?></h1>
+		<div class="row">
+			<div id="firstCol" class="col-lg-2 col-md-4 col-sm-4">
+			<p><a href="item-page.php?item_id=<?php echo $row["item_id"]; ?>">
+					<img class="img-responsive" width="150" height="150"  src=<?php echo $row["image"];?> 
+				id='image'align="top" style="float:left"/></a></p>
+			</div>
 		
-		<p id='itemName' style="font-size:20px; float:middle;"><?php echo $row["itemName"]; ?></p>
-		<p id='price' style="font-size:20px; float:middle;">$<?php echo $row["price"]; ?></p>
-		<p id='desc' style="font-size:20px; float:middle;"><?php echo $row["description"]; ?></p>
+			<div id="secondCol" class="col-lg-8 col-md-6 col-sm-5">
+				<p id='price' style="font-size:20px; float:middle;">$<?php echo $row["price"]; ?></p>
+				<p id='desc' style="font-size:20px; float:middle;"><?php echo $row["description"]; ?></p>
+			</div>
 		
-		<a class='btn btn-lg btn-primary' href='#' role='button' onClick='addToCart(<?php echo $row["item_id"]; ?>)'>Add To Cart</a>
+			<div id="thirdCol" class="col-lg-2 col-md-2 col-sm-3">
+				<a class='btn btn-lg btn-primary' href='#' role='button' onClick='addToCart(<?php echo $row["item_id"]; ?>)'>Add To Cart</a>
+			</div>
+		</div>
 	</div>
     <hr>
     <?php endwhile; ?>

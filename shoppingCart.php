@@ -55,7 +55,7 @@ if (!$result){
 }
 
  //table 1 for 'in cart' items
- echo "<p  style='display: block; padding-top: 100px;'></p>";
+ echo "<p  style='display: block; padding-top: 75px;'></p>";
  
  echo "<table style='width:75%' align='center' cellpadding='2' cellspacing='2' border='2'>";
  echo "<tr>";
