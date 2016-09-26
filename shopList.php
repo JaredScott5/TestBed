@@ -38,6 +38,8 @@ if (!$result){
     
     <p  style='display: block; padding-top: 50px;'></p>
     
+	<!-- Add search bar here -->
+	
     <!-- return items table entries -->
     <?php while($row = mysqli_fetch_assoc($result)) : ?>
     
