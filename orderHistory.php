@@ -21,7 +21,7 @@ $check_cart = $MySQLi_CON->query(
   "
 );
 
-//1 or higher means it is not empty
+//1 or higher means it is not empty  
 $rowCount=$check_cart->num_rows;
 
 //store the orderNumber variable from the past table orders
