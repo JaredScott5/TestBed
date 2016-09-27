@@ -123,8 +123,8 @@ $MySQLi_CON->close();
 
 <?php while($itemRow = mysqli_fetch_assoc($result)) : ?>
   <?php if ($itemRow['orderNumber'] !== $currentOrder) : ?>
-    <div class="order">
-      <div class="summary row">
+    <div class="order" id="<?php echo $itemRow['orderNumber']; ?>">
+      <div class="summaryRow">
         <div class="col-xs-2">
           <p class="order number"><?php echo $itemRow['orderNumber'] ?></p>
         </div>
@@ -145,7 +145,7 @@ $MySQLi_CON->close();
         </div>  
       </div>
   <?php endif; ?>
-      <div class="detail row">
+      <div class="detailRow">
         <div class="col-xs-2">
           <p class="whitepace">&nbsp;</p>
         </div>    
