@@ -38,11 +38,20 @@ if (!$result){
     
     <p  style='display: block; padding-top: 50px;'></p>
     
+	<!-- Add search bar here -->
+	<h2 style="display: block; padding-top: 40px;"> Search by product name or product id </h2>
+    <input type='text' id='search_bar'>
+        <input type='button' id='search_string' value='Search' onClick="search()">	
+		
+		<p id ="finalResult"></p>
+		<div id="debug"> </div>
+		
     <!-- return items table entries -->
+	<div id="display">
     <?php while($row = mysqli_fetch_assoc($result)) : ?>
     
 
-	<div id=<?php echo $row["item_id"]; ?> class='container'>
+	<div id="" class='container'>
 		<h1><?php echo $row["itemName"]; ?></h1>
 		<div class="row">
 			<div id="firstCol" class="col-lg-2 col-md-4 col-sm-4">
@@ -64,13 +73,14 @@ if (!$result){
     <hr>
     <?php endwhile; ?>
     <?php mysqli_free_result($result); ?>
+	</div>
   </ul>
   
   <div id="footer"><?php include_once 'footer.php'; ?></div>
   
 <!-- the passed array is what we use in shopList.js for using the data from array $row-->
 <script src="shopList.js"></script>
-
+<script src="itemSearch.js"></script>
 </body>
 
 </html>
