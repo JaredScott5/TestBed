@@ -1,3 +1,15 @@
 body { 
-    padding-top: 65px; 
+    padding-top: 65px;
+}
+
+#orders {
+}
+
+.order {
+  border-style: solid;
+  border-width: 2px;
+}
+
+.order:nth-child(even) {
+    background-color: #a8a8a8
 }
