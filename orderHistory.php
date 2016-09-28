@@ -86,66 +86,66 @@ $MySQLi_CON->close();
 </head>
 
 <body>
-
-  <?php while($orderRow = mysqli_fetch_assoc($ordersResult)) : ?>
-    <?php $currentOrder = $orderRow['orderNumber']; ?>  
-    <div class="order">
-      <div class="summary">
-        <div class="row">
-          <div class="col-xs-2">
-            <p class="order number"><?php echo $orderRow['orderNumber'] ?></p>
-          </div>
-          <div class="col-xs-2">
-            <p class="order date"><?php echo $orderRow['orderDate'] ?></p>
-          </div>
-          <div class="col-xs-2">
-            <p class="shipped date"><?php echo $orderRow['shippedDate'] ?></p>
-          </div>
-          <div class="col-xs-2">
-            <p class="total cost"><?php echo $orderRow['total'] ?></p>
-          </div>
-          <div class="col-xs-2">
-            <p class="comments"><?php echo $orderRow['comments'] ?></p>
-          </div>
-          <div class="col-xs-2">
-            <p class="whitepace">&nbsp;</p>
+  <div id="orders" class="container">
+    <?php while($orderRow = mysqli_fetch_assoc($ordersResult)) : ?>
+      <?php $currentOrder = $orderRow['orderNumber']; ?>  
+      <div class="order">
+        <div class="summary">
+          <div class="row">
+            <div class="col-xs-2">
+              <p class="order-number"><b>Order Number: </b><?php echo $orderRow['orderNumber'] ?></p>
+            </div>
+            <div class="col-xs-2">
+              <p class="order-date"><b>Date Ordered: </b><?php echo $orderRow['orderDate'] ?></p>
+            </div>
+            <div class="col-xs-2">
+              <p class="shipped-date"><b>Date Shipped: </b><?php echo $orderRow['shippedDate'] ?></p>
+            </div>
+            <div class="col-xs-2">
+              <p class="total-cost"><b>Total: </b>$<?php echo $orderRow['total'] ?></p>
+            </div>
+            <div class="col-xs-2">
+              <p class="comments"><b>Comments: </b><?php echo $orderRow['comments'] ?></p>
+            </div>
+            <div class="col-xs-2">
+              <a class="exp-col" href="#">Show Details</a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="details">
-        <?php while($detailRow = mysqli_fetch_assoc($detailsResult)) : ?>
-            <?php if ($detailRow['orderNumber'] === $currentOrder) : ?>
-            <div class="detail">
-              <div class="row">
-                <div class="col-xs-2">
-                  <p class="whitepace">&nbsp;</p>
-                </div>    
-                <div class="col-xs-2">
-                  <p class="item img"><?php echo "<img class=\"img-responsive\" width=\"150\" height=\"150\" src=" . $detailRow['image'] . "></img>"; ?></p>
-                </div>
-                <div class="col-xs-2">
-                  <p class="item name"><?php echo $detailRow['itemName'] ?></p>
-                </div>
-                <div class="col-xs-2">
-                  <p class="quantity ordered"><?php echo $detailRow['quantityOrdered'] ?></p>
-                </div>
-                <div class="col-xs-2">
-                  <p class="price per item"><?php echo $detailRow['price'] ?></p>
-                </div>
-                <div class="col-xs-2">
-                  <p class="total item price"><?php echo $totalItemCost = $detailRow['price'] * $detailRow['quantityOrdered'] ?></p>
+        <div class="details">
+          <?php while($detailRow = mysqli_fetch_assoc($detailsResult)) : ?>
+              <?php if ($detailRow['orderNumber'] === $currentOrder) : ?>
+              <div class="detail">
+                <div class="row">
+                  <div class="col-xs-2">
+                    <p class="whitepace">&nbsp;</p>
+                  </div>    
+                  <div class="col-xs-2">
+                    <p class="item-img"><?php echo "<img class=\"img-responsive\" width=\"150\" height=\"150\" src=" . $detailRow['image'] . "></img>"; ?></p>
+                  </div>
+                  <div class="col-xs-2">
+                    <p class="item-name">Item: <?php echo $detailRow['itemName'] ?></p>
+                  </div>
+                  <div class="col-xs-2">
+                    <p class="quantity-ordered">Quantity: <?php echo $detailRow['quantityOrdered'] ?></p>
+                  </div>
+                  <div class="col-xs-2">
+                    <p class="price-per-item">Price: $<?php echo $detailRow['price'] ?></p>
+                  </div>
+                  <div class="col-xs-2">
+                    <p class="total item price">Subtotal: $<?php echo $totalItemCost = $detailRow['price'] * $detailRow['quantityOrdered'] ?></p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <?php endif; ?>
-        <?php endwhile; ?>
-      <?php mysqli_data_seek($detailsResult, 0) ?>
+              <?php endif; ?>
+          <?php endwhile; ?>
+        <?php mysqli_data_seek($detailsResult, 0) ?>
+        </div>
       </div>
-    </div>
-  <?php endwhile; ?>
-  <?php mysqli_free_result($ordersResult); ?>
-  <?php mysqli_free_result($detailsResult); ?>
-
+    <?php endwhile; ?>
+    <?php mysqli_free_result($ordersResult); ?>
+    <?php mysqli_free_result($detailsResult); ?>
+  </div>
   <div id="footer"><?php include_once 'footer.php'; ?></div>
 
   <script src="libs/jquery/jquery-3.0.0.min.js"></script>
