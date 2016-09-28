@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'navbar.php';
+include_once 'navbar-item-search.php';
 include_once 'dbconnect.php';
 
 if(!isset($_SESSION['userSession']))
@@ -39,7 +39,6 @@ if (!$result){
     <p  style='display: block; padding-top: 50px;'></p>
     
 	<!-- Add search bar here -->
-	<h2 style="display: block; padding-top: 40px;"> Search by product name or product id </h2>
     <input type='text' id='search_bar'>
         <input type='button' id='search_string' value='Search' onClick="search()">	
 		

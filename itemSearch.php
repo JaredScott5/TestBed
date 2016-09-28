@@ -28,27 +28,30 @@ if (!$result){
 }else{
 //	echo "we have a result";
 }
-while($itemRow = mysqli_fetch_assoc($result)){
-echo "<div id=" . $itemRow["item_id"] . " class='container'>" .
-		"<h1>" . $itemRow["itemName"] . "</h1>" .
-		"<div class='row'>" .
-			"<div id='firstCol' class='col-lg-2 col-md-4 col-sm-4'>" .
-			"<p><a href='item-page.php?item_id=" . $itemRow["item_id"] . "'>" .
-				"<img class='img-responsive' width='150' height='150'  src=" . $itemRow["image"] . "" .  
-				"id='image' align='top' style='float:left'></a></p>" .
-			"</div>";
-		
-echo			"<div id='secondCol' class='col-lg-8 col-md-6 col-sm-5'>";
-echo				"<p id='price' style='font-size:20px; float:middle;'>" . $itemRow["price"] . "</p>";
-echo				"<p id='desc' style='font-size:20px; float:middle;'>" . $itemRow["description"] . "</p>";
-echo			"</div>";
-		
-echo			"<div id='thirdCol' class='col-lg-2 col-md-2 col-sm-3'>";
-echo				"<a class='btn btn-lg btn-primary' href='#' role='button' onClick='addToCart(" . $itemRow["item_id"] . ")'>Add To Cart</a>";
-echo			"</div>";
-echo		"</div>";
-echo	"</div>";
-}
-$MySQLi_CON->close();
 ?>
+
+<?php while($itemRow = mysqli_fetch_assoc($result)) :?>
+	<div id=<?php echo $itemRow["item_id"];?> class='container'>
+		<h1><?php echo $itemRow["itemName"];?></h1>
+		<div class='row'>
+			<div id='firstCol' class='col-lg-2 col-md-4 col-sm-4'>
+			<p><a href='item-page.php?item_id=<?php echo $itemRow["item_id"];?>'>
+				<img class='img-responsive' width='150' height='150'  src=<?php echo$itemRow["image"];?>  
+				id='image' align='top' style='float:left'></a></p>
+			</div>
+		
+			<div id='secondCol' class='col-lg-8 col-md-6 col-sm-5'>
+				<p id='price' style='font-size:20px; float:middle;'><?php echo $itemRow["price"];?></p>
+				<p id='desc' style='font-size:20px; float:middle;'><?php echo $itemRow["description"];?></p>
+			</div>
+		
+			<div id='thirdCol' class='col-lg-2 col-md-2 col-sm-3'>
+				<a class='btn btn-lg btn-primary' href='#' role='button' onClick='addToCart(<?php echo $itemRow["item_id"];?>)'>Add To Cart</a>
+			</div>
+		</div>
+	</div>
+
+<?php endwhile; ?>
+<?php $MySQLi_CON->close(); ?>
+
 
