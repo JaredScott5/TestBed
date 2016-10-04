@@ -13,3 +13,7 @@ body {
 .order:nth-child(even) {
     background-color: #a8a8a8
 }
+
+.exp-col {
+  cursor: pointer;
+}
