@@ -108,7 +108,7 @@ $MySQLi_CON->close();
               <p class="comments"><b>Comments: </b><?php echo $orderRow['comments'] ?></p>
             </div>
             <div class="col-xs-2">
-              <a class="exp-col" href="#">Show Details</a>
+              <a class="exp-col">Show Details</a>
             </div>
           </div>
         </div>
