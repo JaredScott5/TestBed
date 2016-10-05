@@ -29,7 +29,8 @@ if (!$result){
 
 <html lang="en">
 <head>
-		
+<link rel="stylesheet" type="text/css" href="styles.css">
+
 <title>Shop</title>
 </head>
 
@@ -37,11 +38,7 @@ if (!$result){
   <ul>
     
     <p  style='display: block; padding-top: 50px;'></p>
-    
-	<!-- Add search bar here -->
-    <input type='text' id='search_bar'>
-        <input type='button' id='search_string' value='Search' onClick="search()">	
-		
+    		
 		<p id ="finalResult"></p>
 		<div id="debug"> </div>
 		
@@ -50,7 +47,7 @@ if (!$result){
     <?php while($row = mysqli_fetch_assoc($result)) : ?>
     
 
-	<div id="" class='container'>
+	<div id="shopListContainer" class='container'>
 		<h1><?php echo $row["itemName"]; ?></h1>
 		<div class="row">
 			<div id="firstCol" class="col-lg-2 col-md-4 col-sm-4">

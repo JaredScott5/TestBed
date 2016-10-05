@@ -1,0 +1,55 @@
+body{
+	
+}
+
+#liUser{
+	background-color: #666666;
+}
+
+#liLogout{
+	background-color: #7f7f7f;
+}
+
+#liShoppingCart{
+	background-color: #999999;
+}
+
+#liOrderHistory{
+	background-color: #323232;
+	border-radius: 15px 50px;
+	border: 2px solid #73AD21;
+}
+
+#liShopList{
+	background-color: #191919;
+	border-radius: 15px 50px;
+	border: 2px solid #73AD21;
+}
+
+h1{
+	
+}
+
+h2{
+	
+}
+
+h3{
+	
+}
+
+#parentNavbar{
+	background-color: black;
+}
+
+#shopListContainer{
+	border-radius: 15px 50px;
+    border: 2px solid #73AD21;
+    padding-top: 0px; 
+	padding-bottom: 25px;
+	padding-left: 40px;
+}
+
+#ulSearchbar{
+	background-color: #4c4c4c;
+}
