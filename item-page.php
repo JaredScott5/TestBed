@@ -38,6 +38,7 @@ $item_desc = $row['description'];
 
 <html lang="en">
 <head>
+<link rel="stylesheet" type="text/css" href="styles.css">
 <title><?php echo $item_name ?></title>
 </head>
 
@@ -45,7 +46,7 @@ $item_desc = $row['description'];
 
 <p  style="display: block; padding-top: 50px;"></p>
 
-
+<div id="page">
 	<div class="container">
 	<h1><?php echo $item_name ?> </h1>
 	</div>
@@ -74,29 +75,33 @@ $item_desc = $row['description'];
 		</div>  
 	</div>
   
+  <hr></hr>
 	<div class="container" id="midContainer">
 		<div class="" style="position: relative; font-size:20px;"> 
-			<hr><h3> About This Item:</h3></hr>
+			<h3> About This Item:</h3>
 				<div id="features">
 					<p style="border-left: 6px solid red;"><?php echo $item_desc; ?></p>
 				</div>
+				<br>
 		</div>
 	</div>
-	
+	<hr></hr>
 	<div class="container" id="midContainer">
 		<div id="item-id" class="" style="position: relative; font-size:20px;">
-			<hr><h3> Item ID#: </h3></hr>
+			<h3> Item ID#: </h3>
 			<p style="border-left: 6px solid red;"><?php echo $item_id ?></p>
 		</div>
+		<br>
 	</div>
-	
+	<hr></hr>
 	<div class="container" id="midContainer">
 		<div id="item-desc" class="" style="position: relative; font-size:20px;">
-			<hr><h3> Description: <br></h3></hr>
+			<h3> Description: <br></h3>
 			<p style="border-left: 6px solid red;"><?php echo $item_desc ?></p>
 		</div>
+		<br>
 	</div>
-  
+  </div>
 <ul></ul>
 
 <div id="footer"><?php include_once 'footer.php'; ?></div>

@@ -3,27 +3,30 @@ body{
 }
 
 #liUser{
-	background-color: #666666;
+	background-color: #191919;
 }
 
 #liLogout{
-	background-color: #7f7f7f;
+	background-color: #191919;
 }
 
 #liShoppingCart{
-	background-color: #999999;
+	background-color: #191919;
 }
 
 #liOrderHistory{
 	background-color: #323232;
-	border-radius: 15px 50px;
-	border: 2px solid #73AD21;
 }
 
 #liShopList{
 	background-color: #191919;
+}
+
+#midContainer{
 	border-radius: 15px 50px;
 	border: 2px solid #73AD21;
+		background-color: ;
+
 }
 
 h1{
@@ -38,18 +41,30 @@ h3{
 	
 }
 
+#page{
+	width:1200px;
+	margin: auto;
+	border-radius: 15px 50px;
+	border: 4px solid #73AD21;
+}
+
 #parentNavbar{
 	background-color: black;
 }
 
 #shopListContainer{
-	border-radius: 15px 50px;
-    border: 2px solid #73AD21;
     padding-top: 0px; 
 	padding-bottom: 25px;
 	padding-left: 40px;
 }
 
+
+
+#liUser, #liLogout, #liShoppingCart, #liOrderHistory, #liShopList, #shopListContainer, #thirdCol{
+	border-radius: 15px 50px;
+	border: 2px solid #73AD21;
+}
 #ulSearchbar{
-	background-color: #4c4c4c;
+	background-color: ;
+	
 }

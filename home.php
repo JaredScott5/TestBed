@@ -26,8 +26,6 @@ $MySQLi_CON->close();
 
 <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 
-<link rel="stylesheet" href="home.css" type="text/css" />
-
 <?php include ('navbar.php'); ?>
 
 </head>
