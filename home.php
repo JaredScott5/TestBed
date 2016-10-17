@@ -21,10 +21,11 @@ $MySQLi_CON->close();
 
 
 <head>
+<link rel="stylesheet" type="text/css" href="styles.css">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Welcome - <?php echo $userRow['email']; ?></title>
 
-<link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
 
 <?php include ('navbar.php'); ?>
 

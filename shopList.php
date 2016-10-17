@@ -29,6 +29,7 @@ if (!$result){
 
 <html lang="en">
 <head>
+<link rel="stylesheet" type="text/css" href="navbar.css">
 <link rel="stylesheet" type="text/css" href="styles.css">
 
 <title>Shop</title>

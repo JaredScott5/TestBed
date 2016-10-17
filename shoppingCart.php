@@ -66,6 +66,7 @@ if (!$result){
 		echo "<th style='text-align:center'> Quantity </th>";
 		echo "<th style='text-align:center'> Order Total</th>";
 		echo "<th style='text-align:center'> </th>";
+		echo "<th style='text-align:center'> </th>";
 	echo "</tr>";
 	
 	$totalCost = 0;
@@ -73,10 +74,10 @@ if (!$result){
  while($itemRow = mysqli_fetch_assoc($result)){
 	
 	echo "<tr>";
-		//echo "<th style='text-align:center'>" . $itemRow["orderNumber"] . "</th>";
-		<a href="item-page.php?item_id=<?php echo $row["item_id"]; ?>">
-					<img class="img-responsive" width="150" height="150"  src=<?php echo $row["image"];?> 
-				id='image'align="top" style="float:left"/></a>
+		echo "<th style='text-align:center'>" . $itemRow["orderNumber"] . "</th>";
+		
+		
+				
 		echo "<th style='text-align:center'>" . "<img class=\"img-responsive\" width=\"150\" height=\"150\" src=" . $itemRow["image"] . " id='image'>" . "</img>" . "</th>";
 		echo "<th style='text-align:center'>" . $itemRow["itemName"] . "</th>"; 
 		echo "<th style='text-align:center'>" . $itemRow["price"] . "</th>"; 
@@ -97,7 +98,7 @@ if (!$result){
 		$count = $count + 1;
 		$orderNumber = $itemRow["orderNumber"];
  }
- //echo "<th> </th>";
+ echo "<th> </th>";
  echo "<th> </th>";
  echo "<th> </th>";
  echo "<th> </th>";
@@ -128,6 +129,8 @@ $MySQLi_CON->close();
 <html lang="en">
 <head>
 <link rel="stylesheet" type="text/css" href="styles.css">
+<link rel="stylesheet" type="text/css" href="navbar.css">
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Welcome - <?php echo $userRow['email']; ?></title>
 
