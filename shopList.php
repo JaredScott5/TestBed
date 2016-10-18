@@ -30,7 +30,7 @@ if (!$result){
 <html lang="en">
 <head>
 <link rel="stylesheet" type="text/css" href="navbar.css">
-<link rel="stylesheet" type="text/css" href="styles.css">
+<link rel="stylesheet" type="text/css" href="shopList.css">
 
 <title>Shop</title>
 </head>
@@ -49,21 +49,27 @@ if (!$result){
     
 
 	<div id="shopListContainer" class='container'>
-		<h1><?php echo $row["itemName"]; ?></h1>
+		
 		<div class="row">
+		<p id="itemName"><h1><?php echo $row["itemName"]; ?></h1><p/>
 			<div id="firstCol" class="col-lg-2 col-md-4 col-sm-4">
-			<p><a href="item-page.php?item_id=<?php echo $row["item_id"]; ?>">
-					<img class="img-responsive" width="150" height="150"  src=<?php echo $row["image"];?> 
-				id='image'align="top" style="float:left"/></a></p>
+			
+			<p>
+				<a href="item-page.php?item_id=<?php echo $row["item_id"]; ?>">
+					<img class="img-responsive" src=<?php echo $row["image"];?> 
+					id='image'/>
+				</a>
+				</p>
 			</div>
 		
 			<div id="secondCol" class="col-lg-8 col-md-6 col-sm-5">
+			<br>
 				<p id='price' style="font-size:20px; float:middle;">$<?php echo $row["price"]; ?></p>
 				<p id='desc' style="font-size:20px; float:middle;"><?php echo $row["description"]; ?></p>
 			</div>
 		
 			<div id="thirdCol" class="col-lg-2 col-md-2 col-sm-3">
-				<a class='btn btn-lg btn-primary' href='#' role='button' onClick='addToCart(<?php echo $row["item_id"]; ?>)'>Add To Cart</a>
+				<a class='btn btn-lg btn-primary' id="addToCartButton" href='#' role='button' onClick='addToCart(<?php echo $row["item_id"]; ?>)'>Add To Cart</a>
 			</div>
 		</div>
 	</div>

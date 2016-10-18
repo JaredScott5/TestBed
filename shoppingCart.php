@@ -129,7 +129,6 @@ $MySQLi_CON->close();
 <html lang="en">
 <head>
 <link rel="stylesheet" type="text/css" href="styles.css">
-<link rel="stylesheet" type="text/css" href="navbar.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Welcome - <?php echo $userRow['email']; ?></title>
