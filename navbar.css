@@ -2,6 +2,13 @@ body{
 
 }
 
+form{
+	text-align: center;
+	margin: 0 auto;
+	}
+
+
+
 #liUser{
 	background-color: #191919;
 }
@@ -22,19 +29,21 @@ body{
 	background-color: #191919;
 }
 
-#liUser, #liLogout, #liShoppingCart, #liOrderHistory, #liShopList, #shopListContainer, #thirdCol{
+#liUser, #liLogout, #liShoppingCart, #liOrderHistory, #liShopList{
 	border-radius: 15px 50px;
 	border: 2px solid #73AD21;
 }
 
-#midContainer{
-	border-radius: 15px 50px;
-	border: 2px solid #73AD21;
-	background-color: ;
+#ulLeft{
+		
+}
+
+#ulRight{
+	
 }
 
 #ulSearchbar{
-	width:400px;
+	width:500px;
 }
 
 #page{
@@ -46,17 +55,12 @@ body{
 
 #parentNavbar{
 	background-color: black;
-	display: inline-block;
 	float: none;
 	vertical-align: top;
 }
 
-#shopListContainer{
-    padding-top: 0px; 
-	padding-bottom: 25px;
-	padding-left: 40px;
-}
 
 #search_bar{
-	width:250px;
+	width:200px;
+	margin-left: 75px;
 }

@@ -1,0 +1,45 @@
+#addToCartButton{
+	position: absolute;
+	right: 20px;
+	bottom: 0;
+}
+
+containter{
+	display: table;
+}
+
+img{
+	float: left;
+	width: 150px;
+	height: 150px;
+	overflow: hidden;
+}
+
+#shopListContainer{
+	border-radius: 15px 50px;
+	border: 2px solid #73AD21;
+	padding-bottom: 15px;
+}
+
+#firstCol, #secondCol, #thirdCol{
+	float: none;
+	padding: 20px;
+	vertical-align: top;
+} 
+
+#firstCol{
+	text-align: center;
+	display: table-cell;
+}
+
+#secondCol{
+	padding-top: 5%;
+	text-align: left;
+	display: table-cell;
+}
+
+#thirdCol{
+	text-align: center;
+	display: table-cell;
+	padding-right: 5%;
+}

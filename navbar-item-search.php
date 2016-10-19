@@ -17,7 +17,7 @@
 					<li id="liOrderHistory"><a href="orderHistory.php"><span class="glyphicon glyphicon-check"></span>&nbsp; Order History</a></li>        
 				</ul>
 		  
-				<ul id="ulSearchbar" class="navbar-nav">
+				<ul id="ulSearchbar" class="nav navbar-nav">
 					<form class="nav navbar-search">
 						<li>
 							<a href="javascript:itemSearch.js"><input type='text' id='search_bar'>
