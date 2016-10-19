@@ -48,67 +48,10 @@ if($rowCount!=0){
  
  $result=mysqli_query($MySQLi_CON, $secondQuery);
  
- //test if the query failed
-if (!$result){
-	die("Database query failed.");
-}else{
-}
-
- //table 1 for 'in cart' items
- echo "<p  style='display: block; padding-top: 75px;'></p>";
- 
- echo "<table style='width:75%' align='center' cellpadding='2' cellspacing='2' border='2'>";
- echo "<tr>";
-		//echo "<th style='text-align:center'> Order # </th>"; 
-		echo "<th style='text-align:center'> Image </th>";
-		echo "<th style='text-align:center'> Item </th>"; 
-		echo "<th style='text-align:center'> Price </th>"; 
-		echo "<th style='text-align:center'> Quantity </th>";
-		echo "<th style='text-align:center'> Order Total</th>";
-		echo "<th style='text-align:center'> </th>";
-		echo "<th style='text-align:center'> </th>";
-	echo "</tr>";
-	
-	$totalCost = 0;
-	
- while($itemRow = mysqli_fetch_assoc($result)){
-	
-	echo "<tr>";
-		echo "<th style='text-align:center'>" . $itemRow["orderNumber"] . "</th>";
-		
-		
-				
-		echo "<th style='text-align:center'>" . "<img class=\"img-responsive\" width=\"150\" height=\"150\" src=" . $itemRow["image"] . " id='image'>" . "</img>" . "</th>";
-		echo "<th style='text-align:center'>" . $itemRow["itemName"] . "</th>"; 
-		echo "<th style='text-align:center'>" . $itemRow["price"] . "</th>"; 
-		echo "<th style='text-align:center'>
-			<form action='add-to-cart.php' method='post'>
-			<input type='hidden' name='iN' value='" . $itemRow["item_id"] . "' />
-			<input type='text' name='q' value='" . $itemRow['quantityOrdered'] . 
-			"'style='width: 50px;'/> 
-			<input type='submit'>
-			</form>
-			</th>"; 
-		echo "<th style='text-align:center'>" . $itemRow['price']  * $itemRow['quantityOrdered'] . "</th>"; 	
-		echo "<th style='text-align:center'>" . "<a class='btn btn-sm btn-primary' href='#' role='button' 
-			  onClick='removeItem(" . $itemRow["item_id"] . ")'>Remove Item" .  "</a>" . "</th>";
-	echo "</tr>";	
-	
-		$totalCost = $totalCost + ($itemRow["price"] * $itemRow["quantityOrdered"]);
-		$count = $count + 1;
-		$orderNumber = $itemRow["orderNumber"];
- }
- echo "<th> </th>";
- echo "<th> </th>";
- echo "<th> </th>";
- echo "<th> </th>";
- echo "<th>" . $itemRow["orderNumber"] . "</th>";
- echo "<th> Total: " . $totalCost . "</th>";
- echo "<th style='text-align:center'>" . "<a class='btn btn-sm btn-primary' href='#' role='button' 
-			  onClick='checkOut(" . $orderNumber . ',' . $totalCost . ")'>Check Out" .  "</a>" .  "</th>";
- echo "</table>";
-}else{
-	//echo "<p  style='display: block; padding-top: 100px;'>Row Count is not 0</p>";
+  //test if the query failed
+  if (!$result){
+    die("Database query failed.");
+  }
 }
 
 //free the variable, we should not need it now
@@ -129,6 +72,7 @@ $MySQLi_CON->close();
 <html lang="en">
 <head>
 <link rel="stylesheet" type="text/css" href="styles.css">
+<link rel="stylesheet" type="text/css" href="shoppingCart.css">
 <link rel="stylesheet" type="text/css" href="navbar.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -142,6 +86,33 @@ $MySQLi_CON->close();
 </head>
 
 <body>
+
+<div id="cart" class="container">
+  <?php while($itemRow = mysqli_fetch_assoc($result)) : ?>
+  <div class="row">
+    <div class="col-xs-2">
+      <p class="item-img"><?php echo "<img class=\"img-responsive\" width=\"150\" height=\"150\" src=" . $itemRow['image'] . "></img>"; ?></p>
+    </div>
+    <div class="col-xs-4">
+      <p class="item-name"><b>Item: </b><?php echo $itemRow['itemName']; ?></p>
+    </div>
+    <div class="col-xs-2">
+      <p class="price"><b>Price: </b>$<?php echo $itemRow['price']; ?></p>
+    </div>
+    <div class="col-xs-2">
+      <p class="quantity-ordered"><b>Number in Cart: </b><?php echo $itemRow['quantityOrdered']; ?></p>
+    </div>
+    <div class="col-xs-2">
+      <p class="total"><b>Subtotal: </b>$<?php echo $itemRow['price']  * $itemRow['quantityOrdered']; ?></p>
+    </div>
+    <div class="col-xs-2">
+      <p class="blank"></p>
+    </div>
+  </div>
+  <?php endwhile; ?>
+  <?php mysqli_free_result($result); ?>
+</div>
+
 <div id="footer"><?php include_once 'footer.php'; ?></div>
 <script src="shoppingCart.js">
 </script>
