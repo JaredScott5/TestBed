@@ -1,9 +1,3 @@
-#addToCartButton{
-	position: absolute;
-	right: 20px;
-	bottom: 0;
-}
-
 containter{
 	display: table;
 }
@@ -21,25 +15,28 @@ img{
 	padding-bottom: 15px;
 }
 
+ #addToCartButton{
+	position: absolute;
+	right: 20px;
+	bottom: 0;
+}
+
 #firstCol, #secondCol, #thirdCol{
 	float: none;
 	padding: 20px;
 	vertical-align: top;
+	display: table-cell;
 } 
 
-#firstCol{
+#firstCol, #thirdCol{
 	text-align: center;
-	display: table-cell;
 }
 
 #secondCol{
 	padding-top: 5%;
 	text-align: left;
-	display: table-cell;
 }
 
 #thirdCol{
-	text-align: center;
-	display: table-cell;
 	padding-right: 5%;
 }
