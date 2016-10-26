@@ -30,7 +30,7 @@ $rowCount=$check_cart->num_rows;
 
 //store orderNumber from table orders
 	$tempItemRow = mysqli_fetch_assoc($check_cart);
-	$orderNum=$tempItemRow["orderNumber"];
+	$orderNum = $tempItemRow["orderNumber"];
 	
 //if not empty display the order as a table 
 if($rowCount!=0){
@@ -88,31 +88,49 @@ $MySQLi_CON->close();
 <body>
 
 <div id="cart" class="container">
-  <?php while($itemRow = mysqli_fetch_assoc($result)) : ?>
-  <div class="row">
-    <div class="col-xs-2">
-      <p class="item-img"><?php echo "<img class=\"img-responsive\" width=\"150\" height=\"150\" src=" . $itemRow['image'] . "></img>"; ?></p>
+  <?php $total = 0; ?>
+  <?php if(isset($result)) : ?>
+    <?php while($itemRow = mysqli_fetch_assoc($result)) : ?>
+      <?php $subTotal = $itemRow['price']  * $itemRow['quantityOrdered']; ?>
+      <?php $total += $subTotal;?>
+      <div class="row">
+        <div class="col-xs-2">
+          <p id="item-img"><?php echo "<img class=\"img-responsive\" width=\"150\" height=\"150\" src=" . $itemRow['image'] . "></img>"; ?></p>
+        </div>
+        <div class="col-xs-2">
+          <p id="item-name"><b>Item: </b><?php echo $itemRow['itemName']; ?></p>
+        </div>
+        <div class="col-xs-2">
+          <p id="price"><b>Price: </b>$<?php echo $itemRow['price']; ?></p>
+        </div>
+        <div class="col-xs-2">
+          <p id="quantity-ordered"><b>Number in Cart: </b>
+          <input type="number" value="<?php echo $itemRow['quantityOrdered']; ?>" onchange="updateQuantity(<?php echo $itemRow['item_id']; ?>, value)"></input>
+          </p>
+        </div>
+        <div class="col-xs-2">
+          <p id="subtotal"><b>Subtotal: </b>$<?php echo $subTotal ?></p>
+        </div>
+        <div class="col-xs-2">
+          <button id="remove" onclick="removeItem(<?php echo $itemRow['item_id']; ?>)">Remove From Cart</button>
+        </div>
+      </div>
+    <?php endwhile; ?>
     </div>
-    <div class="col-xs-4">
-      <p class="item-name"><b>Item: </b><?php echo $itemRow['itemName']; ?></p>
+    
+    <?php $check = mysqli_data_seek ($result, 0); ?>
+    <?php if($check != NULL): ?>
+    <div id="checkout-info" class="container">
+      <p id="total"><b>Total: </b>$<?php echo $total ?></p>
+      <button onclick="checkOut(<?php echo $orderNum; ?>, <?php echo $total; ?>)">Checkout</button>
     </div>
-    <div class="col-xs-2">
-      <p class="price"><b>Price: </b>$<?php echo $itemRow['price']; ?></p>
-    </div>
-    <div class="col-xs-2">
-      <p class="quantity-ordered"><b>Number in Cart: </b><?php echo $itemRow['quantityOrdered']; ?></p>
-    </div>
-    <div class="col-xs-2">
-      <p class="total"><b>Subtotal: </b>$<?php echo $itemRow['price']  * $itemRow['quantityOrdered']; ?></p>
-    </div>
-    <div class="col-xs-2">
-      <p class="blank"></p>
-    </div>
-  </div>
-  <?php endwhile; ?>
-  <?php mysqli_free_result($result); ?>
-</div>
+    <?php endif; ?>
+  <?php else: ?>
+    <p id="empty-cart-msg">Your cart is empty.</p>
+  <?php endif; ?>
+  
 
+<?php if (isset($result)) mysqli_free_result($result); ?>
 <div id="footer"><?php include_once 'footer.php'; ?></div>
 <script src="shoppingCart.js">
 </script>
