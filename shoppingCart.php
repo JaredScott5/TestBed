@@ -82,6 +82,7 @@ $MySQLi_CON->close();
 <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen"> 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="footer.css">
 
 </head>
 

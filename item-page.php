@@ -39,6 +39,8 @@ $item_desc = $row['description'];
 <html lang="en">
 <head>
 <link rel="stylesheet" type="text/css" href="styles.css">
+<link rel="stylesheet" type="text/css" href="footer.css">
+
 <title><?php echo $item_name ?></title>
 </head>
 

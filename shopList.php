@@ -31,6 +31,7 @@ if (!$result){
 <head>
 <link rel="stylesheet" type="text/css" href="navbar.css">
 <link rel="stylesheet" type="text/css" href="shopList.css">
+<link rel="stylesheet" type="text/css" href="footer.css">
 
 <title>Shop</title>
 </head>

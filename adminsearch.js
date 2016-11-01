@@ -1,6 +1,6 @@
 function search(){
 	var searchTerm = document.getElementById("search_bar").value;
-	document.getElementById("debug").innerHTML = "search bar variable is " + searchTerm;
+	//document.getElementById("debug").innerHTML = "search bar variable is " + searchTerm;
 	httpRequest = new XMLHttpRequest();
 	httpRequest.onreadystatechange = displaySearchResult;
 	httpRequest.open('POST', 'adminsearch.php');

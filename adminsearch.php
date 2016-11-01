@@ -32,41 +32,37 @@ if (!$result){
 	die("Database query failed.");
 }else{
 }
-
-//these echos are the 'responseText' sent back to admin.js
- echo "<p  style='display: block; padding-top: 100px;'></p>";
- echo "<p " . $searchTerm . "p/>";
- echo "<table style='width:75%' align='center' cellpadding='2' cellspacing='2' border='2'>";
- echo "<tr>";
-		echo "<th style='text-align:center'> Order # </th>"; 
-		echo "<th style='text-align:center'> User Id </th>";
-		echo "<th style='text-align:center'> Email </th>"; 
-    echo "<th style='text-align:center'> Order Date </th>"; 
-		echo "<th style='text-align:center'> Shipped Date </th>"; 
-		echo "<th style='text-align:center'> Status </th>";
-		echo "<th style='text-align:center'> Comments</th>";
-	echo "</tr>";
-	
-	 while($itemRow = mysqli_fetch_assoc($result)){
-	
-	echo "<tr>";
-		echo "<th style='text-align:center'>" . $itemRow["orderNumber"] . "</th>";
-		echo "<th style='text-align:center'>" . $itemRow["user_id"] . "</th>";
-		echo "<th style='text-align:center'>" . $itemRow["email"] . "</th>"; 
-    echo "<th style='text-align:center'>" . $itemRow["orderDate"] . "</th>"; 
-		echo "<th style='text-align:center'>" . $itemRow["shippedDate"] . "</th>"; 
-		echo "<th style='text-align:center'>" . $itemRow["status"] . "</th>"; 
-		echo "<th style='text-align:center'>" . $itemRow["comments"] . "</th>"; 
-	echo "</tr>";	
- }
- echo "<th> </th>";
- echo "<th> </th>";
- echo "<th> </th>";
- echo "<th> </th>";
- echo "<th> </th>";
- echo "<th> </th>";
- echo "</table>";
-
-$MySQLi_CON->close();
 ?>
+
+<p  style='display: block; padding-top: 25px;'></p>
+
+<table style='width:75%' align='center' cellpadding='2' cellspacing='2' border='2'>
+	<tr>
+		<th style='text-align:center'> Order # </th>
+		<th style='text-align:center'> User Id </th>
+		<th style='text-align:center'> Email </th>
+		<th style='text-align:center'> Order Date </th>
+		<th style='text-align:center'> Shipped Date </th>
+		<th style='text-align:center'> Status </th>
+		<th style='text-align:center'> Comments</th>
+	</tr>
+	
+	 <?php while($itemRow = mysqli_fetch_assoc($result)) :?>
+	
+	<tr>
+		<th style='text-align:center'><?php echo$itemRow["orderNumber"];?></th>
+		<th style='text-align:center'><?php echo$itemRow["user_id"];?></th>
+		<th style='text-align:center'><?php echo$itemRow["email"];?></th>
+		<th style='text-align:center'><?php echo$itemRow["orderDate"];?></th> 
+		<th style='text-align:center'><?php echo$itemRow["shippedDate"];?></th> 
+		<th style='text-align:center'><?php echo$itemRow["status"];?></th> 
+		<th style='text-align:center'><?php echo$itemRow["comments"];?></th> 
+	</tr>
+	<?php endwhile; ?>
+	
+
+ </table>
+ <p  style='display: block; padding-bottom: 25px;'></p>
+
+<?php $MySQLi_CON->close();?>
 

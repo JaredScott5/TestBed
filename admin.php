@@ -14,6 +14,9 @@ integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En
 
 <html lang="en">
 
+<link rel="stylesheet" type="text/css" href="footer.css">
+<link rel="stylesheet" type="text/css" href="admin.css">
+
 <head>
 		
 <title>Admin Page</title>
@@ -30,11 +33,14 @@ integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En
 </head>
 
 <body>
+<div id="adminContainer" class='container'>
 <h2 style="display: block; padding-top: 40px;"> Search by user_id, email, or username </h2>
     <input type='text' id='search_bar'>
         <input type='button' id='search_string' value='Search' onClick="search()">	
 		<p id ="finalResult"></p>
 		<div id="debug"> </div>
+		
+</div>
     <div id="footer"><?php include_once 'footer.php'; ?></div>
 <script src="adminsearch.js">
 </script>
