@@ -1,0 +1,16 @@
+.navbar-static-bottom{
+	background: black;
+	color: grey;
+	vertical-align: bottom;
+}
+
+.pull-left{
+	padding-top: 15px;
+	margin-left: 30px
+
+}
+ 
+.pull-right{
+	padding-top: 15px;
+	margin-right: 30px
+	}

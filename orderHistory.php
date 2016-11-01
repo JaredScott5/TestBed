@@ -79,6 +79,8 @@ $MySQLi_CON->close();
 
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="orderHistory.css">
+<link rel="stylesheet" type="text/css" href="navbar.css">
+<link rel="stylesheet" type="text/css" href="footer.css">
 
 <head>
   <title>Order History</title>

@@ -1,20 +1,22 @@
 body{
 
 }
+li{
 
-#liUser, #liOrderHistory{
-		background-color: ;
+}
+
+#liShoppingCart{
+}
+
+#parentNavbar{
+
 }
 
 #tryme{
 	width: 400px;
 }
 
-#search_bar{
-	
-}
-
-#parentNavbar{
+#test{
 	background-color: black;
 	float: none;
 	vertical-align: top;
