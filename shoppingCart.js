@@ -4,8 +4,10 @@ function updateQuantity(item_id, quantity){
 	httpRequest.open('POST', 'add-to-cart.php');
 	httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	httpRequest.send("item_id="+item_id+"&quantity="+quantity);
-  window.location.replace(location)
+  window.location.replace(location);
 }
+
+
 
 function removeItem(item_id){
 	httpRequest = new XMLHttpRequest();
