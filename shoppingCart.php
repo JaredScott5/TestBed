@@ -89,12 +89,13 @@ $MySQLi_CON->close();
 <body>
 
 <div id="cart" class="container">
+  <?php $count = 0; ?>
   <?php $total = 0; ?>
   <?php if(isset($result)) : ?>
     <?php while($itemRow = mysqli_fetch_assoc($result)) : ?>
       <?php $subTotal = $itemRow['price']  * $itemRow['quantityOrdered']; ?>
       <?php $total += $subTotal;?>
-      <div class="row">
+      <div class="row" id="row-<?php echo $count; ?>">
         <div class="col-xs-2">
           <p id="item-img"><?php echo "<img class=\"img-responsive\" width=\"150\" height=\"150\" src=" . $itemRow['image'] . "></img>"; ?></p>
         </div>
@@ -106,7 +107,7 @@ $MySQLi_CON->close();
         </div>
         <div class="col-xs-2">
           <p id="quantity-ordered"><b>Number in Cart: </b>
-          <input type="number" value="<?php echo $itemRow['quantityOrdered']; ?>" onchange="updateQuantity(<?php echo $itemRow['item_id']; ?>, value)"></input>
+          <input id="input-<?php echo $count; ?>" type="number" value="<?php echo $itemRow['quantityOrdered']; ?>" onchange="updateQuantity(<?php echo $itemRow['item_id']; ?>, value)"></input>
           </p>
         </div>
         <div class="col-xs-2">
@@ -116,6 +117,7 @@ $MySQLi_CON->close();
           <button id="remove" onclick="removeItem(<?php echo $itemRow['item_id']; ?>)">Remove From Cart</button>
         </div>
       </div>
+    <?php ++$count; ?>
     <?php endwhile; ?>
     </div>
     
