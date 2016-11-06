@@ -153,9 +153,12 @@ else{
 	 // echo "duplicate exists";
     $row = mysqli_fetch_assoc($check_duplicate);
     $quantityInCart = $row['quantityOrdered'];
-
-    $quantityTotal = $quantityInCart + $quantity;
-
+    if(isset($_POST['f'])){
+      $quantityTotal = $quantity;
+      $quantityDiff = $quantity - $quantityInCart;
+    } else {
+      $quantityTotal = $quantityInCart + $quantity;
+    }
     $query = 
       "UPDATE orderDetails
       SET quantityOrdered = '$quantityTotal'
@@ -179,7 +182,7 @@ else{
 mysqli_free_result($check_cart);
 }//outer most if/very first if
 
-$_SESSION['cartCount'] = $_SESSION['cartCount'] + $quantity;
+$_SESSION['cartCount'] = $_SESSION['cartCount'] + $quantityDiff;
 
 $MySQLi_CON->close();
 

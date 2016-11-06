@@ -3,7 +3,7 @@ function updateQuantity(item_id, quantity){
 	httpRequest.onreadystatechange = updateCart;
 	httpRequest.open('POST', 'add-to-cart.php');
 	httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	httpRequest.send("item_id="+item_id+"&quantity="+quantity);
+	httpRequest.send("item_id="+item_id+"&quantity="+quantity+"&f=1");
   window.location.replace(location);
 }
 
