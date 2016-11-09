@@ -47,40 +47,40 @@ if (!$result){
     <!-- return items table entries -->
 	<div id="display">
 		<?php while($row = mysqli_fetch_assoc($result)) : ?>
-
-		<div id="shopListContainer" class='container'>
-		
-			<div class="row">
-			<p id="itemName"><h1><?php echo $row["itemName"]; ?></h1><p/>
-				<div id="firstCol" class="col-lg-2 col-md-4 col-sm-4">
-			
-					<p>
-						<a href="item-page.php?item_id=<?php echo $row["item_id"]; ?>">
-							<img class="img-responsive" src=<?php echo $row["image"];?> id='image'/>
-						</a>
-					</p>
-				</div>
-		
-				<div id="secondCol" class="col-lg-8 col-md-6 col-sm-5">
-				<br>
-					<p id='price' style="font-size:20px; float:middle;">$<?php echo $row["price"]; ?></p>
-					<p id='desc' style="font-size:20px; float:middle;"><?php echo $row["description"]; ?></p>
-				</div>
-		
-				<div id="thirdCol" class="col-lg-2 col-md-2 col-sm-3">
-					<a class='btn btn-lg btn-primary' id="addToCartButton" href='#' role='button' onClick='addToCart(<?php echo $row["item_id"]; ?>)'>Add To Cart</a>
-				</div>
-			</div>
-		</div>
-    <hr>
-    <?php endwhile; ?>
-    <?php mysqli_free_result($result); ?>
-	</div>
-  </ul>
+    <div id="shopListContainer" class='container'>
+        
+        <div class="row" id="<?php echo $row["item_id"]; ?>">
+          <p id="itemName"><h1><?php echo $row["itemName"]; ?></h1><p/>
+            <div id="firstCol" class="col-lg-2 col-md-4 col-sm-4">
+          
+              <p>
+                <a href="item-page.php?item_id=<?php echo $row["item_id"]; ?>">
+                  <img class="img-responsive" src=<?php echo $row["image"];?> id='image'/>
+                </a>
+              </p>
+            </div>
+        
+            <div id="secondCol" class="col-lg-8 col-md-6 col-sm-5">
+            <br>
+              <p id='price' style="font-size:20px; float:middle;">$<?php echo $row["price"]; ?></p>
+              <p id='desc' style="font-size:20px; float:middle;"><?php echo $row["description"]; ?></p>
+            </div>
+        
+            <div id="thirdCol" class="col-lg-2 col-md-2 col-sm-3">
+              <a class='btn btn-lg btn-primary' href='#' role='button'>Add To Cart</a>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <?php endwhile; ?>
+        <?php mysqli_free_result($result); ?>
+    </div>
+  </div>
   
   <div id="footer"><?php include_once 'footer.php'; ?></div>
   
 <!-- the passed array is what we use in shopList.js for using the data from array $row-->
+<script src="libs/jquery/jquery-3.0.0.min.js"></script>
 <script src="shopList.js"></script>
 <script src="itemSearch.js"></script>
 </body>
