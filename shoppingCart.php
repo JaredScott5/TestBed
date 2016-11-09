@@ -1,7 +1,7 @@
 <?php 
 session_start();
 include_once 'dbconnect.php';
-include ('navbar.php');
+include_once 'navbar.php';
 
 if(!isset($_SESSION['userSession']))
 {

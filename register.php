@@ -63,24 +63,23 @@ if(isset($_POST['btn-signup']))
 <div class="signin-form">
 
  <div class="container">
-     
-        
-       <form class="form-signin" method="post" id="register-form">
+      
+    <form class="form-signin" method="post" id="register-form">
       
         <h2 class="form-signin-heading">Sign Up</h2><hr />
         
         <?php
-  if(isset($msg)){
-   echo $msg;
-  }
-  else{
-   ?>
-            <div class='alert alert-info'>
-    <span class='glyphicon glyphicon-asterisk'></span> &nbsp; all the fields are mandatory !
-   </div>
+		if(isset($msg)){
+			echo $msg;
+		}else{
+		?>
+        
+		<div class='alert alert-info'>
+			<span class='glyphicon glyphicon-asterisk'></span> &nbsp; all the fields are mandatory !
+		</div>
             <?php
-  }
-  ?>
+		}
+		?>
           
         <div class="form-group">
         <input type="text" class="form-control" placeholder="Username" name="user_name" required  />

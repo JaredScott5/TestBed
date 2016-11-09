@@ -1,0 +1,12 @@
+input{
+	color: yellow;
+	border: 1px solid black;
+}
+
+#newProductButton{
+	float: left;
+}
+
+#orderButton{
+	float: right;
+}
