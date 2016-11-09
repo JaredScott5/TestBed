@@ -5,7 +5,7 @@
 		</footer>
 	  
 		<footer class="pull-right" style="">
-		<div>Contact Information: <a href="mailto:jeremy.crook2@gmail.com"> jeremy.crook2@gmail.com | </a> 
+		<div>Contact Information: <a href="mailto:jeremy.crook2@gmail.com"> jeremy.crook2@gmail.com</a> |
 			<a href="mailto:jmsmm92@gmail.com">jmsmm92@gmail.com</a></div>
 		</footer>
 	</div>      

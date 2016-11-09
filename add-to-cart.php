@@ -1,5 +1,6 @@
 <?php
 session_start();
+header('Content-Type: application/json');
 include_once 'dbconnect.php';
 
 $quantity = 0;
@@ -13,7 +14,7 @@ $check_cart = $MySQLi_CON->query(
     FROM orders
     WHERE user_id='$user_id' AND status='In Cart'"
   );
-
+/*
 //this statement checks if we need to UPDATE the quantity of a single item in the cart
 if(isset($_POST['q']) && isset($_POST['iN'])){
 $updatedQuantity = $MySQLi_CON->real_escape_string(trim($_POST['q']));
@@ -54,11 +55,12 @@ $orderNumber = $row['orderNumber'];
 		$_SESSION['cartCount'] = $newCart;
 		header("Location: shoppingCart.php");
 	}
-}else{
+}else { */
 
 $item_id = $_POST['item_id'];
 $quantity = $_POST['quantity'];
 $time = date("Y-m-d H:i:s");
+$data = array();
 
 //echo "line64: item id, quantity, and time are " . $item_id . ", " . $quantity . ", " . $time;
 
@@ -70,7 +72,6 @@ $count=$check_cart->num_rows;
 //if 'quantity' == 0, we know that we want to completely REMOVE 
 //an EXISTING item in an EXISTING order
 if($quantity==0){
-
   $row = mysqli_fetch_assoc($check_cart);
   $orderNumber = $row['orderNumber'];
   
@@ -101,11 +102,12 @@ if($quantity==0){
 	
 	if($MySQLi_CON->query($deleteQuery) === true){
 		$_SESSION['cartCount'] = $newCart;
-		echo "<meta http-equiv='refresh' content='0'>";
+    $data += array('cartCount' => $_SESSION['cartCount']);
+    $data += array('msg' => "Ran remove successfully");
+		echo json_encode($data);
 	}
 	
 }else if($count==0){
- 
 	// If the cart is empty, create a new order with status 'In Cart'
 
   $query = "INSERT INTO orders(user_id,orderDate,status)
@@ -156,8 +158,12 @@ else{
     if(isset($_POST['f'])){
       $quantityTotal = $quantity;
       $quantityDiff = $quantity - $quantityInCart;
+      $_SESSION['cartCount'] = $_SESSION['cartCount'] + $quantityDiff;
+      echo json_encode(array('itemsInCart' => $quantityTotal, 'cartCount' => $_SESSION['cartCount']));
     } else {
       $quantityTotal = $quantityInCart + $quantity;
+      $_SESSION['cartCount'] = $_SESSION['cartCount'] + $quantity;
+      echo json_encode(array('itemsInCart' => $quantityTotal, 'cartCount' => $_SESSION['cartCount']));
     }
     $query = 
       "UPDATE orderDetails
@@ -178,13 +184,8 @@ else{
   }
   mysqli_free_result($check_duplicate);
 }
-
 mysqli_free_result($check_cart);
-}//outer most if/very first if
-
-$_SESSION['cartCount'] = $_SESSION['cartCount'] + $quantityDiff;
-
+//}//outer most if/very first if
 $MySQLi_CON->close();
 
-echo $_SESSION['cartCount'];
 ?>

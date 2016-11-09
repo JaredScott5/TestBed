@@ -1,8 +1,37 @@
+$(document).ready(function(){
+
+  $(".btn").click(function () {
+    var row = $(this).parent().parent();
+    var item_id = row.attr('id');
+    // console.log(item_id);
+    // console.log(quantity);
+    $.ajax({
+      url: "add-to-cart.php",
+      type: "POST",
+      cache: false,
+      dataType: 'json',
+      data: {item_id: item_id, quantity: 1},
+      success: function(data){
+        // console.log(data.cartCount);
+        $('#cartCount').html("<span class=\"glyphicon glyphicon-shopping-cart\">&nbsp;</span>" + "Cart(" + data.cartCount + ")");
+      },
+      error: function(data){
+        // console.log(item_id);
+        alert("Failed with " + data + "in data");
+        // console.log(data.cartCount);
+      }
+    });
+  });
+});
+
+/*
 window.onload = function(){
   var cart = document.getElementById("cart");
 	//note.innerHTML = "testing windows.onload from js";
 	//document.getElementById("cart").innerHTML = "Cart " + 0;
 };
+
+
 
 function addToCart(item){
 	//document.getElementById("cart").innerHTML = ++cartCount;
@@ -51,3 +80,5 @@ function alertContents() {
     alert('Caught Exception: ' + e.description);
   }
 }
+
+*/
