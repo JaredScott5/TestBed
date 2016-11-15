@@ -3,7 +3,6 @@ session_start();
 header('Content-Type: application/json');
 include_once 'dbconnect.php';
 
-$quantity = 0;
 $user_id = $_SESSION['userSession'];
 $updatedQuantity = 0;
 
@@ -128,8 +127,10 @@ if($quantity==0){
   // add orderDetails for the added item to the newly created order
   $query = "INSERT INTO orderDetails(orderNumber,item_id,quantityOrdered)
   VALUES('$orderNumber','$item_id','$quantity')";
-  
   $MySQLi_CON->query($query);
+  
+  echo json_encode(array('msg' => "Created New Cart Order"));
+  
   mysqli_free_result($order);
 }
 
@@ -159,11 +160,11 @@ else{
       $quantityTotal = $quantity;
       $quantityDiff = $quantity - $quantityInCart;
       $_SESSION['cartCount'] = $_SESSION['cartCount'] + $quantityDiff;
-      echo json_encode(array('itemsInCart' => $quantityTotal, 'cartCount' => $_SESSION['cartCount']));
+      echo json_encode(array('itemsInCart' => $quantityTotal, 'cartCount' => $_SESSION['cartCount'], 'msg' => "Updated Quantity"));
     } else {
       $quantityTotal = $quantityInCart + $quantity;
       $_SESSION['cartCount'] = $_SESSION['cartCount'] + $quantity;
-      echo json_encode(array('itemsInCart' => $quantityTotal, 'cartCount' => $_SESSION['cartCount']));
+      echo json_encode(array('itemsInCart' => $quantityTotal, 'cartCount' => $_SESSION['cartCount'], 'msg' => "Incremented Item in Cart"));
     }
     $query = 
       "UPDATE orderDetails
@@ -177,10 +178,9 @@ else{
 	//  echo "we are going to insert into the database table orderDetails";
     $query = "INSERT INTO orderDetails(orderNumber,item_id,quantityOrdered)
     VALUES('$orderNumber','$item_id','$quantity')";
-    //echo "values inserted are orderNumber: " . $orderNumber . ", item_id: " .
-	$item_id . ", and quantity: " . $quantity;
     $MySQLi_CON->query($query);
-	
+    $_SESSION['cartCount'] = $_SESSION['cartCount'] + $quantity;
+    echo json_encode(array('cartCount' => $_SESSION['cartCount'], 'msg' => "Test"));
   }
   mysqli_free_result($check_duplicate);
 }

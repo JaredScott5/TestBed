@@ -52,8 +52,8 @@ $(document).ready(function(){
         $('#cartCount').html("<span class=\"glyphicon glyphicon-shopping-cart\">&nbsp;</span>" + "Cart(" + data.cartCount + ")");
       },
       error: function(data){
-        console.log (msg);
-        console.log(item_id);
+        console.log(data.msg);
+        console.log(data.item_id);
         console.log(data.cartCount);
         alert("Failed with " + data + "in data");
       }

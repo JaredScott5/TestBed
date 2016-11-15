@@ -68,7 +68,6 @@ if(isset($_POST['btn-login']))
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Login & Registration</title>
 <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="libs/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen"> 
 </head>
 <body>
 

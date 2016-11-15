@@ -12,11 +12,11 @@ $(document).ready(function(){
       dataType: 'json',
       data: {item_id: item_id, quantity: 1},
       success: function(data){
-        // console.log(data.cartCount);
+        // console.log(data.msg);
         $('#cartCount').html("<span class=\"glyphicon glyphicon-shopping-cart\">&nbsp;</span>" + "Cart(" + data.cartCount + ")");
       },
       error: function(data){
-        // console.log(item_id);
+        console.log(data.msg);
         alert("Failed with " + data + "in data");
         // console.log(data.cartCount);
       }
