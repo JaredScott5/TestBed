@@ -8,7 +8,7 @@ $(document).ready(function(){
       // console.log(item_id);
       // console.log(quantity);
         $.ajax({
-          url: "add-to-cart.php",
+          url: "cart.php",
           type: "POST",
           cache: false,
           dataType: 'json',
