@@ -77,10 +77,6 @@ $MySQLi_CON->close();
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Welcome - <?php echo $userRow['email']; ?></title>
-
-<link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"> 
-<link href="libs/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen"> 
-
 <link rel="stylesheet" type="text/css" href="footer.css">
 
 </head>
@@ -90,38 +86,43 @@ $MySQLi_CON->close();
 <form id="cart" class="container">
   <?php $count = 0; ?>
   <?php $total = 0; ?>
-  <?php if(isset($result)) : ?>
+  <?php if(isset($result) && $result->num_rows != 0) : ?>
+  <div id="order-header">Order Number: <span id="orderNum"><?php echo $orderNum; ?></span></div>
     <?php while($itemRow = mysqli_fetch_assoc($result)) : ?>
-      <?php $subTotal = $itemRow['price']  * $itemRow['quantityOrdered']; ?>
+      <?php $subTotal = $itemRow['price'] * $itemRow['quantityOrdered']; ?>
       <?php $total += $subTotal; ?>
-      <div class="row" id="<?php echo $itemRow['item_id']; ?>">
-        <div class="col-xs-2">
-          <p id="item-img"><?php echo "<img class=\"img-responsive\" width=\"150\" height=\"150\" src=" . $itemRow['image'] . "></img>"; ?></p>
-        </div>
-        <div class="col-xs-2">
-          <p class="item-name"><b>Item: </b><?php echo $itemRow['itemName']; ?></p>
-        </div>
-        <div class="col-xs-1">
-          <p><b>Price: </b></p>
-        </div>
-        <div class="col-xs-1">
-          <p class="price">$<?php echo $itemRow['price']; ?></p>
-        </div>
-        <div class="col-xs-1">
-          <p><b>In Cart:</b></p>
-        </div>
-        <div class="col-xs-1">
-          <input class='form-control' type="number" min="1" value="<?php echo $itemRow['quantityOrdered']; ?>">
-          </input>
-        </div>
-        <div class="col-xs-1">
-          <p><b>Subtotal: </b></p>
-        </div>
-        <div class="col-xs-1">
-          <p class="subtotal">$<?php echo $subTotal; ?></p>
-        </div>
-        <div class="col-xs-2">
-          <button class="remove">Remove From Cart</button>
+      <div class="item-line">
+        <div class="summary">
+          <div class="row" id="<?php echo $itemRow['item_id']; ?>">
+            <div class="col-xs-2">
+              <p id="item-img"><?php echo "<img class=\"img-responsive\" width=\"150\" height=\"150\" src=" . $itemRow['image'] . "></img>"; ?></p>
+            </div>
+            <div class="col-xs-2">
+              <p class="item-name"><b>Item: </b><?php echo $itemRow['itemName']; ?></p>
+            </div>
+            <div class="col-xs-1">
+              <p><b>Price: </b></p>
+            </div>
+            <div class="col-xs-1">
+              <p class="price">$<?php echo $itemRow['price']; ?></p>
+            </div>
+            <div class="col-xs-1">
+              <p><b>In Cart:</b></p>
+            </div>
+            <div class="col-xs-1">
+              <input class='form-control' type="number" min="1" value="<?php echo $itemRow['quantityOrdered']; ?>">
+              </input>
+            </div>
+            <div class="col-xs-1">
+              <p><b>Subtotal: </b></p>
+            </div>
+            <div class="col-xs-1">
+              <p class="subtotal">$<?php echo $subTotal; ?></p>
+            </div>
+            <div class="col-xs-2">
+              <button class="remove">Remove From Cart</button>
+            </div>
+          </div>
         </div>
       </div>
     <?php ++$count; ?>
@@ -131,8 +132,8 @@ $MySQLi_CON->close();
     <?php $check = mysqli_data_seek ($result, 0); ?>
     <?php if($check != NULL): ?>
     <div id="checkout-info" class="container">
-      <p id="total"><b>Total: </b>$<?php echo $total ?></p>
-      <button onclick="checkOut(<?php echo $orderNum; ?>, <?php echo $total; ?>)">Checkout</button>
+      <span><b>Total: </b></span><p id="total">$<?php echo $total ?></p>
+      <button class="checkout">Checkout</button>
     </div>
     <?php endif; ?>
   <?php else: ?>
@@ -142,9 +143,9 @@ $MySQLi_CON->close();
 
 <?php if (isset($result)) mysqli_free_result($result); ?>
 <div id="footer"><?php include_once 'footer.php'; ?></div>
-<script src="libs/jquery/jquery-3.0.0.min.js"></script>
-<script src="shoppingCart.js">
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="shoppingCart.js"></script>
 
 </body>
 

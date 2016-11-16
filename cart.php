@@ -129,7 +129,8 @@ if($quantity==0){
   VALUES('$orderNumber','$item_id','$quantity')";
   $MySQLi_CON->query($query);
   
-  echo json_encode(array('msg' => "Created New Cart Order"));
+  $_SESSION['cartCount'] = $_SESSION['cartCount'] + $quantity;
+  echo json_encode(array('cartCount' => $_SESSION['cartCount'], 'msg' => "Created New Cart Order"));
   
   mysqli_free_result($order);
 }
@@ -148,7 +149,6 @@ else{
     WHERE item_id = '$item_id' AND orderNumber = '$orderNumber'"
   );
   $count=$check_duplicate->num_rows;
-  
   //echo "there are " . $count . "duplicate orders";
   
   // If duplicate exists, increment quantityOrdered accordingly
