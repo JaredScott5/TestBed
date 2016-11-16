@@ -8,7 +8,7 @@ $(document).ready(function(){
       // console.log(item_id);
       // console.log(quantity);
         $.ajax({
-          url: "add-to-cart.php",
+          url: "cart.php",
           type: "POST",
           cache: false,
           dataType: 'json',
@@ -42,7 +42,7 @@ $(document).ready(function(){
   $(".remove").click(function() {
     var item_id = $(this).parent().parent().attr('id');
     $.ajax({
-      url: "add-to-cart.php",
+      url: "cart.php",
       type: "POST",
       cache: false,
       dataType: 'json',
