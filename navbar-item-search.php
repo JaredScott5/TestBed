@@ -25,7 +25,7 @@
           <a class="navbar-brand" href="home.php">Test Shop</a>
         </div>
 		
-        <div id="childNavbar" class="collapse navbar-collapse ">
+        <div id="navbar" class="collapse navbar-collapse ">
 			<div id="childContainer" class="container">			
 				<ul id="ulLeft" class="nav navbar-nav navbar-left">
 					<li id="liShopList"><a href="shopList.php"><span class="glyphicon glyphicon-tags"></span>&nbsp; Shop List</a></li>

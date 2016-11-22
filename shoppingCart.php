@@ -60,28 +60,33 @@ mysqli_free_result($check_cart);
 $MySQLi_CON->close();
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-
-<html lang="en">
 <head>
-<link rel="stylesheet" type="text/css" href="styles.css">
-<link rel="stylesheet" type="text/css" href="shoppingCart.css">
-<link rel="stylesheet" type="text/css" href="navbar.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Welcome - <?php echo $userRow['email']; ?></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Welcome - <?php echo $userRow['email']; ?></title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <style>
+      body {
+          padding-top: 50px;
+          padding-bottom: 20px;
+      }
+  </style>
+  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="css/main.css">
 
-<link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"> 
-<link href="libs/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen"> 
+  <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 
-<link rel="stylesheet" type="text/css" href="footer.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="shoppingCart.css">
+  <link rel="stylesheet" type="text/css" href="navbar.css">
+  <link rel="stylesheet" type="text/css" href="footer.css">
 
 </head>
 
@@ -90,38 +95,43 @@ $MySQLi_CON->close();
 <form id="cart" class="container">
   <?php $count = 0; ?>
   <?php $total = 0; ?>
-  <?php if(isset($result)) : ?>
+  <?php if(isset($result) && $result->num_rows != 0) : ?>
+  <div id="order-header">Order Number: <span id="orderNum"><?php echo $orderNum; ?></span></div>
     <?php while($itemRow = mysqli_fetch_assoc($result)) : ?>
-      <?php $subTotal = $itemRow['price']  * $itemRow['quantityOrdered']; ?>
+      <?php $subTotal = $itemRow['price'] * $itemRow['quantityOrdered']; ?>
       <?php $total += $subTotal; ?>
-      <div class="row" id="<?php echo $itemRow['item_id']; ?>">
-        <div class="col-xs-2">
-          <p id="item-img"><?php echo "<img class=\"img-responsive\" width=\"150\" height=\"150\" src=" . $itemRow['image'] . "></img>"; ?></p>
-        </div>
-        <div class="col-xs-2">
-          <p class="item-name"><b>Item: </b><?php echo $itemRow['itemName']; ?></p>
-        </div>
-        <div class="col-xs-1">
-          <p><b>Price: </b></p>
-        </div>
-        <div class="col-xs-1">
-          <p class="price">$<?php echo $itemRow['price']; ?></p>
-        </div>
-        <div class="col-xs-1">
-          <p><b>In Cart:</b></p>
-        </div>
-        <div class="col-xs-1">
-          <input class='form-control' type="number" min="1" value="<?php echo $itemRow['quantityOrdered']; ?>">
-          </input>
-        </div>
-        <div class="col-xs-1">
-          <p><b>Subtotal: </b></p>
-        </div>
-        <div class="col-xs-1">
-          <p class="subtotal">$<?php echo $subTotal; ?></p>
-        </div>
-        <div class="col-xs-2">
-          <button class="remove">Remove From Cart</button>
+      <div class="item-line">
+        <div class="summary">
+          <div class="row" id="<?php echo $itemRow['item_id']; ?>">
+            <div class="col-xs-2">
+              <p id="item-img"><?php echo "<img class=\"img-responsive\" width=\"150\" height=\"150\" src=" . $itemRow['image'] . "></img>"; ?></p>
+            </div>
+            <div class="col-xs-2">
+              <p class="item-name"><b>Item: </b><?php echo $itemRow['itemName']; ?></p>
+            </div>
+            <div class="col-xs-1">
+              <p><b>Price: </b></p>
+            </div>
+            <div class="col-xs-1">
+              <p class="price">$<?php echo $itemRow['price']; ?></p>
+            </div>
+            <div class="col-xs-1">
+              <p><b>In Cart:</b></p>
+            </div>
+            <div class="col-xs-1">
+              <input class='form-control' type="number" min="1" value="<?php echo $itemRow['quantityOrdered']; ?>">
+              </input>
+            </div>
+            <div class="col-xs-1">
+              <p><b>Subtotal: </b></p>
+            </div>
+            <div class="col-xs-1">
+              <p class="subtotal">$<?php echo $subTotal; ?></p>
+            </div>
+            <div class="col-xs-2">
+              <button class="remove">Remove From Cart</button>
+            </div>
+          </div>
         </div>
       </div>
     <?php ++$count; ?>
@@ -131,8 +141,8 @@ $MySQLi_CON->close();
     <?php $check = mysqli_data_seek ($result, 0); ?>
     <?php if($check != NULL): ?>
     <div id="checkout-info" class="container">
-      <p id="total"><b>Total: </b>$<?php echo $total ?></p>
-      <button onclick="checkOut(<?php echo $orderNum; ?>, <?php echo $total; ?>)">Checkout</button>
+      <span><b>Total: </b></span><p id="total">$<?php echo $total ?></p>
+      <button class="checkout">Checkout</button>
     </div>
     <?php endif; ?>
   <?php else: ?>
@@ -142,9 +152,10 @@ $MySQLi_CON->close();
 
 <?php if (isset($result)) mysqli_free_result($result); ?>
 <div id="footer"><?php include_once 'footer.php'; ?></div>
-<script src="libs/jquery/jquery-3.0.0.min.js"></script>
-<script src="shoppingCart.js">
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.1.1.min.js"><\/script>')</script>
+
+<script src="js/vendor/bootstrap.min.js"></script>
 
 </body>
 

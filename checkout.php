@@ -2,6 +2,7 @@
 session_start();
 include_once 'dbconnect.php';
 
+$time = date("Y-m-d H:i:s");
 $orderNO = $_POST['order_number'];
 $finalCost = $_POST['total_cost'];
 //first check that the order exists and is STILL 'In Cart'
@@ -14,7 +15,7 @@ $orderQuery =
 	  //change 'status' to 'Shipped'
 	  $updatedOrderQuery = 
 	  "UPDATE orders
-	  SET status = 'Shipped', total = $finalCost
+	  SET status = 'Shipped', total = $finalCost, orderDate = '$time'
 	  WHERE orderNumber = $orderNO";
 	  
 		if($MySQLi_CON->query($updatedOrderQuery) === false){

@@ -25,6 +25,7 @@ $(document).ready(function(){
               // console.log(price);
               var newSubTotal = price * data.itemsInCart;
               row.children().children('.subtotal').text("$" + newSubTotal.toFixed(2));
+              $.updateTotal();
             },
             error: function(data){
               // console.log(item_id);
@@ -42,7 +43,7 @@ $(document).ready(function(){
   $(".remove").click(function() {
     var item_id = $(this).parent().parent().attr('id');
     $.ajax({
-      url: "add-to-cart.php",
+      url: "cart.php",
       type: "POST",
       cache: false,
       dataType: 'json',
@@ -50,6 +51,7 @@ $(document).ready(function(){
       success: function(data){
         // console.log(data.cartCount);
         $('#cartCount').html("<span class=\"glyphicon glyphicon-shopping-cart\">&nbsp;</span>" + "Cart(" + data.cartCount + ")");
+        $.updateTotal();
       },
       error: function(data){
         console.log(data.msg);
@@ -59,6 +61,29 @@ $(document).ready(function(){
       }
     });
   });
+  
+  $(".checkout").click(function(){
+    var order_number = $("#orderNum").text();
+    var total_cost = $('#total').text().replace('$', '');
+    
+    $.ajax({
+      url: "checkout.php",
+      type: "POST",
+      data: {order_number: order_number, total_cost: total_cost},
+      success: function(){
+        window.location.href = "orderHistory.php";
+      },
+      error: function(){}
+    });
+  });
+  
+  $.updateTotal = function(){
+    var sum = 0;
+    $('.subtotal').each(function(){
+        sum += parseFloat($(this).text().replace("$", ""));
+    });
+    $("#total").text("$" + sum.toFixed(2));
+  }
   
 });
 /*
