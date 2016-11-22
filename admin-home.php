@@ -28,18 +28,19 @@ integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En
 <body>
 <p style="display: block; padding-top: 50px;"></p>
 	<div id="adminContainer" class='container' style="border: 2px solid black;">
+	<form class="" >
 		<h2 style="display: block; padding-top: 0px;"> Would You Like To Add A New Product or Search The Data Base? </h2>
 			
-			<div id="newProductButton" style="float:left">
+			<div id="newProductButton" class="form-group" style="float:left">
 			<input type="button" id="newProductButton" class="btn btn-default" 
 			onclick="location.href='createProduct.php';" value="Create New Product"/>
 			</div>
 			
-			<div id="orderButton" style="float:right">
+			<div id="orderButton" class="form-group" style="float:right">
 			<input type="button" id="orderButton" class="btn btn-default" 
 			onclick="location.href='admin-order-search.php';" value="Search Data Base"/>
 			</div>
-
+	</form>
 	</div>
 	<p style="display: block; padding-top: 1px;"></p>
 
