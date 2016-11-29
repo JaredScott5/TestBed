@@ -1,6 +1,5 @@
 <?php
 session_start();
-include_once 'navbar-item-search.php';
 include_once 'dbconnect.php';
 
 if(!isset($_SESSION['userSession']))
@@ -37,6 +36,7 @@ if (!$result){
           padding-bottom: 20px;
       }
   </style>
+  <?php include_once 'navbar-item-search.php'; ?>
   <link rel="stylesheet" href="css/bootstrap-theme.min.css">
   <link rel="stylesheet" href="css/main.css">
 
@@ -81,7 +81,7 @@ if (!$result){
             </div>
         
             <div id="thirdCol" class="col-lg-2 col-md-2 col-sm-3">
-              <a class='btn btn-lg btn-primary' href='#' role='button'>Add To Cart</a>
+              <a class='btn btn-lg btn-primary add-to-cart' href='#' role='button'>Add To Cart</a>
             </div>
           </div>
         </div>
