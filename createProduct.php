@@ -2,45 +2,88 @@
 session_start();
 
 include_once 'dbconnect.php';
-include_once 'navbar.php';
+//include_once 'navbar.php';
 
+//check image params first
 if(isset($_POST['btn-signup']))
 {
- $itemName = $MySQLi_CON->real_escape_string(trim($_POST['itemName']));
+ $itemName = $MySQLi_CON->real_escape_string(trim($_POST['itemName'])); 
+ /*remove the $ from $price*/
  $price = $MySQLi_CON->real_escape_string(trim($_POST['price']));
+ $price = ltrim($price, '$');
  $desc = $MySQLi_CON->real_escape_string(trim($_POST['desc']));
  
+ //TODO: target_dir should be the users
+ $target_dir = "img/";
+ $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
  
- $check = $MySQLi_CON->query("SELECT itemName FROM items WHERE itemName='$itemName'");
- $count=$check->num_rows;
+ $uploadOk = 1;
+ $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
  
- if($count==0){
-  
-  $query = "INSERT INTO items(item_id, itemName, price, image, description) 
-  VALUES(NULL, '$itemName','$price', NULL, '$desc')";
+ list($width, $height) = getimagesize($target_file);
 
+ $image = $target_file;
+
+// Check if file already exists or if its even a file
+if ((!file_exists($target_file)) ||(($_FILES["fileToUpload"]["size"] > 50000))|| ($imageFileType != "jpg"))
+{ 
+ $uploadOk = 0;	 
+}
+else
+{
+	$upload = 1;
+}
+
+if ($uploadOk == 0) { // Check if $uploadOk is set to 0 by an error
+ $msg = "<div class='alert alert-danger'>
+      <span class='glyphicon glyphicon-info-sign'></span> 
+	  &nbsp; Sorry, image is unacceptable.
+	  <br>
+	  File should be under 50KB, a .jpg, and 200x200.
+	  <br>
+	  </div>";
+// if everything is ok, try to upload file
+} 
+else 
+{
+    if(move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) 
+	{	
+	//this is where we process the insert after some error checking	
+    $check = $MySQLi_CON->query("SELECT itemName FROM items WHERE itemName='$itemName'");
+    $count=$check->num_rows;
   
-  if($MySQLi_CON->query($query))
-  {
-   $msg = "<div class='alert alert-success'>
-      <span class='glyphicon glyphicon-info-sign'></span> &nbsp; successfully registered !
-     </div>";
-  }
-  else
-  {
-   $msg = "<div class='alert alert-danger'>
-      <span class='glyphicon glyphicon-info-sign'></span> &nbsp; error while registering !
-     </div>";
-  }
- }
- else{
+		if($count == 0)
+		{
+		$query = "INSERT INTO items(item_id, itemName, price, image, description) 
+		VALUES(NULL, '$itemName','$price', '$target_file', '$desc')";
   
-  
-  $msg = "<div class='alert alert-danger'>
-     <span class='glyphicon glyphicon-info-sign'></span> &nbsp; sorry email already taken !
-    </div>";
-   
- }
+			if($MySQLi_CON->query($query))
+			{
+				$msg = "<div class='alert alert-success'>
+				<span class='glyphicon glyphicon-info-sign'></span> &nbsp; successfully registered !
+				</div>";
+			}
+			else
+			{
+			$msg = "<div class='alert alert-danger'>
+			<span class='glyphicon glyphicon-info-sign'></span> &nbsp; error while registering " . $target_file  . " !
+			</div>";
+			}
+		}
+		else
+		{
+			$msg = "<div class='alert alert-danger'>
+			<span class='glyphicon glyphicon-info-sign'></span> &nbsp; sorry item already taken ! " . $count . "
+			</div>"; 
+		} 	
+    } 
+	else 
+	{
+		$msg = "<div class='alert alert-danger'>
+		<span class='glyphicon glyphicon-info-sign'></span> &nbsp; Sorry, there was an error uploading your file.
+		</div>";
+    }
+}
  
  $MySQLi_CON->close();
 }
@@ -54,7 +97,7 @@ if(isset($_POST['btn-signup']))
 
 <html lang="en">
 <head>
-<link rel="stylesheet" type="text/css" href="navbar.css">
+<!--<link rel="stylesheet" type="text/css" href="navbar.css">-->
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -69,9 +112,9 @@ if(isset($_POST['btn-signup']))
 
 <div class="signin-form">
 
- <div class="container" style="border: 2px solid black;>
+ <div class="container" style="border: 2px solid black;">
       
-    <form class="form-signin" method="post" id="register-form">
+    <form class="form-signin" method="post" enctype="multipart/form-data" id="register-form">
       
         <h2 class="form-signin-heading">Create New Product</h2><hr />
         
@@ -97,8 +140,12 @@ if(isset($_POST['btn-signup']))
         <span id="check-e"></span>
         </div>
         
+		<div class="form-group">
+        <input type="file" accept=".jpg" class="form-control" name="fileToUpload" id="fileToUpload" required  />
+        </div>
+		
         <div class="form-group">
-        <input type="password" class="form-control" placeholder="desc" name="desc" required  />
+        <input type="text" class="form-control" placeholder="desc" name="desc" required  />
         </div>
         
       <hr />
