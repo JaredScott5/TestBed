@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-  $(".btn").click(function () {
+  $(".add-to-cart").click(function () {
     var row = $(this).parent().parent();
     var item_id = row.attr('id');
     // console.log(item_id);

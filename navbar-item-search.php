@@ -4,10 +4,10 @@
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 " style="">
 			<div class="input-group buscador-principal">    					
 						<input name="search_param" value="all" id="search_param" type="hidden">         
-						<input class="form-control" name="x" placeholder="Item" type="text">
+						<input id="search_bar" class="form-control" name="x" placeholder="Item" type="text">
 						
 						<span class="input-group-btn">
-							<button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-search"></span> Search</button>
+							<button class="btn btn-primary" type="button" onclick="search()"><span class="glyphicon glyphicon-search"></span> Search</button>
 						</span>
 			</div>
         </div>

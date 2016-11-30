@@ -167,6 +167,7 @@ $MySQLi_CON->close();
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.1.1.min.js"><\/script>')</script>
 
   <script src="js/vendor/bootstrap.min.js"></script>>
+  <script src="orderHistory.js"></script>
 
 </body>
 
