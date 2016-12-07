@@ -92,7 +92,7 @@ $MySQLi_CON->close();
 
 <body>
 
-<form id="cart" class="container">
+<form id="cart">
   <?php $count = 0; ?>
   <?php $total = 0; ?>
   <?php if(isset($result) && $result->num_rows != 0) : ?>
@@ -107,26 +107,17 @@ $MySQLi_CON->close();
               <p id="item-img"><?php echo "<img class=\"img-responsive\" width=\"150\" height=\"150\" src=" . $itemRow['image'] . "></img>"; ?></p>
             </div>
             <div class="col-xs-2">
-              <p class="item-name"><b>Item: </b><?php echo $itemRow['itemName']; ?></p>
+              <span class="item-name"><b>Item: </b><?php echo $itemRow['itemName']; ?></span>
             </div>
-            <div class="col-xs-1">
-              <p><b>Price: </b></p>
+            <div class="col-xs-2">
+              <b>Price: </b><span class="price">$<?php echo $itemRow['price']; ?></span>
             </div>
-            <div class="col-xs-1">
-              <p class="price">$<?php echo $itemRow['price']; ?></p>
-            </div>
-            <div class="col-xs-1">
-              <p><b>In Cart:</b></p>
-            </div>
-            <div class="col-xs-1">
-              <input class='form-control' type="number" min="1" value="<?php echo $itemRow['quantityOrdered']; ?>">
+            <div class="col-xs-2">
+              <b>In Cart:</b><input class='form-control' type="number" min="1" value="<?php echo $itemRow['quantityOrdered']; ?>">
               </input>
             </div>
-            <div class="col-xs-1">
-              <p><b>Subtotal: </b></p>
-            </div>
-            <div class="col-xs-1">
-              <p class="subtotal">$<?php echo $subTotal; ?></p>
+            <div class="col-xs-2">
+              <b>Subtotal: </b><span class="subtotal">$<?php echo $subTotal; ?></span>
             </div>
             <div class="col-xs-2">
               <button class="remove">Remove From Cart</button>
