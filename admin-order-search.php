@@ -30,18 +30,32 @@ session_start();
 <p style="display: block; padding-top: 50px;"></p>
 
 <div id="adminContainer" class='container' style="border: 2px solid black;">
-<h2 style="display: block;"> Search by user_id, email, or username </h2>
-<div id="orderButton" style="float:left">
-    <input type='text' id='search_bar'>
-        <input type='button' class="btn btn-default" id='search_string' value='Search' onClick="search()">	
-		<p id ="finalResult"></p>
-		<div id="debug"> </div>
+	<h2 style="display: block;"> Search by user_id, email, or username </h2>
+		<div>
+			<form method="POST">
+				<input type="radio" name="userid" value="userid" checked>user_id
+				<input type="radio" name="email" value="email">email
+				<input type="radio" name="username" value="username">username
+				<input type="radio" name="ordernumber" value="ordernumber">ordernumber
+			</form>
 		</div>
+		
+		<div id="orderButton" style="float:left">
+			<input type='text' id='search_bar'>
+			<input type='button' class="btn btn-default" id='search_string' value='Search' onClick="search()">	
+			
+			<div id="debug"> </div>
+		</div>
+		
+		
 		
 		<div id="orderButton" style="float:right">
 			<input type="button" class="btn btn-default" onclick="location.href='admin-home.php';" 
 			value="Return Home"/>	
-</div>
+		</div>
+		
+		<p id ="finalResult"></p>
+		
 </div>
 	<p style="display: block; padding-top: 1px;"></p>
 
