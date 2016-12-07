@@ -2,7 +2,9 @@ input{
 	color: yellow;
 	border: 1px solid black;
 }
-
+containter{
+	display: table;
+}
 #newProductButton{
 	float: left;
 }

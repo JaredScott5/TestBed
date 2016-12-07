@@ -91,17 +91,17 @@ else /*if everything is ok, try to upload file*/
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
 <html lang="en">
-<head>
-<!--<link rel="stylesheet" type="text/css" href="navbar.css">-->
+	<head>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"> 
-<link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen"> 
+			<link rel="stylesheet" href="css/bootstrap.min.css">
 
-<link rel="stylesheet" type="text/css" href="footer.css">
 
-</head>
+		<link rel="stylesheet" type="text/css" href="footer.css">
+		<link rel="stylesheet" type="text/css" href="navbar.css">
+
+	</head>
 <body>
 <p style="display: block; padding-top: 50px;"></p>
 
