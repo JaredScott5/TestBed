@@ -13,34 +13,29 @@ img{
 	overflow: hidden;
 }
 
-#shopListContainer{
+.shopListContainer{
 	border-radius: 15px 50px;
 	border: 2px solid #73AD21;
 	padding-bottom: 15px;
 }
 
- #addToCartButton{
-	position: absolute;
-	right: 20px;
-	bottom: 0;
-}
 
-#firstCol, #secondCol, #thirdCol{
+.column{
 	float: none;
 	padding: 20px;
 	vertical-align: top;
 	display: table-cell;
 } 
 
-#firstCol, #thirdCol{
+.firstCol, .thirdCol{
 	text-align: center;
 }
 
-#secondCol{
+.secondCol{
 	padding-top: 5%;
 	text-align: left;
 }
 
-#thirdCol{
+.thirdCol{
 	padding-right: 5%;
 }
