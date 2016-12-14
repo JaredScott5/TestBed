@@ -18,7 +18,6 @@ session_start();
 
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 
-
 <link rel="stylesheet" href="style.css" type="text/css" />
 
 <?php include ('navbar.php'); ?>
@@ -30,39 +29,69 @@ session_start();
 <p style="display: block; padding-top: 50px;"></p>
 
 <div id="adminContainer" class='container' style="border: 2px solid black;">
-	<h2 style="display: block;"> Search by user_id, email, or username </h2>
+	<h2 style="display: block;">  </h2>
 		<div>
-			<form method="POST">
-				<input type="radio" name="userid" value="userid" checked>user_id
-				<input type="radio" name="email" value="email">email
-				<input type="radio" name="username" value="username">username
-				<input type="radio" name="ordernumber" value="ordernumber">ordernumber
+			<form id="myForm" method="POST">
+				<fieldset>
+				<label>Search by user_id, email, or username</label>
+				<br>
+					<input 
+					type="radio" 
+					name="radioGroup"
+					id="userid" 
+					value="0" 
+					checked="checked"/>
+					<label for="userid">user_id</label>
+					
+					<input 
+					type="radio" 
+					name="radioGroup"
+					id="email" 
+					value="1"/>
+					<label for="email">email</label>
+					
+					<input 
+					type="radio"
+					name="radioGroup"
+					id="username" 
+					value="2"/>
+					<label for="username">username</label>
+					
+					<input 
+					type="radio"
+					name="radioGroup"
+					id="ordernumber" 
+					value="3"/>
+					<label for="ordernumber">ordernumber</label>
+			
+		<!--</div>-->
+					<br>
+		<!--<div id="orderButton" style="float:left">-->
+					<input type='text' id='search_bar'>
+			<input type="button" class='btn btn-default search-orders' id="search_string" value='Search' onClick="search()">	
+			<!--<a class='btn btn-lg btn-primary search-orders' href='#' role='button'>Search</a>-->
+
+					<div id="orderButton" style="float:right">
+						<input type="button" class="btn btn-default" onclick="location.href='admin-home.php';" 
+						value="Return Home"/>	
+					</div>
+				</fieldset>
+			<div id="debug"> </div>
 			</form>
 		</div>
-		
-		<div id="orderButton" style="float:left">
-			<input type='text' id='search_bar'>
-			<input type='button' class="btn btn-default" id='search_string' value='Search' onClick="search()">	
 			
-			<div id="debug"> </div>
-		</div>
-		
-		
-		
-		<div id="orderButton" style="float:right">
-			<input type="button" class="btn btn-default" onclick="location.href='admin-home.php';" 
-			value="Return Home"/>	
-		</div>
-		
 		<p id ="finalResult"></p>
 		
 </div>
 	<p style="display: block; padding-top: 1px;"></p>
 
-
     <div id="footer"><?php include_once 'footer.php'; ?></div>
-<script src="adminsearch.js">
-</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.1.1.min.js"><\/script>')</script>
+<script src="js/vendor/bootstrap.min.js"></script>
+
+<script src="adminsearch.js"></script>
 
 </body>
 

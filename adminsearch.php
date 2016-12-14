@@ -5,10 +5,19 @@ if(isset($_POST['searchTerm']))
 {
 	//echo "search completed";
 }else{
-	echo "invalid search";
+	echo "invalid search for searchTerm";
 }
-$test = 0;
+
+if(isset($_POST['radioVal']))
+{
+	//echo "search completed";
+}else{
+	echo "invalid search for radio. value is " . $_POST['radioVal'];
+}
+
 $searchTerm = $MySQLi_CON->real_escape_string(trim($_POST['searchTerm']));
+$radioVal = $MySQLi_CON->real_escape_string(trim($_POST['radioVal']));
+
 $query =
 "SELECT users.user_id, users.username, users.email, 
 orders.orderNumber, orders.orderDate, orders.shippedDate, orders.status, orders.comments
@@ -18,7 +27,7 @@ ON orders.user_id = users.user_id
 WHERE users.user_id = '%$searchTerm%' 
 ";
 //TODO: do an if for each checkbox POST value do determine query 
-if(isset($_POST['userid']))
+if($_POST['radioVal'] == 0)
 {
 $query =
 "SELECT users.user_id, users.username, users.email, 
@@ -26,12 +35,9 @@ orders.orderNumber, orders.orderDate, orders.shippedDate, orders.status, orders.
 FROM orders 
 LEFT JOIN users
 ON orders.user_id = users.user_id
-WHERE users.user_id = '%$searchTerm%' 
+WHERE users.user_id = '$searchTerm' 
 ";
-$test = 1;
-}
-
-if(isset($_POST['email']))
+}else if($_POST['radioVal'] == 1)
 {
 $query =
 "SELECT users.user_id, users.username, users.email, 
@@ -39,12 +45,9 @@ orders.orderNumber, orders.orderDate, orders.shippedDate, orders.status, orders.
 FROM orders 
 LEFT JOIN users
 ON orders.user_id = users.user_id
-WHERE users.email = '%$searchTerm%'
+WHERE users.email LIKE '%$searchTerm%'
 ";
-$test = 2;
-}
-
-if(isset($_POST['username']))
+}else if($_POST['radioVal'] == 2)
 {
 $query =
 "SELECT users.user_id, users.username, users.email, 
@@ -54,10 +57,7 @@ LEFT JOIN users
 ON orders.user_id = users.user_id
 WHERE users.username = '$searchTerm'
 ";
-$test = 3;
-}
-
-if(isset($_POST['ordernumber']))
+}else if($_POST['radioVal'] == 3)
 {
 $query =
 "SELECT users.user_id, users.username, users.email, 
@@ -65,9 +65,8 @@ orders.orderNumber, orders.orderDate, orders.shippedDate, orders.status, orders.
 FROM orders 
 LEFT JOIN users
 ON orders.user_id = users.user_id
-WHERE orders.orderNumber = '$searchTerm'
+WHERE orders.orderNumber = '%$searchTerm%'
 ";
-$test = 4;
 }
 //store query into readable form and send it to admin.js as a php echo
 
@@ -83,7 +82,7 @@ if (!$result){
 <style>
 
 </style>
-<?php echo $test; ?>
+
 <center>
 <table class="equalDevide" width="100%"  border='2'>
 	<tr>
