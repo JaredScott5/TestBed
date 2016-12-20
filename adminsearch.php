@@ -65,7 +65,7 @@ orders.orderNumber, orders.orderDate, orders.shippedDate, orders.status, orders.
 FROM orders 
 LEFT JOIN users
 ON orders.user_id = users.user_id
-WHERE orders.orderNumber = '%$searchTerm%'
+WHERE orders.orderNumber = '$searchTerm'
 ";
 }
 //store query into readable form and send it to admin.js as a php echo

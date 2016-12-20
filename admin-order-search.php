@@ -10,18 +10,15 @@ session_start();
 <link rel="stylesheet" type="text/css" href="footer.css">
 <link rel="stylesheet" type="text/css" href="admin.css">
 
-<head>
-		
+<head>	
 <title>Admin Order Search Page</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Welcome - <?php echo $userRow['email']; ?></title>
 
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-
-<link rel="stylesheet" href="style.css" type="text/css" />
+	<link rel="stylesheet" href="style.css" type="text/css" />
 
 <?php include ('navbar.php'); ?>
-
 </head>
 
 <body>
@@ -68,7 +65,8 @@ session_start();
 					<br>
 		<!--<div id="orderButton" style="float:left">-->
 					<input type='text' id='search_bar'>
-			<input type="button" class='btn btn-default search-orders' id="search_string" value='Search' onClick="search()">	
+			<input type="button" class='btn btn-default search-orders' id="search_string" 
+			value='Search' onClick="search()">	
 			<!--<a class='btn btn-lg btn-primary search-orders' href='#' role='button'>Search</a>-->
 
 					<div id="orderButton" style="float:right">
