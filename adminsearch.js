@@ -1,3 +1,30 @@
+
+/*$(document).ready(function(){
+
+  $("#search_string").click(function () { 
+  alert($('input[name=radioGroup]').val());
+	var radioVal = $('input[name=radioGroup]:checked', '#myForm').val();
+	var searchTerm = document.getElementById("search_bar").value;
+
+    // console.log(item_id);
+    // console.log(quantity);
+    $.ajax({
+      url: "adminsearch.php",
+      type: "POST",
+      cache: false,
+      dataType: 'json',
+      data: {searchTerm: searchTerm, radioVal: radioVal},
+      success: function(data){
+        $('#debug').html("Success");
+      },
+      error: function(data){
+        console.log(data.msg);
+       $('#debug').html("Failed with " + radioVal + "in data");
+      }
+    });
+  });
+});*/
+
 function search(){
 	var searchTerm = document.getElementById("search_bar").value;
 	var radioElements = document.getElementsByName('radioGroup');
@@ -16,7 +43,7 @@ function search(){
 		}	
 	}
 	
-	document.getElementById("debug").innerHTML = "radio variable is " + radioSelected + " new var is " + searchTerm;
+	//document.getElementById("debug").innerHTML = "radio variable is " + radioSelected + " new var is " + searchTerm;
 	httpRequest = new XMLHttpRequest();
 	httpRequest.onreadystatechange = displaySearchResult;
 	httpRequest.open('POST', 'adminsearch.php');
