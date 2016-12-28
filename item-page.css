@@ -1,0 +1,38 @@
+
+img{
+	width: 200px;
+	height: 200px;
+}
+
+#item-image{
+	position: relative;
+}
+
+#item-price{
+	position: relative;
+	font-size: 20px;
+}
+
+#item-id-border{
+	border-left: 6px solid red;
+}
+
+#item-id, #item-desc{
+	position: relative;
+	font-size: 20px;
+}
+
+#sub-container{
+	position: relative; 
+	font-size:20px;
+}
+
+.item-add-to-cart{
+	padding-top: 120px;
+	right: 0;
+}
+
+.about-this-item{
+	position: relative;
+	
+}

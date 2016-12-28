@@ -1,5 +1,6 @@
 body{
-	
+	padding-top: 50px;
+    padding-bottom: 20px;
 }
 
 containter{
@@ -26,6 +27,10 @@ img{
 	vertical-align: top;
 	display: table-cell;
 } 
+
+.itemName{
+	padding-left: 20px;
+}
 
 .firstCol, .thirdCol{
 	text-align: center;
