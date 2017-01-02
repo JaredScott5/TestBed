@@ -1,5 +1,6 @@
 <?php 
 session_start();
+include_once 'dbconnect.php';
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -10,87 +11,181 @@ session_start();
 <link rel="stylesheet" type="text/css" href="footer.css">
 <link rel="stylesheet" type="text/css" href="admin.css">
 
-<head>
-		
+<head>	
 <title>Admin Order Search Page</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Welcome - <?php echo $userRow['email']; ?></title>
 
 	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css" type="text/css" />
 
 <?php include ('navbar.php'); ?>
-
 </head>
 
 <body>
 
 <p style="display: block; padding-top: 50px;"></p>
 
-<div id="adminContainer" class='container' style="border: 2px solid black;">
-	<h2 style="display: block;">  </h2>
-		<div>
-			<form id="myForm" method="POST">
-				<fieldset>
-				<label>Search by user_id, email, or username</label>
-				<br>
-					<input 
-					type="radio" 
-					name="radioGroup"
-					id="userid" 
-					value="0" 
-					checked="checked"/>
-					<label for="userid">user_id</label>
+	<div id="adminContainer" class='container' style="border: 2px solid black;">
+		<h2 style="display: block;">  </h2>
+			<div>
+				<form id="myForm" method="post">
+					<fieldset>
+						<h2>Search by user_id, email, or username</h2>
+						<br>
+						<input type="radio" name="radioGroup" id="userid" 
+						value="0" checked="checked"/>
+						<label for="userid" style="font-size:15px">user_id</label>
 					
-					<input 
-					type="radio" 
-					name="radioGroup"
-					id="email" 
-					value="1"/>
-					<label for="email">email</label>
+						<input type="radio" name="radioGroup"
+						id="email" value="1"/>
+						<label for="email" style="font-size:15px">email</label>
 					
-					<input 
-					type="radio"
-					name="radioGroup"
-					id="username" 
-					value="2"/>
-					<label for="username">username</label>
+						<input type="radio"name="radioGroup"
+						id="username" value="2"/>
+						<label for="username" style="font-size:15px">username</label>
 					
-					<input 
-					type="radio"
-					name="radioGroup"
-					id="ordernumber" 
-					value="3"/>
-					<label for="ordernumber">ordernumber</label>
+						<input type="radio"name="radioGroup"
+						id="ordernumber" value="3"/>
+						<label for="ordernumber" style="font-size:15px">ordernumber</label>
 			
-		<!--</div>-->
-					<br>
-		<!--<div id="orderButton" style="float:left">-->
-					<input type='text' id='search_bar'>
-			<input type="button" class='btn btn-default search-orders' id="search_string" value='Search'>	
-			<!--<a class='btn btn-lg btn-primary search-orders' href='#' role='button'>Search</a>-->
+						<br><br>
+						<input type='text' name="search-bar" id='search-bar'>
+						
+						<input type="submit" name="search-orders" 
+						class='btn btn-default' id="search-orders" value='Search'>
 
-					<div id="orderButton" style="float:right">
-						<input type="button" class="btn btn-default" onclick="location.href='admin-home.php';" 
-						value="Return Home"/>	
-					</div>
-				</fieldset>
-			<div id="debug"> </div>
-			</form>
-		</div>
-			
-		<p id ="finalResult"></p>
+						<div id="orderButton" style="float:right">
+							<input type="button" class="btn btn-default" onclick="location.href='admin-home.php';" 
+							value="Return Home"/>	
+						</div>
+					</fieldset>
+					<div id="debug"> </div>
+				</form>
+			</div>
+		<p id ="finalResult">
+
+<?php
+if(isset($_POST['search-orders']))
+{
+	if(isset($_POST['search-bar']))
+	{
+		if(isset($_POST['radioGroup']))
+		{
+		//	echo "<br><br><br><br>search completed: " . $_POST['radioGroup'] . " " . $_POST['search-bar'];
+		}else{
+			echo "invalid search for radio. value is " . $_POST['radioVal'];
+		}
+	}else{
+		echo "invalid search for searchTerm";
+	}
+
+	$searchTerm = $MySQLi_CON->real_escape_string(trim($_POST['search-bar']));
+	$radioVal = $MySQLi_CON->real_escape_string(trim($_POST['radioGroup']));
+
+	$query =
+	"SELECT users.user_id, users.username, users.email, 
+	orders.orderNumber, orders.orderDate, orders.shippedDate, 
+	orders.status, orders.comments
+	FROM orders 
+	LEFT JOIN users
+	ON orders.user_id = users.user_id
+	WHERE users.user_id = '%$searchTerm%' 
+	";
+
+	if($radioVal == 0)
+	{
+	$query =
+	"SELECT users.user_id, users.username, users.email, 
+	orders.orderNumber, orders.orderDate, orders.shippedDate, 
+	orders.status, orders.comments
+	FROM orders 
+	LEFT JOIN users
+	ON orders.user_id = users.user_id
+	WHERE users.user_id = '$searchTerm' 
+	";
+	}else if($radioVal == 1)
+	{
+	$query =
+	"SELECT users.user_id, users.username, users.email, 
+	orders.orderNumber, orders.orderDate, orders.shippedDate, 
+	orders.status, orders.comments
+	FROM orders 
+	LEFT JOIN users
+	ON orders.user_id = users.user_id
+	WHERE users.email LIKE '%$searchTerm%'
+	";
+	}else if($radioVal == 2)
+	{
+	$query =
+	"SELECT users.user_id, users.username, users.email, 
+	orders.orderNumber, orders.orderDate, orders.shippedDate, 
+	orders.status, orders.comments
+	FROM orders 
+	LEFT JOIN users
+	ON orders.user_id = users.user_id
+	WHERE users.username = '$searchTerm'
+	";
+	}else if($radioVal == 3)
+	{
+	$query =
+	"SELECT users.user_id, users.username, users.email, 
+	orders.orderNumber, orders.orderDate, orders.shippedDate, 
+	orders.status, orders.comments
+	FROM orders 
+	LEFT JOIN users
+	ON orders.user_id = users.user_id
+	WHERE orders.orderNumber = '$searchTerm'
+	";
+	}
+
+	$result=mysqli_query($MySQLi_CON, $query);
+	//test if the query failed
+	if (!$result){
+		die("Database query failed.");
+	}else{
+		//print out the table
+		echo "<hr>" .
+	"<center>" .
+	"<table class='equalDevide' width='100%'  border='2'>" . 
+		"<tr>" .
+			"<th style='text-align:center'> Order # </th>" . 
+			"<th style='text-align:center'> User Id </th>" .
+			"<th style='text-align:center'> Email </th>" .
+			"<th style='text-align:center'> Order Date </th>" .
+			"<th style='text-align:center'> Shipped Date </th>" .
+			"<th style='text-align:center'> Status </th>" .
+			"<th width='16%' style='text-align:center'> Comments</th>" .
+		"</tr>";
+	
+		/*<?php*/ while($itemRow = mysqli_fetch_assoc($result)) :/*?>*/
+		echo "<tr>" .
+			"<th width='14%' style='text-align:center'>" . $itemRow["orderNumber"] . "</th>" .
+			"<th  style='text-align:center'>" . $itemRow["user_id"] . "</th>" .
+			"<th  style='text-align:center'>" . $itemRow["email"] . "</th>" .
+			"<th  style='text-align:center'>" . $itemRow["orderDate"] . "</th>" .
+			"<th  style='text-align:center'>" . $itemRow["shippedDate"] . "</th>" .
+			"<th  style='text-align:center'>" . $itemRow["status"] . "</th>" .
+			"<th width='16%' style='text-align:center'>" . $itemRow["comments"] . "</th>" .
+		"</tr>";
+		endwhile;//<?php endwhile;
 		
-</div>
+	 echo " </table> ".
+	"</center>".
+	"<p  style='display: block; padding-bottom: 10px;'></p>";
+	}
+}//end if #1 
+?>
+		</p>
+	</div>
 	<p style="display: block; padding-top: 1px;"></p>
-
-    <div id="footer"><?php include_once 'footer.php'; ?></div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.1.1.min.js"><\/script>')</script>
 <script src="js/vendor/bootstrap.min.js"></script>
 
 <script src="adminsearch.js"></script>
-
+<div id="footer"><?php include_once 'footer.php'; ?></div>
 </body>
-
+<?php $MySQLi_CON->close();?>
 </html>

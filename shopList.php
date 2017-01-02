@@ -28,14 +28,8 @@ if (!$result){
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <style>
-      body {
-          padding-top: 50px;
-          padding-bottom: 20px;
-      }
-  </style>
+
   <?php include_once 'navbar-item-search.php'; ?>
   <link rel="stylesheet" href="css/bootstrap-theme.min.css">
   <link rel="stylesheet" href="css/main.css">
@@ -47,13 +41,12 @@ if (!$result){
   <link rel="stylesheet" type="text/css" href="navbar.css">
   <link rel="stylesheet" type="text/css" href="shopList.css">
   <link rel="stylesheet" type="text/css" href="footer.css">
-
 </head>
 
 <body>
   <ul>
     
-    <p  style='display: block; padding-top: 50px;'></p>
+    <p  style='display: block; padding-top: 65px;'></p>
     		
 		<p id ="finalResult"></p>
 		<div id="debug"> </div>
@@ -66,7 +59,6 @@ if (!$result){
         <div class="row" id="<?php echo $row["item_id"]; ?>">
           <p class="itemName"><h1><?php echo $row["itemName"]; ?></h1><p/>
             <div class="col-lg-2 col-md-4 col-sm-4 column firstCol">
-          
               <p>
                 <a href="item-page.php?item_id=<?php echo $row["item_id"]; ?>">
                   <img class="img-responsive" src=<?php echo $row["image"];?> id='image'/>
