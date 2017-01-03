@@ -93,6 +93,8 @@ $MySQLi_CON->close();
 <body>
 
 <form id="cart">
+  <div class="container">
+  <div class="well">
   <?php $count = 0; ?>
   <?php $total = 0; ?>
   <?php if(isset($result) && $result->num_rows != 0) : ?>
@@ -137,9 +139,10 @@ $MySQLi_CON->close();
     </div>
     <?php endif; ?>
   <?php else: ?>
-    <p id="empty-cart-msg">Your cart is empty.</p>
+    <div class="well"><h3 id="empty-cart-msg">Your cart is empty.</h3></div>
   <?php endif; ?>
-  
+  </div>
+  </div> <!-- container -->
 
 <?php if (isset($result)) mysqli_free_result($result); ?>
 <div id="footer"><?php include_once 'footer.php'; ?></div>
