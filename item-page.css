@@ -1,3 +1,13 @@
+body{
+	height: 100%;
+margin: 0;
+padding: 0;	
+}
+
+html{
+	min-height:100%;
+	position: relative;
+}
 
 img{
 	width: 200px;
@@ -20,6 +30,24 @@ img{
 #item-id, #item-desc{
 	position: relative;
 	font-size: 20px;
+}
+
+#leftAdContainer{
+	height: 100%;
+float: left;
+
+	position: relative;
+top:0;
+bottom:0;
+left:0;
+
+overflow: hidden;
+z-index: -1;
+
+
+width: 300px;
+border: 3px solid green;
+padding: 10px;
 }
 
 #sub-container{

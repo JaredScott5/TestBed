@@ -56,6 +56,7 @@ if(isset($_POST['btn-signup']))
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen"> 
 <link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="footer.css">
 
 </head>
 <body>
@@ -108,5 +109,7 @@ if(isset($_POST['btn-signup']))
       </form>
     </div>
 </div>
+<div id="footer"><?php include_once 'footer.php'; ?></div>
+
 </body>
 </html>

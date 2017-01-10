@@ -50,8 +50,15 @@ include_once 'dbconnect.php';
 						<label for="ordernumber" style="font-size:15px">ordernumber</label>
 			
 						<br><br>
-						<input type='text' name="search-bar" id='search-bar'>
-						
+						<?php 
+						if(isset($_POST['search-bar']))
+						{?>
+							<input type='text' name="search-bar" id='search-bar' value=<?php echo $_POST['search-bar'];?>>
+							<?php }
+							else
+							{?>
+							<input type='text' name="search-bar" id='search-bar'>
+						<?php };?>
 						<input type="submit" name="search-orders" 
 						class='btn btn-default' id="search-orders" value='Search'>
 
@@ -144,37 +151,38 @@ if(isset($_POST['search-orders']))
 	if (!$result){
 		die("Database query failed.");
 	}else{
-		//print out the table
-		echo "<hr>" .
-	"<center>" .
-	"<table class='equalDevide' width='100%'  border='2'>" . 
-		"<tr>" .
-			"<th style='text-align:center'> Order # </th>" . 
-			"<th style='text-align:center'> User Id </th>" .
-			"<th style='text-align:center'> Email </th>" .
-			"<th style='text-align:center'> Order Date </th>" .
-			"<th style='text-align:center'> Shipped Date </th>" .
-			"<th style='text-align:center'> Status </th>" .
-			"<th width='16%' style='text-align:center'> Comments</th>" .
-		"</tr>";
+		?>
+		<hr>
 	
-		/*<?php*/ while($itemRow = mysqli_fetch_assoc($result)) :/*?>*/
-		echo "<tr>" .
-			"<th width='14%' style='text-align:center'>" . $itemRow["orderNumber"] . "</th>" .
-			"<th  style='text-align:center'>" . $itemRow["user_id"] . "</th>" .
-			"<th  style='text-align:center'>" . $itemRow["email"] . "</th>" .
-			"<th  style='text-align:center'>" . $itemRow["orderDate"] . "</th>" .
-			"<th  style='text-align:center'>" . $itemRow["shippedDate"] . "</th>" .
-			"<th  style='text-align:center'>" . $itemRow["status"] . "</th>" .
-			"<th width='16%' style='text-align:center'>" . $itemRow["comments"] . "</th>" .
-		"</tr>";
-		endwhile;//<?php endwhile;
+	<table class='equalDevide' width='100%'  border='2'>
+		<tr>
+			<th style='text-align:center'> Order # </th> 
+			<th style='text-align:center'> User Id </th>
+			<th style='text-align:center'> Email </th>
+			<th style='text-align:center'> Order Date </th>
+			<th style='text-align:center'> Shipped Date </th>
+			<th style='text-align:center'> Status </th>
+			<th width='16%' style='text-align:center'> Comments</th>
+		</tr>
+	
+		<?php while($itemRow = mysqli_fetch_assoc($result)) :?>
+		<tr>
+			<th width='14%' style='text-align:center'><?php echo $itemRow["orderNumber"]; ?></th>
+			<th  style='text-align:center'><?php echo $itemRow["user_id"] ; ?></th>
+			<th  style='text-align:center'><?php echo $itemRow["email"] ; ?></th>
+			<th  style='text-align:center'><?php echo $itemRow["orderDate"] ; ?></th>
+			<th  style='text-align:center'><?php echo $itemRow["shippedDate"] ; ?></th>
+			<th  style='text-align:center'><?php echo $itemRow["status"] ; ?></th>
+			<th width='16%' style='text-align:center'><?php echo $itemRow["comments"] ; ?></th>
+			
+		</tr>
+		<?php endwhile; ?>
 		
-	 echo " </table> ".
-	"</center>".
-	"<p  style='display: block; padding-bottom: 10px;'></p>";
-	}
-}//end if #1 
+	 </table> 
+	
+	<p  style='display: block; padding-bottom: 10px;'></p>
+	<?php }; ?>
+<?php };//end if #1 
 ?>
 		</p>
 	</div>
