@@ -1,30 +1,30 @@
 
-/*$(document).ready(function(){
+$(document).ready(function(){
 
   $("#search_string").click(function () { 
-  alert($('input[name=radioGroup]').val());
+  //alert($('input[name=radioGroup]').val());
 	var radioVal = $('input[name=radioGroup]:checked', '#myForm').val();
 	var searchTerm = document.getElementById("search_bar").value;
 
-    // console.log(item_id);
-    // console.log(quantity);
+    //console.log(radioVal);
+    //console.log(searchTerm);
     $.ajax({
       url: "adminsearch.php",
       type: "POST",
       cache: false,
-      dataType: 'json',
       data: {searchTerm: searchTerm, radioVal: radioVal},
       success: function(data){
         $('#debug').html("Success");
+        $('#finalResult').html(data.responseText);
       },
       error: function(data){
-        console.log(data.msg);
+        console.log(data);
        $('#debug').html("Failed with " + radioVal + "in data");
       }
     });
   });
-});*/
-
+});
+/*
 function search(){
 	var searchTerm = document.getElementById("search_bar").value;
 	var radioElements = document.getElementsByName('radioGroup');
@@ -66,3 +66,4 @@ function displaySearchResult() {
     alert('Caught Exception: ' + e.description);
   }
 }
+*/
