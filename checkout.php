@@ -12,7 +12,8 @@ $orderQuery =
     WHERE orderNumber='$orderNO' AND status='In Cart'";
     
   if($MySQLi_CON->query($orderQuery)){
-	  //change 'status' to 'Shipped'
+    //--Payment processing takes place at this point--
+	  //change 'status' to 'Shipped' (Should be 'Processing' in final version)
 	  $updatedOrderQuery = 
 	  "UPDATE orders
 	  SET status = 'Shipped', total = $finalCost, orderDate = '$time'
