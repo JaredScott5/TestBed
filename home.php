@@ -40,9 +40,9 @@ $MySQLi_CON->close();
 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   
-  <link rel="stylesheet" type="text/css" href="styles.css">
-  <link rel="stylesheet" type="text/css" href="footer.css">
-  <link rel="stylesheet" type="text/css" href="home.css">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <link rel="stylesheet" type="text/css" href="css/footer.css">
+  <link rel="stylesheet" type="text/css" href="css/home.css">
   
 </head>
 
