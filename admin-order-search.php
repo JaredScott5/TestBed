@@ -8,8 +8,8 @@ include_once 'dbconnect.php';
 
 <html lang="en">
 
-<link rel="stylesheet" type="text/css" href="footer.css">
-<link rel="stylesheet" type="text/css" href="admin.css">
+<link rel="stylesheet" type="text/css" href="css/footer.css">
+<link rel="stylesheet" type="text/css" href="css/admin.css">
 
 <head>	
 <title>Admin Order Search Page</title>
@@ -17,7 +17,7 @@ include_once 'dbconnect.php';
 <title>Welcome - <?php echo $userRow['email']; ?></title>
 
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="style.css" type="text/css" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
 
 <?php include ('navbar.php'); ?>
 </head>
@@ -192,7 +192,7 @@ if(isset($_POST['search-orders']))
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.1.1.min.js"><\/script>')</script>
 <script src="js/vendor/bootstrap.min.js"></script>
 
-<script src="adminsearch.js"></script>
+<script src="js/adminsearch.js"></script>
 <div id="footer"><?php include_once 'footer.php'; ?></div>
 </body>
 <?php $MySQLi_CON->close();?>

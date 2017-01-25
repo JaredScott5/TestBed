@@ -99,8 +99,8 @@ else /*if everything is ok, try to upload file*/
 			<link rel="stylesheet" href="css/bootstrap.min.css">
 
 
-		<link rel="stylesheet" type="text/css" href="footer.css">
-		<link rel="stylesheet" type="text/css" href="navbar.css">
+		<link rel="stylesheet" type="text/css" href="css/footer.css">
+		<link rel="stylesheet" type="text/css" href="css/navbar.css">
 
 	</head>
 <body>

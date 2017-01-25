@@ -36,8 +36,8 @@ $item_desc = $row['description'];
 <head>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 
-  <link rel="stylesheet" type="text/css" href="item-page.css">
-  <link rel="stylesheet" type="text/css" href="footer.css">
+  <link rel="stylesheet" type="text/css" href="css/item-page.css">
+  <link rel="stylesheet" type="text/css" href="css/footer.css">
 
   <title><?php echo $item_name; ?></title>
 </head>
@@ -160,7 +160,7 @@ $item_desc = $row['description'];
 
   <script src="js/main.js"></script>
 
-  <script src="shopList.js"></script>
+  <script src="js/shopList.js"></script>
 
 </body>
 

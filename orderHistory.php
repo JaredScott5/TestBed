@@ -92,9 +92,9 @@ $MySQLi_CON->close();
 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   
-  <link rel="stylesheet" type="text/css" href="orderHistory.css">
-  <link rel="stylesheet" type="text/css" href="navbar.css">
-  <link rel="stylesheet" type="text/css" href="footer.css">
+  <link rel="stylesheet" type="text/css" href="css/orderHistory.css">
+  <link rel="stylesheet" type="text/css" href="css/navbar.css">
+  <link rel="stylesheet" type="text/css" href="css/footer.css">
 
   
 </head>
@@ -167,7 +167,7 @@ $MySQLi_CON->close();
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.1.1.min.js"><\/script>')</script>
 
   <script src="js/vendor/bootstrap.min.js"></script>>
-  <script src="orderHistory.js"></script>
+  <script src="js/orderHistory.js"></script>
 
 </body>
 

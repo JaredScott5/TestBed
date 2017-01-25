@@ -10,9 +10,9 @@ include 'navbar.php';
 	
 <head>	
 	<title>Admin Home Page</title>
-	<link rel="stylesheet" type="text/css" href="admin.css">
-	<link rel="stylesheet" type="text/css" href="footer.css">
-	<link rel="stylesheet" type="text/css" href="navbar.css">
+	<link rel="stylesheet" type="text/css" href="css/admin.css">
+	<link rel="stylesheet" type="text/css" href="css/footer.css">
+	<link rel="stylesheet" type="text/css" href="css/navbar.css">
 	
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	
