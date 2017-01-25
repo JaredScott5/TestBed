@@ -10,96 +10,33 @@ if(isset($_POST['btn-signup']))
 {
  $uname = $MySQLi_CON->real_escape_string(trim($_POST['user_name']));
  $email = $MySQLi_CON->real_escape_string(trim($_POST['user_email']));
- //$upass = $MySQLi_CON->real_escape_string(trim($_POST['password']));
+ $upass = $MySQLi_CON->real_escape_string(trim($_POST['password']));
  
- $new_password = rand(1000,5000);//= password_hash($upass, PASSWORD_DEFAULT);
- 
- //create a email/link password
- $hash = md5( rand(0,1000) );
+ $new_password = password_hash($upass, PASSWORD_DEFAULT);
  
  $check_email = $MySQLi_CON->query("SELECT email FROM users WHERE email='$email'");
  $count=$check_email->num_rows;
  
  if($count==0){
- // $query = "INSERT INTO users(username,email,password) VALUES('$uname','$email','$new_password')";
-
- //this is where we enter the new code for sending an email for confirmation
-  $query = "INSERT INTO users(username,email,password,hash) VALUES('$uname','$email','$new_password', '$hash')";
-
   
+  
+  $query = "INSERT INTO users(username,email,password) VALUES('$uname','$email','$new_password')";
+
   
   if($MySQLi_CON->query($query))
   {
    $msg = "<div class='alert alert-success'>
       <span class='glyphicon glyphicon-info-sign'></span> &nbsp; successfully registered !
      </div>";
-	 
-	 
-	 //test email
-	 
-/**
- * This example shows sending a message using PHP's mail() function.
- */
-
-//require '../PHPMailerAutoload.php';
-require '/libs/PHPMailer-master/PHPMailerAutoload.php';
-//Create a new PHPMailer instance
-$mail = new PHPMailer;
-//Set who the message is to be sent from
-$mail->setFrom('from@example.com', 'First Last');
-//Set an alternative reply-to address
-$mail->addReplyTo('replyto@example.com', 'First Last');
-//Set who the message is to be sent to
-$mail->addAddress('jmsmm92@gmail.com');
-//Set the subject line
-$mail->Subject = 'PHPMailer mail() test';
-//Read an HTML message body from an external file, convert referenced images to embedded,
-//convert HTML into a basic plain-text alternative body
-$mail->msgHTML(file_get_contents('testEmail.html'), dirname(__FILE__));
-//Replace the plain text body with one created manually
-$mail->AltBody = 'This is a plain-text message body';
-//Attach an image file
-//$mail->addAttachment('images/phpmailer_mini.png');
-
-//send the message, check for errors
-if (!$mail->send()) {
-    echo "Mailer Error: " . $mail->ErrorInfo;
-} else {
-    echo "Message sent!";
-}
-
-	 
-	 
-	 //send confirmation email
-	 
-	 
-	 /*
-	 $to      = $email; // Send email to our user
-	$subject = 'Signup | Verification'; // Give the email a subject 
-	$message = '
- 
-	Thanks for signing up!
-	Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
- 
-	------------------------
-	Username: '.$uname.'
-	Password: '.$new_password.'
-	------------------------
- 
-Please click this link to activate your account:
-http://www.yourwebsite.com/verify.php?email='.$email.'&hash='.$hash.'
- 
-'; // Our message above including the link
-                     
-$headers = 'From:noreply@yourwebsite.com' . "\r\n"; // Set 
-mail($to, $subject, $message, $headers); // Send our email
-*/
-  }else{
+  }
+  else
+  {
    $msg = "<div class='alert alert-danger'>
       <span class='glyphicon glyphicon-info-sign'></span> &nbsp; error while registering !
      </div>";
   }
- }else{
+ }
+ else{
   
   
   $msg = "<div class='alert alert-danger'>
@@ -155,7 +92,7 @@ mail($to, $subject, $message, $headers); // Send our email
         </div>
         
         <div class="form-group">
-       <!-- <input type="password" class="form-control" placeholder="Password" name="password" required  /> -->
+        <input type="password" class="form-control" placeholder="Password" name="password" required  />
         </div>
         
       <hr />

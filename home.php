@@ -9,6 +9,18 @@ if(!isset($_SESSION['userSession']))
 
 $query = $MySQLi_CON->query("SELECT * FROM users WHERE user_id=".$_SESSION['userSession']);
 $userRow=$query->fetch_array();
+
+$result = $MySQLi_CON->query("
+SELECT item_id, image, itemName, price, description, DATE(dateAdded) 
+AS time
+FROM items
+ORDER BY dateAdded DESC, dateAdded ASC
+LIMIT 6");
+
+if (!$result){
+	die("Database query failed.");
+}
+
 $MySQLi_CON->close();
 ?>
 <!doctype html>
@@ -56,11 +68,11 @@ $MySQLi_CON->close();
       <div class="row">
 
           <div class="col-md-3">
-              <p class="lead">Shop Name</p>
+              <p class="lead">Test Shop</p>
               <div class="list-group">
-                  <a href="#" class="list-group-item">Category 1</a>
-                  <a href="#" class="list-group-item">Category 2</a>
-                  <a href="#" class="list-group-item">Category 3</a>
+                  <a href="shopList.php?department=Books" class="list-group-item">Books</a>
+                  <a href="shopList.php?department=Movies/TV" class="list-group-item">DVDs and BluRays</a>
+                  <a href="shopList.php?department=Video_Game" class="list-group-item">Video Games</a>
               </div>
           </div>
 
@@ -75,15 +87,15 @@ $MySQLi_CON->close();
                               <li data-target="#carousel-example-generic" data-slide-to="1"></li>
                               <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                           </ol>
-                          <div class="carousel-inner">
+                          <div class="carousel-inner" role="listbox">
                               <div class="item active">
-                                  <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                  <img class="slide-image" src="img\bastion_logo.png" alt="">
                               </div>
                               <div class="item">
-                                  <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                  <img class="slide-image" src="img\darksouls3.jpg" alt="">
                               </div>
                               <div class="item">
-                                  <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                  <img class="slide-image" src="img\fea.jpg" alt="">
                               </div>
                           </div>
                           <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
@@ -98,17 +110,17 @@ $MySQLi_CON->close();
               </div>
 
               <div class="row">
-
+<?php while($row = mysqli_fetch_assoc($result)) : ?>
                   <div class="col-sm-4 col-lg-4 col-md-4">
                       <div class="thumbnail">
-                          <img src="http://placehold.it/320x150" alt="">
+                          <img src="<?php echo $row["image"]?>" style="width:150px; height:100px;" alt="">
                           <div class="caption">
-                              <h4 class="pull-right">$24.99</h4>
-                              <h4><a href="#">First Product</a>
+                              <h4 class="pull-right">$<?php echo $row["price"]?></h4>
+                              <h4><a href="#"><?php echo $row["itemName"]?></a>
                               </h4>
-                              <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+                              <p> <?php echo $row["description"]?></p>
                           </div>
-                          <div class="ratings">
+                         <!-- <div class="ratings">
                               <p class="pull-right">15 reviews</p>
                               <p>
                                   <span class="glyphicon glyphicon-star"></span>
@@ -117,104 +129,11 @@ $MySQLi_CON->close();
                                   <span class="glyphicon glyphicon-star"></span>
                                   <span class="glyphicon glyphicon-star"></span>
                               </p>
-                          </div>
+                          </div>-->
                       </div>
                   </div>
-
-                  <div class="col-sm-4 col-lg-4 col-md-4">
-                      <div class="thumbnail">
-                          <img src="http://placehold.it/320x150" alt="">
-                          <div class="caption">
-                              <h4 class="pull-right">$64.99</h4>
-                              <h4><a href="#">Second Product</a>
-                              </h4>
-                              <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                          </div>
-                          <div class="ratings">
-                              <p class="pull-right">12 reviews</p>
-                              <p>
-                                  <span class="glyphicon glyphicon-star"></span>
-                                  <span class="glyphicon glyphicon-star"></span>
-                                  <span class="glyphicon glyphicon-star"></span>
-                                  <span class="glyphicon glyphicon-star"></span>
-                                  <span class="glyphicon glyphicon-star-empty"></span>
-                              </p>
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="col-sm-4 col-lg-4 col-md-4">
-                      <div class="thumbnail">
-                          <img src="http://placehold.it/320x150" alt="">
-                          <div class="caption">
-                              <h4 class="pull-right">$74.99</h4>
-                              <h4><a href="#">Third Product</a>
-                              </h4>
-                              <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                          </div>
-                          <div class="ratings">
-                              <p class="pull-right">31 reviews</p>
-                              <p>
-                                  <span class="glyphicon glyphicon-star"></span>
-                                  <span class="glyphicon glyphicon-star"></span>
-                                  <span class="glyphicon glyphicon-star"></span>
-                                  <span class="glyphicon glyphicon-star"></span>
-                                  <span class="glyphicon glyphicon-star-empty"></span>
-                              </p>
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="col-sm-4 col-lg-4 col-md-4">
-                      <div class="thumbnail">
-                          <img src="http://placehold.it/320x150" alt="">
-                          <div class="caption">
-                              <h4 class="pull-right">$84.99</h4>
-                              <h4><a href="#">Fourth Product</a>
-                              </h4>
-                              <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                          </div>
-                          <div class="ratings">
-                              <p class="pull-right">6 reviews</p>
-                              <p>
-                                  <span class="glyphicon glyphicon-star"></span>
-                                  <span class="glyphicon glyphicon-star"></span>
-                                  <span class="glyphicon glyphicon-star"></span>
-                                  <span class="glyphicon glyphicon-star-empty"></span>
-                                  <span class="glyphicon glyphicon-star-empty"></span>
-                              </p>
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="col-sm-4 col-lg-4 col-md-4">
-                      <div class="thumbnail">
-                          <img src="http://placehold.it/320x150" alt="">
-                          <div class="caption">
-                              <h4 class="pull-right">$94.99</h4>
-                              <h4><a href="#">Fifth Product</a>
-                              </h4>
-                              <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                          </div>
-                          <div class="ratings">
-                              <p class="pull-right">18 reviews</p>
-                              <p>
-                                  <span class="glyphicon glyphicon-star"></span>
-                                  <span class="glyphicon glyphicon-star"></span>
-                                  <span class="glyphicon glyphicon-star"></span>
-                                  <span class="glyphicon glyphicon-star"></span>
-                                  <span class="glyphicon glyphicon-star-empty"></span>
-                              </p>
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="col-sm-4 col-lg-4 col-md-4">
-                      <h4><a href="#">Like this template?</a>
-                      </h4>
-                      <p>If you like this template, then check out <a target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this tutorial</a> on how to build a working review system for your online store!</p>
-                      <a class="btn btn-primary" target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">View Tutorial</a>
-                  </div>
+		<?php endwhile; ?>
+        <?php mysqli_free_result($result); ?>		  
 
               </div>
 
@@ -236,7 +155,6 @@ $MySQLi_CON->close();
 <script src="js/vendor/bootstrap.min.js"></script>
 
 <script src="js/main.js"></script>
-
 
 
 </body>

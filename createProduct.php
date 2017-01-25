@@ -8,6 +8,7 @@ include_once 'navbar.php';
 if(isset($_POST['btn-signup']))
 {
 	$itemName = $MySQLi_CON->real_escape_string(trim($_POST['itemName'])); 
+	$department = $MySQLi_CON->real_escape_string(trim($_POST['department']));
 	$price = $MySQLi_CON->real_escape_string(trim($_POST['price']));
 	$price = ltrim($price, '$');  /*remove the $ from $price*/
 	$desc = $MySQLi_CON->real_escape_string(trim($_POST['desc']));
@@ -49,8 +50,8 @@ else /*if everything is ok, try to upload file*/
   
 		if($count == 0)
 		{
-			$query = "INSERT INTO items(item_id, itemName, price, image, description) 
-				VALUES(NULL, '$itemName','$price', '$target_file', '$desc')";
+			$query = "INSERT INTO items(item_id, itemName, price, image, description, department) 
+				VALUES(NULL, '$itemName','$price', '$target_file', '$desc', '$department')";
   
 			if($MySQLi_CON->query($query))
 			{
@@ -130,6 +131,11 @@ else /*if everything is ok, try to upload file*/
 				<span id="check-e"></span>
 			</div>
         
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="department" name="department" required  />
+				<span id="check-e"></span>
+			</div>
+			
 			<div class="form-group">
 				<input type="file" accept=".jpg" class="form-control" name="fileToUpload" id="fileToUpload" required  />
 			</div>
