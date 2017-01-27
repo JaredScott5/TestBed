@@ -88,14 +88,15 @@ $MySQLi_CON->close();
                               <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                           </ol>
                           <div class="carousel-inner" role="listbox">
+						  <!-- The images should already be set to 940x400 -->
                               <div class="item active">
-                                  <img class="slide-image" src="img\bastion_logo.png" alt="">
+                                  <img class="slide-image" src="img\bastion_logo.png" style="width:940px; height:400px;" alt="">
                               </div>
                               <div class="item">
-                                  <img class="slide-image" src="img\darksouls3.jpg" alt="">
+                                  <img class="slide-image" src="img\darksouls3.jpg" style="width:940x; height:400px;" alt="">
                               </div>
                               <div class="item">
-                                  <img class="slide-image" src="img\fea.jpg" alt="">
+                                  <img class="slide-image" src="img\fea.jpg" style="width:940px; height:400px;" alt="">
                               </div>
                           </div>
                           <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
