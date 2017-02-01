@@ -7,8 +7,17 @@ if(!isset($_SESSION['userSession']))
  header("Location: index.php");
 }
 
+
 $query = "SELECT item_id, image, itemName, price, description ";
 $query .= "FROM items ";
+
+//from here see if the var was passed, if not, leave query as is
+if(isset($_GET['department']))
+{
+	$department = $_GET['department'];//mysqli_real_escape_string($link, $GET['department']);
+$query .= "WHERE department = '$department'";	
+}
+
 $result = mysqli_query($MySQLi_CON, $query);
 
 //test if the query failed

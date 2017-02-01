@@ -52,7 +52,7 @@ if(isset($_POST['btn-login']))
  else
  {
   $msg = "
-        email or password does not exist !
+        email or password does not exist  $email $upass $row!
     ";
  }
  mysqli_free_result($query);
