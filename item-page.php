@@ -38,14 +38,15 @@ $item_desc = $row['description'];
 
   <link rel="stylesheet" type="text/css" href="css/item-page.css">
   <link rel="stylesheet" type="text/css" href="css/footer.css">
+  <?php include_once 'navbar.php'; ?>
 
   <title><?php echo $item_name; ?></title>
 </head>
 
 <body>
   <!-- Navigation -->
-  <?php include ('navbar.php'); ?>
-  <p  style="display: block; padding-top: 50px;"></p>
+  
+  <p style="display: block; padding-top: 50px;"></p>
 
  <!-- Page Content -->
   <div class="container">
@@ -69,14 +70,12 @@ $item_desc = $row['description'];
               src=<?php echo $row["image"]; ?> 
               id='image'></a>
               </img>
-              <div class="caption-full" id=<?php echo $row["item_id"]; ?>>
+              <div class="caption-full">
                 <h4 class="pull-right">$<?php echo $item_price; ?></h4>
                 <h4><a href="#"><?php echo $item_name; ?></a>
                 </h4>
                 <p><?php echo $item_desc; ?></p>
-                <div id=<?php echo $item_id; ?> class="add-to-cart">
-                  <a class='btn btn-lg btn-primary' href='#' role='button'>Add To Cart</a>
-                </div>
+                <a class='btn btn-lg btn-primary add-to-cart' id=<?php echo $item_id; ?> href='#' role='button'>Add To Cart</a>
               </div>
               <div class="ratings">
                 <p class="pull-right">3 reviews</p>

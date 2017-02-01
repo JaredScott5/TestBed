@@ -1,8 +1,7 @@
 $(document).ready(function(){
 
   $(".add-to-cart").click(function () {
-    var row = $(this).parent().parent();
-    var item_id = row.attr('id');
+    var item_id = $(this).attr('id');
     // console.log(item_id);
     // console.log(quantity);
     $.ajax({
@@ -13,7 +12,7 @@ $(document).ready(function(){
       data: {item_id: item_id, quantity: 1},
       success: function(data){
         // console.log(data.msg);
-        $('#cartCount').html("<span class=\"glyphicon glyphicon-shopping-cart\">&nbsp;</span>" + "Cart(" + data.cartCount + ")");
+        $('#cartCount').html("<span class=\"glyphicon glyphicon-shopping-cart\"></span>" + "&nbsp;" + "Cart(" + data.cartCount + ")");
       },
       error: function(data){
         console.log(data.msg);

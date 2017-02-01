@@ -35,7 +35,7 @@
 				<ul id="ulRight" class="nav navbar-nav navbar-right">
 					<li id="liUser"><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp; <?php echo $_SESSION['username']; ?></a></li>
 					<li id="liLogout"><a href="logout.php?logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp; Logout</a></li>
-					<li id="liShoppingCart"><a href="shoppingCart.php" id="cartCount"><span class="glyphicon glyphicon-shopping-cart">&nbsp;</span> <?php echo "Cart(" . $_SESSION['cartCount'] . ")"; ?> </a></li>
+					<li id="liShoppingCart"><a href="shoppingCart.php" id="cartCount"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp; <?php echo "Cart(" . $_SESSION['cartCount'] . ")"; ?> </a></li>
 				</ul>
 									
 			</div>

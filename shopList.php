@@ -73,7 +73,7 @@ if (!$result){
             </div>
         
             <div class="col-lg-2 col-md-2 col-sm-3 column thirdCol">
-              <a class='btn btn-lg btn-primary add-to-cart' href='#' role='button'>Add To Cart</a>
+              <a class='btn btn-lg btn-primary add-to-cart' id=<?php echo $row["item_id"]; ?> href='#' role='button'>Add To Cart</a>
             </div>
           </div>
         </div>
