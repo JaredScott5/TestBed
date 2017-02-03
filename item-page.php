@@ -55,38 +55,40 @@ $item_desc = $row['description'];
 
           <div class="col-md-12">
 
-            <div class="item" id=<?php echo $row["item_id"]; ?>>
-              <a href="item-page.php?item_id=<?php echo $row["item_id"]; ?>">
-              <img class="img-responsive"
-              src=<?php echo $row["image"]; ?> 
-              id='image'></a>
-              </img>
-              <div class="caption-full">
-                <h4 class="pull-right">$<?php echo $item_price; ?></h4>
-                <h4><a href="#"><?php echo $item_name; ?></a></h4>
-                <p><?php echo $item_desc; ?></p>
+            <div style="margin:0" class="item" id=<?php echo $row["item_id"]; ?>>
+				<a href="item-page.php?item_id=<?php echo $row["item_id"]; ?>">
+				<img class="img-responsive"
+				src=<?php echo $row["image"]; ?> 
+				id='image'></a>
+				</img>
+				<div class="caption-full">
+					<h1><a href="#"><?php echo $item_name; ?></a></h1>
 				
-                <a class='btn btn-lg btn-primary add-to-cart' id=<?php echo $item_id; ?> href='#' role='button'>Add To Cart</a>
-              </div>
-			  <br>
-              <div class="container" id="ratings" style="margin:0;">
+					<div style="float:left; width:75%;"><?php echo $item_desc; ?></div>
+				
+					<div style="float:right; width:25%; overflow:hidden;">
+						<h4 class="" >$<?php echo $item_price; ?></h4>
+						<p class='btn btn-lg btn-primary add-to-cart' 
+						id=<?php echo $item_id; ?> href='#' role='button'>Add To Cart</p>
+					</div>  
+				</div>
+			  
+			  <br><br>
+				<div class="container" id="ratings" style="margin:0;">
                 
-                <div class="" style="float:left; width:85%; overflow:hidden;">
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
+					<div class="" style="float:left; width:85%; overflow:hidden;">
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star-empty"></span>
                     
 				4.0 stars
-				
-				 
-				
-				
-                </div>
-				<div class="" style="float:right; width:15%; overflow:hidden;">
-				3 reviews
-				</div>
+
+					</div>
+					<div class="" style="float:right; width:15%; overflow:hidden;">
+					3 reviews
+					</div>
               </div>
             </div>
 <br>
