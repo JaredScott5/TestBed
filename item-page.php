@@ -53,16 +53,7 @@ $item_desc = $row['description'];
 
       <div class="row">
 
-          <div class="col-md-3">
-              <p class="lead">Shop Name</p>
-              <div class="list-group">
-                  <a href="#" class="list-group-item active">Category 1</a>
-                  <a href="#" class="list-group-item">Category 2</a>
-                  <a href="#" class="list-group-item">Category 3</a>
-              </div>
-          </div>
-
-          <div class="col-md-9">
+          <div class="col-md-12">
 
             <div class="item" id=<?php echo $row["item_id"]; ?>>
               <a href="item-page.php?item_id=<?php echo $row["item_id"]; ?>">
@@ -72,24 +63,33 @@ $item_desc = $row['description'];
               </img>
               <div class="caption-full">
                 <h4 class="pull-right">$<?php echo $item_price; ?></h4>
-                <h4><a href="#"><?php echo $item_name; ?></a>
-                </h4>
+                <h4><a href="#"><?php echo $item_name; ?></a></h4>
                 <p><?php echo $item_desc; ?></p>
+				
                 <a class='btn btn-lg btn-primary add-to-cart' id=<?php echo $item_id; ?> href='#' role='button'>Add To Cart</a>
               </div>
-              <div class="ratings">
-                <p class="pull-right">3 reviews</p>
-                <p>
+			  <br>
+              <div class="container" id="ratings" style="margin:0;">
+                
+                <div class="" style="float:left; width:85%; overflow:hidden;">
                     <span class="glyphicon glyphicon-star"></span>
                     <span class="glyphicon glyphicon-star"></span>
                     <span class="glyphicon glyphicon-star"></span>
                     <span class="glyphicon glyphicon-star"></span>
                     <span class="glyphicon glyphicon-star-empty"></span>
-                    4.0 stars
-                </p>
+                    
+				4.0 stars
+				
+				 
+				
+				
+                </div>
+				<div class="" style="float:right; width:15%; overflow:hidden;">
+				3 reviews
+				</div>
               </div>
             </div>
-
+<br>
             <div class="well">
 
                 <div class="text-right">
