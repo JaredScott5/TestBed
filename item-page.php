@@ -55,51 +55,51 @@ $item_desc = $row['description'];
 
           <div class="col-md-12">
 
-            <div style="margin:0" class="item" id=<?php echo $row["item_id"]; ?>>
-				<a href="item-page.php?item_id=<?php echo $row["item_id"]; ?>">
-				<img class="img-responsive"
-				src=<?php echo $row["image"]; ?> 
-				id='image'></a>
-				</img>
-				<div class="caption-full">
+            <div class="container" id="item" id=<?php echo $row["item_id"]; ?>>
+
+				<div class="caption-full container">
+					<a href="item-page.php?item_id=<?php echo $row["item_id"]; ?>">
+					<img class="img-responsive"
+					src=<?php echo $row["image"]; ?> 
+					id='image'></img></a>
+					
 					<h1><a href="#"><?php echo $item_name; ?></a></h1>
+				</div>				
 				
-					<div style="float:left; width:75%;"><?php echo $item_desc; ?></div>
-				
-					<div style="float:right; width:25%; overflow:hidden;">
-						<h4 class="" >$<?php echo $item_price; ?></h4>
+				<div class="container" id="addToCart">
+						<h4 class="" id="price" >$<?php echo $item_price; ?></h4>
 						<p class='btn btn-lg btn-primary add-to-cart' 
 						id=<?php echo $item_id; ?> href='#' role='button'>Add To Cart</p>
-					</div>  
+				</div> 
+
+				<div class="container" id="description">
+					<h3>Descripion:</h3> <?php echo $item_desc; ?>
+					<br>
+					<hr>
 				</div>
 			  
-			  <br><br>
-				<div class="container" id="ratings" style="margin:0;">
+			  <br>
+
+				<div class="container" id="ratings">
                 
-					<div class="" style="float:left; width:85%; overflow:hidden;">
+					<div id="numberOfStars">
 						<span class="glyphicon glyphicon-star"></span>
 						<span class="glyphicon glyphicon-star"></span>
 						<span class="glyphicon glyphicon-star"></span>
 						<span class="glyphicon glyphicon-star"></span>
 						<span class="glyphicon glyphicon-star-empty"></span>
                     
-				4.0 stars
+						4.0 stars
 
 					</div>
-					<div class="" style="float:right; width:15%; overflow:hidden;">
-					3 reviews
+					<div id="reviewAverage">
+						3 reviews
 					</div>
               </div>
+			  <hr>
             </div>
-<br>
+		
             <div class="well">
-
-                <div class="text-right">
-                    <a class="btn btn-success">Leave a Review</a>
-                </div>
-
-                <hr>
-
                 <div class="row">
                     <div class="col-md-12">
                         <span class="glyphicon glyphicon-star"></span>
