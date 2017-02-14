@@ -89,62 +89,64 @@ if(isset($_POST['search-orders']))
 
 	$searchTerm = $MySQLi_CON->real_escape_string(trim($_POST['search-bar']));
 	$radioVal = $MySQLi_CON->real_escape_string(trim($_POST['radioGroup']));
-
-	$query =
-	"SELECT users.user_id, users.username, users.email, 
-	orders.orderNumber, orders.orderDate, orders.shippedDate, 
-	orders.status, orders.comments
-	FROM orders 
-	LEFT JOIN users
-	ON orders.user_id = users.user_id
-	WHERE users.user_id = '%$searchTerm%' 
-	";
-
-	if($radioVal == 0)
-	{
-	$query =
-	"SELECT users.user_id, users.username, users.email, 
-	orders.orderNumber, orders.orderDate, orders.shippedDate, 
-	orders.status, orders.comments
-	FROM orders 
-	LEFT JOIN users
-	ON orders.user_id = users.user_id
-	WHERE users.user_id = '$searchTerm' 
-	";
-	}else if($radioVal == 1)
-	{
-	$query =
-	"SELECT users.user_id, users.username, users.email, 
-	orders.orderNumber, orders.orderDate, orders.shippedDate, 
-	orders.status, orders.comments
-	FROM orders 
-	LEFT JOIN users
-	ON orders.user_id = users.user_id
-	WHERE users.email LIKE '%$searchTerm%'
-	";
-	}else if($radioVal == 2)
-	{
-	$query =
-	"SELECT users.user_id, users.username, users.email, 
-	orders.orderNumber, orders.orderDate, orders.shippedDate, 
-	orders.status, orders.comments
-	FROM orders 
-	LEFT JOIN users
-	ON orders.user_id = users.user_id
-	WHERE users.username = '$searchTerm'
-	";
-	}else if($radioVal == 3)
-	{
-	$query =
-	"SELECT users.user_id, users.username, users.email, 
-	orders.orderNumber, orders.orderDate, orders.shippedDate, 
-	orders.status, orders.comments
-	FROM orders 
-	LEFT JOIN users
-	ON orders.user_id = users.user_id
-	WHERE orders.orderNumber = '$searchTerm'
-	";
-	}
+  
+  switch ($radioVal) {
+    case 0:
+      $query =
+      "SELECT users.user_id, users.username, users.email, 
+      orders.orderNumber, orders.orderDate, orders.shippedDate, 
+      orders.status, orders.comments
+      FROM orders 
+      LEFT JOIN users
+      ON orders.user_id = users.user_id
+      WHERE users.user_id = '$searchTerm' 
+      ";
+      break;
+    case 1:
+    	$query =
+      "SELECT users.user_id, users.username, users.email, 
+      orders.orderNumber, orders.orderDate, orders.shippedDate, 
+      orders.status, orders.comments
+      FROM orders 
+      LEFT JOIN users
+      ON orders.user_id = users.user_id
+      WHERE users.email LIKE '%$searchTerm%'
+      ";
+      break;
+    case 2:
+    	$query =
+      "SELECT users.user_id, users.username, users.email, 
+      orders.orderNumber, orders.orderDate, orders.shippedDate, 
+      orders.status, orders.comments
+      FROM orders 
+      LEFT JOIN users
+      ON orders.user_id = users.user_id
+      WHERE users.username = '$searchTerm'
+      ";
+      break;
+    case 3:
+      $query =
+      "SELECT users.user_id, users.username, users.email, 
+      orders.orderNumber, orders.orderDate, orders.shippedDate, 
+      orders.status, orders.comments
+      FROM orders 
+      LEFT JOIN users
+      ON orders.user_id = users.user_id
+      WHERE orders.orderNumber = '$searchTerm'
+      ";
+      break;
+    default:
+    	$query =
+      "SELECT users.user_id, users.username, users.email, 
+      orders.orderNumber, orders.orderDate, orders.shippedDate, 
+      orders.status, orders.comments
+      FROM orders 
+      LEFT JOIN users
+      ON orders.user_id = users.user_id
+      WHERE users.user_id = '%$searchTerm%' 
+      ";
+      break;
+  }
 
 	$result=mysqli_query($MySQLi_CON, $query);
 	//test if the query failed
