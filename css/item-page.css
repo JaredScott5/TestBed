@@ -15,11 +15,11 @@ padding: 0;
 	transform: translateY(175%);	
 }
 
-div #item{
+div #item, div #reviews{
 	
-min-width:950px;
+min-width:800px;
 width: 100% !important;
-width: 950px;
+width: 800px;
 	}
 
 div #numberOfStars{

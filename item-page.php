@@ -53,7 +53,7 @@ $item_desc = $row['description'];
 
       <div class="row col-md-12" id="content">
 
-            <div class="container well row" id="item" id=<?php echo $row["item_id"]; ?>>
+        <div class="container well row" id="item" id=<?php echo $row["item_id"]; ?>>
 
 			<div class="container">
 				<div class="caption-full  ">
@@ -81,9 +81,9 @@ $item_desc = $row['description'];
 
 				
 			  <hr>
-            </div>
+        </div>
 		
-            <div class="well row" id="reviews">
+        <div class="well row" id="reviews">
                 
 					<div id="numberOfStars">
 						<h3><span class="glyphicon glyphicon-star"></span>
@@ -131,7 +131,7 @@ $item_desc = $row['description'];
                         <span class="pull-right">15 days ago</span>
                         <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
                                  
-            </div>
+        </div>
 
       </div>
 
