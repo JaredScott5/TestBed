@@ -16,7 +16,7 @@
           <li id="liShopList"><a href="shopList.php"><span class="glyphicon glyphicon-tags"></span>&nbsp; Shop List</a></li>
           <li id="liOrderHistory"><a href="orderHistory.php"><span class="glyphicon glyphicon-check"></span>&nbsp; Order History</a></li>
         
-		<li class="col-lg-5 col-md-3  col-sm-2" style="">
+		<li class="col-lg-5 col-md-3  col-sm-3" style="">
 			<div class="input-group ">    					
 						<input name="search_param" value="all" id="search_param" type="hidden">         
 						<input id="search_bar" class="form-control" name="x" placeholder="Item" type="text">
