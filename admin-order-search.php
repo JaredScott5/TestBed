@@ -165,18 +165,23 @@ if(isset($_POST['search-orders']))
 			<th style='text-align:center'> Shipped Date </th>
 			<th style='text-align:center'> Status </th>
 			<th width='16%' style='text-align:center'> Comments</th>
+      <th style='text-align:center'> Modify </th>
 		</tr>
 	
-		<?php while($itemRow = mysqli_fetch_assoc($result)) :?>
+		<?php while($row = mysqli_fetch_assoc($result)) :?>
 		<tr>
-			<th width='14%' style='text-align:center'><?php echo $itemRow["orderNumber"]; ?></th>
-			<th  style='text-align:center'><?php echo $itemRow["user_id"] ; ?></th>
-			<th  style='text-align:center'><?php echo $itemRow["email"] ; ?></th>
-			<th  style='text-align:center'><?php echo $itemRow["orderDate"] ; ?></th>
-			<th  style='text-align:center'><?php echo $itemRow["shippedDate"] ; ?></th>
-			<th  style='text-align:center'><?php echo $itemRow["status"] ; ?></th>
-			<th width='16%' style='text-align:center'><?php echo $itemRow["comments"] ; ?></th>
-			
+			<td width='14%' style='text-align:center'><?php echo $row["orderNumber"]; ?></th>
+			<td id="user_id_val<?php echo $row["orderNumber"]; ?>" style='text-align:center'><?php echo $row["user_id"] ; ?></th>
+			<td id="email_val<?php echo $row["orderNumber"]; ?>" style='text-align:center'><?php echo $row["email"] ; ?></th>
+			<td id="orderDate_val<?php echo $row["orderNumber"]; ?>" style='text-align:center'><?php echo $row["orderDate"] ; ?></th>
+			<td id="shippedDate_val<?php echo $row["orderNumber"]; ?>" style='text-align:center'><?php echo $row["shippedDate"] ; ?></th>
+			<td id="status_val<?php echo $row["orderNumber"]; ?>" style='text-align:center'><?php echo $row["status"] ; ?></th>
+			<td id="comments_val<?php echo $row["orderNumber"]; ?>" width='16%' style='text-align:center'><?php echo $row["comments"] ; ?></th>
+      <td>
+       <input type='button' class="edit_button" id="edit_button<?php echo $row["orderNumber"]; ?>" value="edit" onclick="edit_row('<?php echo $row["orderNumber"]; ?>');">       
+       <input type='button' class="save_button" id="save_button<?php echo $row["orderNumber"]; ?>" value="save" onclick="save_row('<?php echo $row["orderNumber"]; ?>');">       
+       <input type='button' class="delete_button" id="delete_button<?php echo $row["orderNumber"];?>" value="delete" onclick="delete_row('<?php echo $row["orderNumber"];?>');">
+      </td>
 		</tr>
 		<?php endwhile; ?>
 		

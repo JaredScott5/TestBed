@@ -19,7 +19,7 @@ $(document).ready(function(){
       },
       error: function(data){
         console.log(data);
-       $('#debug').html("Failed with " + radioVal + "in data");
+       $('#debug').html("Failed with " + data + "in data");
       }
     });
   });
