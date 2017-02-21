@@ -65,7 +65,7 @@ $item_desc = $row['description'];
 					<h1><a href="#"><?php echo $item_name; ?></a></h1>
 				</div>				
 				
-				<div class=" " id="addToCart">
+				<div class=" " id="addToCart" style="font-size:20px; float:middle;">
 						<h4 class="" id="price" >$<?php echo $item_price; ?></h4>
 						<p class='btn btn-lg btn-primary add-to-cart' 
 						id=<?php echo $item_id; ?> href='#' role='button'>Add To Cart</p>
