@@ -97,13 +97,13 @@ if (!$result){
 	
 	 <?php while($itemRow = mysqli_fetch_assoc($result)) :?>
 	<tr>
-		<th width='14%' style='text-align:center'><?php echo$itemRow["orderNumber"];?></th>
-		<th  style='text-align:center'><?php echo$itemRow["user_id"];?></th>
-		<th  style='text-align:center'><?php echo$itemRow["email"];?></th>
-		<th  style='text-align:center'><?php echo$itemRow["orderDate"];?></th> 
-		<th  style='text-align:center'><?php echo$itemRow["shippedDate"];?></th> 
-		<th  style='text-align:center'><?php echo$itemRow["status"];?></th> 
-		<th width='16%' style='text-align:center'><?php echo$itemRow["comments"];?></th> 
+		<td width='14%' style='text-align:center'><?php echo$itemRow["orderNumber"];?></th>
+		<td  style='text-align:center'><?php echo$itemRow["user_id"];?></th>
+		<td  style='text-align:center'><?php echo$itemRow["email"];?></th>
+		<td  style='text-align:center'><?php echo$itemRow["orderDate"];?></th> 
+		<td  style='text-align:center'><?php echo$itemRow["shippedDate"];?></th> 
+		<td  style='text-align:center'><?php echo$itemRow["status"];?></th> 
+		<td width='16%' style='text-align:center'><?php echo$itemRow["comments"];?></th> 
 	</tr>
 	<?php endwhile; ?>
  </table>
