@@ -7,20 +7,20 @@ padding: 0;
 
 #price{
 	position: relative;
-	transform: translateY(250%);
-	
-	
+	transform: translateY(250%);	
 	}
 
 .add-to-cart{
 	position: relative;
-	transform: translateY(175%);
-	
+	transform: translateY(175%);	
 }
 
-div #item{
-	margin: 0;
-}
+div #item, div #reviews{
+	
+min-width:800px;
+width: 100% !important;
+width: 800px;
+	}
 
 div #numberOfStars{
 	float: left;
@@ -32,6 +32,10 @@ div #reviewAverage{
 	float: right;
 	width: 10%;
 	overflow: hidden;
+}
+
+div #reviews{
+position: relative;	
 }
 
 html{
@@ -56,9 +60,6 @@ img{
 #item-id, #item-desc{
 	position: relative;
 	font-size: 20px;
-}
-
-#addToCart{
 }
 
 #addToCart{

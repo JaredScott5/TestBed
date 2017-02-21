@@ -51,13 +51,12 @@ $item_desc = $row['description'];
  <!-- Page Content -->
   <div class="container">
 
-      <div class="row">
+      <div class="row col-md-12" id="content">
 
-          <div class="col-md-12">
+        <div class="container well row" id="item" id=<?php echo $row["item_id"]; ?>>
 
-            <div class="container" id="item" id=<?php echo $row["item_id"]; ?>>
-
-				<div class="caption-full container">
+			<div class="container">
+				<div class="caption-full  ">
 					<a href="item-page.php?item_id=<?php echo $row["item_id"]; ?>">
 					<img class="img-responsive"
 					src=<?php echo $row["image"]; ?> 
@@ -66,42 +65,41 @@ $item_desc = $row['description'];
 					<h1><a href="#"><?php echo $item_name; ?></a></h1>
 				</div>				
 				
-				<div class="container" id="addToCart">
+				<div class=" " id="addToCart">
 						<h4 class="" id="price" >$<?php echo $item_price; ?></h4>
 						<p class='btn btn-lg btn-primary add-to-cart' 
 						id=<?php echo $item_id; ?> href='#' role='button'>Add To Cart</p>
 				</div> 
-
+			</div>
 				<div class="container" id="description">
 					<h3>Descripion:</h3> <?php echo $item_desc; ?>
 					<br>
-					<hr>
+					
 				</div>
 			  
 			  <br>
 
-				<div class="container" id="ratings">
+				
+			  <hr>
+        </div>
+		
+        <div class="well row" id="reviews">
                 
 					<div id="numberOfStars">
-						<span class="glyphicon glyphicon-star"></span>
+						<h3><span class="glyphicon glyphicon-star"></span>
 						<span class="glyphicon glyphicon-star"></span>
 						<span class="glyphicon glyphicon-star"></span>
 						<span class="glyphicon glyphicon-star"></span>
 						<span class="glyphicon glyphicon-star-empty"></span>
                     
-						4.0 stars
+						4.0 stars</h3>
 
 					</div>
 					<div id="reviewAverage">
-						3 reviews
+						<h3>3 reviews</h3>
 					</div>
-              </div>
-			  <hr>
-            </div>
-		
-            <div class="well">
-                <div class="row">
-                    <div class="col-md-12">
+					<hr><hr>
+				
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
@@ -110,13 +108,9 @@ $item_desc = $row['description'];
                         Anonymous
                         <span class="pull-right">10 days ago</span>
                         <p>This product was great in terms of quality. I would definitely buy another!</p>
-                    </div>
-                </div>
 
                 <hr>
 
-                <div class="row">
-                    <div class="col-md-12">
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
@@ -125,13 +119,9 @@ $item_desc = $row['description'];
                         Anonymous
                         <span class="pull-right">12 days ago</span>
                         <p>I've alredy ordered another one!</p>
-                    </div>
-                </div>
 
                 <hr>
 
-                <div class="row">
-                    <div class="col-md-12">
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
@@ -140,12 +130,8 @@ $item_desc = $row['description'];
                         Anonymous
                         <span class="pull-right">15 days ago</span>
                         <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
-                    </div>
-                </div>
-
-            </div>
-
-          </div>
+                                 
+        </div>
 
       </div>
 

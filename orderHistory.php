@@ -59,6 +59,8 @@ if($rowCount!=0){
     die("Database query failed.");
   }
   
+}else{
+	 header("Location: blankOrderHistory.php");
 }
 
 //free the variable, we should not need it now
