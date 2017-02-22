@@ -136,6 +136,7 @@ $item_desc = $row['description'];
       </div>
 
   </div>
+  <hr>
   <!-- /.container -->
   
   <div id="footer"><?php include_once 'footer.php'; ?></div>
