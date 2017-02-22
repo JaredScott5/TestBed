@@ -117,7 +117,7 @@ $MySQLi_CON->close();
                           <img src="<?php echo $row["image"]?>" style="width:150px; height:100px;" alt="">
                           <div class="caption">
                               <h4 class="pull-right">$<?php echo $row["price"]?></h4>
-                              <h4><a href="#"><?php echo $row["itemName"]?></a>
+                              <h4><a href="item-page.php?item_id=<?php echo $row["item_id"]; ?>"><?php echo $row["itemName"]?></a>
                               </h4>
                               <p> <?php echo $row["description"]?></p>
                           </div>
