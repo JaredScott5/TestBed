@@ -114,7 +114,8 @@ $MySQLi_CON->close();
 <?php while($row = mysqli_fetch_assoc($result)) : ?>
                   <div class="col-sm-4 col-lg-4 col-md-4">
                       <div class="thumbnail">
-                          <img src="<?php echo $row["image"]?>" style="width:150px; height:100px;" alt="">
+						<br>
+                          <img src="<?php echo $row["image"]?>" style="width:125px; height:125px;" alt="">
                           <div class="caption">
                               <h4 class="pull-right">$<?php echo $row["price"]?></h4>
                               <h4><a href="item-page.php?item_id=<?php echo $row["item_id"]; ?>"><?php echo $row["itemName"]?></a>
@@ -133,8 +134,8 @@ $MySQLi_CON->close();
                           </div>-->
                       </div>
                   </div>
-		<?php endwhile; ?>
-        <?php mysqli_free_result($result); ?>		  
+<?php endwhile; ?>
+<?php mysqli_free_result($result); ?>		  
 
               </div>
 
