@@ -55,7 +55,7 @@ if (!$result){
 <body>
   <ul>
     
-    <p  style='display: block; padding-top: 65px;'></p>
+    <p  style='display: block; padding-top: 40px;'></p>
     		
 		<p id ="finalResult"></p>
 		<div id="debug"> </div>
