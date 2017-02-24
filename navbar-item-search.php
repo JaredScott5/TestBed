@@ -14,7 +14,10 @@
 	
       <div class="container">
         <ul id="ulLeft" class="nav navbar-nav navbar-left">
-		<li class="navbar-brand" href="home.php">Test Shop</li>
+		
+		      
+
+		<li><a class="navbar-brand" href="home.php">Test Shop</a></li>
           <li id="liShopList"><a href="shopList.php"><span class="glyphicon glyphicon-tags"></span>&nbsp; Shop List</a></li>
           <li id="liOrderHistory"><a href="orderHistory.php"><span class="glyphicon glyphicon-check"></span>&nbsp; Order History</a></li>
         
