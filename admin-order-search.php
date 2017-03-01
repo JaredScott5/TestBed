@@ -17,7 +17,7 @@ include_once 'dbconnect.php';
 <title>Welcome - <?php echo $userRow['email']; ?></title>
 
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<!-- <link rel="stylesheet" href="css/style.css" type="text/css" /> -->
 
 <?php include ('navbar.php'); ?>
 </head>
@@ -158,7 +158,7 @@ if(isset($_POST['search-orders']))
 	
 	<table class='equalDevide' width='100%'  border='2'>
 		<tr>
-			<th style='text-align:center'> Order # </th> 
+			<th style='text-align:center'> Order No. </th> 
 			<th style='text-align:center'> User Id </th>
 			<th style='text-align:center'> Email </th>
 			<th style='text-align:center'> Order Date </th>
@@ -169,7 +169,7 @@ if(isset($_POST['search-orders']))
 		</tr>
 	
 		<?php while($row = mysqli_fetch_assoc($result)) :?>
-		<tr>
+		<tr id="row<?php echo $row["orderNumber"]; ?>">
 			<td width='14%' style='text-align:center'><?php echo $row["orderNumber"]; ?></th>
 			<td id="user_id_val<?php echo $row["orderNumber"]; ?>" style='text-align:center'><?php echo $row["user_id"] ; ?></th>
 			<td id="email_val<?php echo $row["orderNumber"]; ?>" style='text-align:center'><?php echo $row["email"] ; ?></th>
@@ -200,6 +200,7 @@ if(isset($_POST['search-orders']))
 <script src="js/vendor/bootstrap.min.js"></script>
 
 <script src="js/adminsearch.js"></script>
+<script src="js/modify_records.js"></script>
 <div id="footer"><?php include_once 'footer.php'; ?></div>
 </body>
 <?php $MySQLi_CON->close();?>
