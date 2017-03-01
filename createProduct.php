@@ -9,16 +9,25 @@ if(isset($_POST['btn-signup']))
 {
 	$itemName = $MySQLi_CON->real_escape_string(trim($_POST['itemName'])); 
 	$department = $MySQLi_CON->real_escape_string(trim($_POST['department']));
+	
+	
 	$price = $MySQLi_CON->real_escape_string(trim($_POST['price']));
 	$price = ltrim($price, '$');  /*remove the $ from $price*/
+	
 	$desc = $MySQLi_CON->real_escape_string(trim($_POST['desc']));
 	$target_dir = "img/";
 	$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 	$uploadOk = 1;
+	$priceOk = 1;
 	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 	list($width, $height) = getimagesize($target_file); /*acquire and store width/hieght image data in variables*/
 	$image = $target_file;
 
+//check if price is in decimal format	
+if(strpos($price, ".") === false)
+{
+$priceOk = 0;
+}	
 // Check if file already exists or if its even a file
 if ((!file_exists($target_file)) ||(($_FILES["fileToUpload"]["size"] > 50000))|| ($imageFileType != "jpg"))
 { 
@@ -29,8 +38,17 @@ else
 	$upload = 1;
 }
 
-/* Check if $uploadOk is set to 0 by an error*/
-if ($uploadOk == 0) 
+/* Check if $uploadOk or $price is set to 0 by an error*/
+
+if($priceOk === 0){
+	$msg = "<div class='alert alert-danger'>
+		<span class='glyphicon glyphicon-info-sign'></span> 
+		&nbsp; Sorry, price is unacceptable.
+		<br>
+		Price must be in decimal format: xx.xx
+		<br>
+		</div>";
+}else if ($uploadOk == 0) 
 { 
 	$msg = "<div class='alert alert-danger'>
 		<span class='glyphicon glyphicon-info-sign'></span> 

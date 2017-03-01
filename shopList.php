@@ -92,17 +92,17 @@ if (!$result){
         <?php endwhile; ?>
         <?php mysqli_free_result($result); ?>
     </div>
-  </div>
+  
   
   <div id="footer"><?php include_once 'footer.php'; ?></div>
   
 <!-- the passed array is what we use in shopList.js for using the data from array $row-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.1.1.min.js"><\/script>')</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.1.1.min.js"><\/script>')</script>
 
-<script src="js/vendor/bootstrap.min.js"></script>
-<script src="js/shopList.js"></script>
-<script src="js/itemSearch.js"></script>
-</body>
+		<script src="js/vendor/bootstrap.min.js"></script>
+		<script src="js/shopList.js"></script>
+		<script src="js/itemSearch.js"></script>
+	</body>
 
 </html>
