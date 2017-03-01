@@ -68,7 +68,7 @@ $MySQLi_CON->close();
       <div class="row">
 
           <div class="col-md-3">
-              <p class="lead">Test Shop</p>
+              <p class="lead">&nbsp Test Shop Home</p>
               <div class="list-group">
                   <a href="shopList.php?department=Books" class="list-group-item">Books</a>
                   <a href="shopList.php?department=Movies/TV" class="list-group-item">DVDs and BluRays</a>
@@ -112,29 +112,30 @@ $MySQLi_CON->close();
 
               <div class="row">
 <?php while($row = mysqli_fetch_assoc($result)) : ?>
-                  <div class="col-sm-4 col-lg-4 col-md-4">
-                      <div class="thumbnail">
-                          <img src="<?php echo $row["image"]?>" style="width:150px; height:100px;" alt="">
-                          <div class="caption">
-                              <h4 class="pull-right">$<?php echo $row["price"]?></h4>
-                              <h4><a href="#"><?php echo $row["itemName"]?></a>
-                              </h4>
-                              <p> <?php echo $row["description"]?></p>
-                          </div>
-                         <!-- <div class="ratings">
-                              <p class="pull-right">15 reviews</p>
-                              <p>
-                                  <span class="glyphicon glyphicon-star"></span>
-                                  <span class="glyphicon glyphicon-star"></span>
-                                  <span class="glyphicon glyphicon-star"></span>
-                                  <span class="glyphicon glyphicon-star"></span>
-                                  <span class="glyphicon glyphicon-star"></span>
-                              </p>
-                          </div>-->
-                      </div>
-                  </div>
-		<?php endwhile; ?>
-        <?php mysqli_free_result($result); ?>		  
+                <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="thumbnail well">
+						<br>
+							
+						<img src="<?php echo $row["image"]?>" style="width:125px; height:125px;" alt="">
+							
+                        <div class="caption">
+							<div>
+								<p class="pull-left">
+									<h4>
+										<a href="item-page.php?item_id=<?php echo $row["item_id"]; ?>">
+										<?php echo $row["itemName"]?></a>
+									</h4>
+								</p>
+							</div>
+							
+                            <div class="pull-left">
+								<?php echo $row["description"]?>
+							</div>
+                        </div>
+                    </div>
+                </div>
+<?php endwhile; ?>
+<?php mysqli_free_result($result); ?>		  
 
               </div>
 

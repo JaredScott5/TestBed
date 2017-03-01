@@ -86,11 +86,13 @@
     </style>
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/footer.css">
 
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+	<?php include ('navbar.php'); ?>
   </head>
   <body>
-    <?php include ('navbar.php'); ?>
+    
     <div class="update-form">
       <div class="container">
         <form class="form-update" method="post" id="login-form">
@@ -122,17 +124,16 @@
           </div>  
         </form>
       </div>
+	  
     </div>
+<hr>
 
-    <div id="footer"><?php include_once 'footer.php'; ?></div>
+  <div id="footer"><?php include_once 'footer.php'; ?></div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.1.1.min.js"><\/script>')</script>
-
   <script src="js/vendor/bootstrap.min.js"></script>
-
   <script src="js/main.js"></script>
-
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
   <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=

@@ -55,7 +55,7 @@ if (!$result){
 <body>
   <ul>
     
-    <p  style='display: block; padding-top: 65px;'></p>
+    <p  style='display: block; padding-top: 40px;'></p>
     		
 		<p id ="finalResult"></p>
 		<div id="debug"> </div>
@@ -66,7 +66,7 @@ if (!$result){
     <div class='container shopListContainer'>
         
         <div class="row" id="<?php echo $row["item_id"]; ?>">
-          <p class="itemName"><h1><?php echo $row["itemName"]; ?></h1><p/>
+          <p class="itemName"><h1>&nbsp;&nbsp;<?php echo $row["itemName"]; ?></h1><p/>
             <div class="col-lg-2 col-md-4 col-sm-4 column firstCol">
               <p>
                 <a href="item-page.php?item_id=<?php echo $row["item_id"]; ?>">
@@ -77,12 +77,14 @@ if (!$result){
         
             <div class="col-lg-8 col-md-6 col-sm-5 column secondCol">
             <br>
-              <p class='price' style="font-size:20px; float:middle;">$<?php echo $row["price"]; ?></p>
               <p class='desc' style="font-size:20px; float:middle;"><?php echo $row["description"]; ?></p>
             </div>
         
             <div class="col-lg-2 col-md-2 col-sm-3 column thirdCol">
-              <a class='btn btn-lg btn-primary add-to-cart' id=<?php echo $row["item_id"]; ?> href='#' role='button'>Add To Cart</a>
+			<p class='price' style="font-size:20px; float:middle;">$<?php echo $row["price"]; ?></p>
+            <br>
+			<br>			
+			<p class='btn btn-lg btn-primary add-to-cart' id=<?php echo $row["item_id"]; ?> href='#' role='button'>Add To Cart</p>
             </div>
           </div>
         </div>
@@ -90,17 +92,17 @@ if (!$result){
         <?php endwhile; ?>
         <?php mysqli_free_result($result); ?>
     </div>
-  </div>
+  
   
   <div id="footer"><?php include_once 'footer.php'; ?></div>
   
 <!-- the passed array is what we use in shopList.js for using the data from array $row-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.1.1.min.js"><\/script>')</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.1.1.min.js"><\/script>')</script>
 
-<script src="js/vendor/bootstrap.min.js"></script>
-<script src="js/shopList.js"></script>
-<script src="js/itemSearch.js"></script>
-</body>
+		<script src="js/vendor/bootstrap.min.js"></script>
+		<script src="js/shopList.js"></script>
+		<script src="js/itemSearch.js"></script>
+	</body>
 
 </html>

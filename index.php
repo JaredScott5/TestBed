@@ -52,7 +52,7 @@ if(isset($_POST['btn-login']))
  else
  {
   $msg = "
-        email or password does not exist  $email $upass $row!
+        email or password does not exist
     ";
  }
  mysqli_free_result($query);
@@ -123,7 +123,7 @@ if(isset($_POST['btn-login']))
           </form>
         </div>
     </div>
-
+<hr>
     <div id="footer"><?php include_once 'footer.php'; ?></div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

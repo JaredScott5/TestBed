@@ -10,17 +10,17 @@
       
     </div>
     
-    <div id="navbar" class="navbar-collapse collapse"">
+    <div id="navbar" class="navbar-collapse collapse">
 	
       <div class="container">
         <ul id="ulLeft" class="nav navbar-nav navbar-left">
-		<li class="navbar-brand" href="home.php">Test Shop</li>
+		<li><a class="navbar-brand" href="home.php">Test Shop</a></li>
           <li id="liShopList"><a href="shopList.php"><span class="glyphicon glyphicon-tags"></span>&nbsp; Shop List</a></li>
           <li id="liOrderHistory"><a href="orderHistory.php"><span class="glyphicon glyphicon-check"></span>&nbsp; Order History</a></li>
         
-		<li class="col-lg-4 col-md-3 hidden-sm" style="">
+		<li class="col-lg-4 col-md-3 hidden-sm" style="margin-top: 7px;">
 			<div class="input-group ">    					
-						<input name="search_param" value="all" id="search_param" type="hidden">         
+						<input name="search_param" value="all" id="search_param" type="hidden" >         
 						<input id="search_bar" class="form-control" name="x" placeholder="Item" type="text">
 						
 						<span class="input-group-btn">
