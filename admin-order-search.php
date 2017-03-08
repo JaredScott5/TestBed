@@ -207,12 +207,12 @@ if(isset($_POST['search-orders']))
 				<?php echo $row["comments"] ; ?>
 			</td>
 			
-			<td class="hidden-sm" style='text-align:center; border-style: solid; border-width: 2px;'>
-				<input type='button' class="edit_button" id="edit_button<?php echo $row["orderNumber"]; ?>
+			<td  style='text-align:center; border-style: solid; border-width: 2px;'>
+				<input class="hidden-sm hidden-xs" style="margin-top:5px; margin-bottom:5px; margin-left:0px; margin-right:5px;" type='button' class="edit_button" id="edit_button<?php echo $row["orderNumber"]; ?>
 				" value="edit" onclick="edit_row('<?php echo $row["orderNumber"]; ?>');">       
-				<input type='button' class="save_button" id="save_button<?php echo $row["orderNumber"]; ?>
+				<input class="hidden-sm hidden-xs" style="margin-top:5px; margin-bottom:5px; margin-left:0px; margin-right:0px;" type='button' class="save_button" id="save_button<?php echo $row["orderNumber"]; ?>
 				" value="save" onclick="save_row('<?php echo $row["orderNumber"]; ?>');">       
-				<input type='button' class="delete_button" id="delete_button<?php echo $row["orderNumber"];?>
+				<input class="hidden-sm hidden-xs" style="margin-top:5px; margin-bottom:5px; margin-left:5px; margin-right:0px;" type='button' class="delete_button" id="delete_button<?php echo $row["orderNumber"];?>
 				" value="delete" onclick="delete_row('<?php echo $row["orderNumber"];?>');">
 			</td>
 		</tr>
