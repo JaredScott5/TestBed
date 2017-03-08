@@ -2,9 +2,17 @@ input{
 	color: yellow;
 	border: 1px solid black;
 }
-containter{
+.containter{
 	display: table;
+	
 }
+
+label{
+	font-size: 15px;
+}
+
+
+
 #newProductButton{
 	float: left;
 }

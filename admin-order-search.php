@@ -35,19 +35,19 @@ include_once 'dbconnect.php';
 						<br>
 						<input type="radio" name="radioGroup" id="userid" 
 						value="0" checked="checked"/>
-						<label for="userid" style="font-size:15px">user_id</label>
+						<label for="userid" >user_id</label>
 					
 						<input type="radio" name="radioGroup"
 						id="email" value="1"/>
-						<label for="email" style="font-size:15px">email</label>
+						<label for="email">email</label>
 					
 						<input type="radio"name="radioGroup"
 						id="username" value="2"/>
-						<label for="username" style="font-size:15px">username</label>
+						<label for="username">username</label>
 					
 						<input type="radio"name="radioGroup"
 						id="ordernumber" value="3"/>
-						<label for="ordernumber" style="font-size:15px">ordernumber</label>
+						<label for="ordernumber">ordernumber</label>
 			
 						<br><br>
 						<?php 
@@ -62,7 +62,7 @@ include_once 'dbconnect.php';
 						<input type="submit" name="search-orders" 
 						class='btn btn-default' id="search-orders" value='Search'>
 
-						<div id="orderButton" style="float:right">
+						<div id="orderButton">
 							<input type="button" class="btn btn-default" onclick="location.href='admin-home.php';" 
 							value="Return Home"/>	
 						</div>
@@ -154,38 +154,71 @@ if(isset($_POST['search-orders']))
 		die("Database query failed.");
 	}else{
 		?>
-		<hr>
+		<br>
 	
-	<table class='equalDevide' width='100%'  border='2'>
-		<tr>
-			<th style='text-align:center'> Order No. </th> 
-			<th style='text-align:center'> User Id </th>
-			<th style='text-align:center'> Email </th>
-			<th style='text-align:center'> Order Date </th>
-			<th style='text-align:center'> Shipped Date </th>
-			<th style='text-align:center'> Status </th>
-			<th width='16%' style='text-align:center'> Comments</th>
-      <th style='text-align:center'> Modify </th>
+	<table id='equalDivide' width='100%'  style="">
+		<tr class="row" style="">
+			<th style='text-align:center; border-style:solid; border-width:2px;'> Order No. </th> 
+			<th style='text-align:center; border-style:solid; border-width:2px;'> User Id </th>
+			<th style='text-align:center; border-style:solid; border-width:2px;'> Email </th>
+			<th style='text-align:center; border-style:solid; border-width:2px;'> Order Date </th>
+			<th style='text-align:center; border-style:solid; border-width:2px;'> Shipped Date </th>
+			<th style='text-align:center; border-style:solid; border-width:2px;'> Status </th>
+			<th style='text-align:center; border-style:solid; border-width:2px;'> Comments</th>
+			<th style='text-align:center; border-style:solid; border-width:2px;'> Modify </th>
 		</tr>
 	
 		<?php while($row = mysqli_fetch_assoc($result)) :?>
-		<tr id="row<?php echo $row["orderNumber"]; ?>">
-			<td width='14%' style='text-align:center'><?php echo $row["orderNumber"]; ?></th>
-			<td id="user_id_val<?php echo $row["orderNumber"]; ?>" style='text-align:center'><?php echo $row["user_id"] ; ?></th>
-			<td id="email_val<?php echo $row["orderNumber"]; ?>" style='text-align:center'><?php echo $row["email"] ; ?></th>
-			<td id="orderDate_val<?php echo $row["orderNumber"]; ?>" style='text-align:center'><?php echo $row["orderDate"] ; ?></th>
-			<td id="shippedDate_val<?php echo $row["orderNumber"]; ?>" style='text-align:center'><?php echo $row["shippedDate"] ; ?></th>
-			<td id="status_val<?php echo $row["orderNumber"]; ?>" style='text-align:center'><?php echo $row["status"] ; ?></th>
-			<td id="comments_val<?php echo $row["orderNumber"]; ?>" width='16%' style='text-align:center'><?php echo $row["comments"] ; ?></th>
-      <td>
-       <input type='button' class="edit_button" id="edit_button<?php echo $row["orderNumber"]; ?>" value="edit" onclick="edit_row('<?php echo $row["orderNumber"]; ?>');">       
-       <input type='button' class="save_button" id="save_button<?php echo $row["orderNumber"]; ?>" value="save" onclick="save_row('<?php echo $row["orderNumber"]; ?>');">       
-       <input type='button' class="delete_button" id="delete_button<?php echo $row["orderNumber"];?>" value="delete" onclick="delete_row('<?php echo $row["orderNumber"];?>');">
-      </td>
+		<tr class="row" style="" id="row<?php echo $row["orderNumber"]; ?>">
+			<td 
+				style='text-align:center; border-style:solid; border-width:2px;'>
+				<?php echo $row["orderNumber"]; ?>
+			</td>
+			<td 
+				id="user_id_val<?php echo $row["orderNumber"]; ?>" 
+				style='text-align:center; border-style:solid; border-width:2px;'>
+				<?php echo $row["user_id"] ; ?>
+			</td>
+			<td 	
+				id="email_val<?php echo $row["orderNumber"]; ?>" 
+				style='text-align:center; border-style:solid; border-width:2px;'>
+				<?php echo $row["email"] ; ?>
+			</td>
+			<td 
+				id="orderDate_val<?php echo $row["orderNumber"]; ?>" 
+				style='text-align:center; border-style:solid; border-width:2px;'>
+				<?php echo $row["orderDate"] ; ?>
+			</td>
+			<td 
+				id="shippedDate_val<?php echo $row["orderNumber"]; ?>" 
+				style='text-align:center; border-style:solid; border-width:2px;'>
+				<?php echo $row["shippedDate"] ; ?>
+			</td>
+			
+			<td 
+				id="status_val<?php echo $row["orderNumber"]; ?>" 
+				style='text-align:center; border-style:solid; border-width:2px;'>
+				<?php echo $row["status"] ; ?>
+			</td>
+			
+			<td 
+				id="comments_val<?php echo $row["orderNumber"]; ?>" 
+				style='text-align:center; border-style:solid; border-width:2px;'>
+				<?php echo $row["comments"] ; ?>
+			</td>
+			
+			<td class="hidden-sm" style='text-align:center; border-style: solid; border-width: 2px;'>
+				<input type='button' class="edit_button" id="edit_button<?php echo $row["orderNumber"]; ?>
+				" value="edit" onclick="edit_row('<?php echo $row["orderNumber"]; ?>');">       
+				<input type='button' class="save_button" id="save_button<?php echo $row["orderNumber"]; ?>
+				" value="save" onclick="save_row('<?php echo $row["orderNumber"]; ?>');">       
+				<input type='button' class="delete_button" id="delete_button<?php echo $row["orderNumber"];?>
+				" value="delete" onclick="delete_row('<?php echo $row["orderNumber"];?>');">
+			</td>
 		</tr>
 		<?php endwhile; ?>
 		
-	 </table> 
+	</table> 
 	
 	<p  style='display: block; padding-bottom: 10px;'></p>
 	<?php }; ?>
@@ -201,6 +234,7 @@ if(isset($_POST['search-orders']))
 
 <script src="js/adminsearch.js"></script>
 <script src="js/modify_records.js"></script>
+<hr>
 <div id="footer"><?php include_once 'footer.php'; ?></div>
 </body>
 <?php $MySQLi_CON->close();?>
