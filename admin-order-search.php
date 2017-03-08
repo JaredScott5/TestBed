@@ -8,8 +8,7 @@ include_once 'dbconnect.php';
 
 <html lang="en">
 
-<link rel="stylesheet" type="text/css" href="css/footer.css">
-<link rel="stylesheet" type="text/css" href="css/admin.css">
+
 
 <head>	
 <title>Admin Order Search Page</title>
@@ -17,6 +16,8 @@ include_once 'dbconnect.php';
 <title>Welcome - <?php echo $userRow['email']; ?></title>
 
 	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/footer.css">
+	<link rel="stylesheet" type="text/css" href="css/admin.css">
 	<!-- <link rel="stylesheet" href="css/style.css" type="text/css" /> -->
 
 <?php include ('navbar.php'); ?>
@@ -26,8 +27,8 @@ include_once 'dbconnect.php';
 
 <p style="display: block; padding-top: 50px;"></p>
 
-	<div id="adminContainer" class='container' style="border: 2px solid black;">
-		<h2 style="display: block;">  </h2>
+	<div id="adminContainer" class='container'>
+		<h2>  </h2>
 			<div>
 				<form id="myForm" method="post">
 					<fieldset>
@@ -156,64 +157,69 @@ if(isset($_POST['search-orders']))
 		?>
 		<br>
 	
-	<table id='equalDivide' width='100%'  style="">
-		<tr class="row" style="">
-			<th style='text-align:center; border-style:solid; border-width:2px;'> Order No. </th> 
-			<th style='text-align:center; border-style:solid; border-width:2px;'> User Id </th>
-			<th style='text-align:center; border-style:solid; border-width:2px;'> Email </th>
-			<th style='text-align:center; border-style:solid; border-width:2px;'> Order Date </th>
-			<th style='text-align:center; border-style:solid; border-width:2px;'> Shipped Date </th>
-			<th style='text-align:center; border-style:solid; border-width:2px;'> Status </th>
-			<th style='text-align:center; border-style:solid; border-width:2px;'> Comments</th>
-			<th style='text-align:center; border-style:solid; border-width:2px;'> Modify </th>
+	<table id='equalDivide' width='100%'>
+		<tr class="row">
+			<th>Order No. </th> 
+			<th>User Id </th>
+			<th>Email </th>
+			<th>Order Date </th>
+			<th>Shipped Date </th>
+			<th>Status </th>
+			<th>Comments</th>
+			<th>Modify </th>
 		</tr>
 	
 		<?php while($row = mysqli_fetch_assoc($result)) :?>
-		<tr class="row" style="" id="row<?php echo $row["orderNumber"]; ?>">
-			<td 
-				style='text-align:center; border-style:solid; border-width:2px;'>
+		<tr class="row" id="row<?php echo $row["orderNumber"]; ?>">
+			<td>
 				<?php echo $row["orderNumber"]; ?>
 			</td>
-			<td 
-				id="user_id_val<?php echo $row["orderNumber"]; ?>" 
-				style='text-align:center; border-style:solid; border-width:2px;'>
+			<td id="user_id_val<?php echo $row["orderNumber"]; ?>">
 				<?php echo $row["user_id"] ; ?>
 			</td>
-			<td 	
-				id="email_val<?php echo $row["orderNumber"]; ?>" 
-				style='text-align:center; border-style:solid; border-width:2px;'>
+			<td id="email_val<?php echo $row["orderNumber"]; ?>">
 				<?php echo $row["email"] ; ?>
 			</td>
-			<td 
-				id="orderDate_val<?php echo $row["orderNumber"]; ?>" 
-				style='text-align:center; border-style:solid; border-width:2px;'>
+			<td id="orderDate_val<?php echo $row["orderNumber"]; ?>" >
 				<?php echo $row["orderDate"] ; ?>
 			</td>
-			<td 
-				id="shippedDate_val<?php echo $row["orderNumber"]; ?>" 
-				style='text-align:center; border-style:solid; border-width:2px;'>
+			<td id="shippedDate_val<?php echo $row["orderNumber"]; ?>">
 				<?php echo $row["shippedDate"] ; ?>
 			</td>
 			
-			<td 
-				id="status_val<?php echo $row["orderNumber"]; ?>" 
-				style='text-align:center; border-style:solid; border-width:2px;'>
+			<td id="status_val<?php echo $row["orderNumber"]; ?>">
 				<?php echo $row["status"] ; ?>
 			</td>
 			
-			<td 
-				id="comments_val<?php echo $row["orderNumber"]; ?>" 
-				style='text-align:center; border-style:solid; border-width:2px;'>
+			<td id="comments_val<?php echo $row["orderNumber"]; ?>" >
 				<?php echo $row["comments"] ; ?>
 			</td>
 			
-			<td  style='text-align:center; border-style: solid; border-width: 2px;'>
-				<input class="hidden-sm hidden-xs" style="margin-top:5px; margin-bottom:5px; margin-left:0px; margin-right:5px;" type='button' class="edit_button" id="edit_button<?php echo $row["orderNumber"]; ?>
-				" value="edit" onclick="edit_row('<?php echo $row["orderNumber"]; ?>');">       
-				<input class="hidden-sm hidden-xs" style="margin-top:5px; margin-bottom:5px; margin-left:0px; margin-right:0px;" type='button' class="save_button" id="save_button<?php echo $row["orderNumber"]; ?>
-				" value="save" onclick="save_row('<?php echo $row["orderNumber"]; ?>');">       
-				<input class="hidden-sm hidden-xs" style="margin-top:5px; margin-bottom:5px; margin-left:5px; margin-right:0px;" type='button' class="delete_button" id="delete_button<?php echo $row["orderNumber"];?>
-				" value="delete" onclick="delete_row('<?php echo $row["orderNumber"];?>');">
+			<td>
+				<input 
+					class="hidden-sm hidden-xs" 
+					type='button' 
+					class="edit_button" 
+					id="edit_button<?php echo $row["orderNumber"]; ?>" 
+					value="edit" 
+					onclick="edit_row('<?php echo $row["orderNumber"]; ?>');"
+				>       
+				<input 
+					class="hidden-sm hidden-xs" 
+					type='button' 
+					class="save_button" 
+					id="save_button<?php echo $row["orderNumber"]; ?>" 
+					value="save" 
+					onclick="save_row('<?php echo $row["orderNumber"]; ?>');"
+				>       
+				<input 
+					class="hidden-sm hidden-xs" 
+					type='button' 
+					class="delete_button" 
+					id="delete_button<?php echo $row["orderNumber"];?>" 
+					value="delete" 
+					onclick="delete_row('<?php echo $row["orderNumber"];?>');"
+				>
 			</td>
 		</tr>
 		<?php endwhile; ?>
