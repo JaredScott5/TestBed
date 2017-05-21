@@ -27,20 +27,20 @@ $rowCount=$check_cart->num_rows;
 //store the orderNumber variable from the past table orders
 	$tempItemRow = mysqli_fetch_assoc($check_cart);
 	$orderNum=$tempItemRow["orderNumber"];
-	
-//if not empty display the order as a table 
+
+//if not empty display the order as a table
 if($rowCount!=0){
 
   $ordersQuery =
   "
   SELECT *
   FROM orders
-  WHERE user_id = '$user_id' AND status <> 'In Cart' 
+  WHERE user_id = '$user_id' AND status <> 'In Cart'
   GROUP BY orderNumber
   ";
-  
+
   $ordersResult = mysqli_query($MySQLi_CON, $ordersQuery);
-  
+
   $detailsQuery =
   "
   SELECT *
@@ -49,16 +49,16 @@ if($rowCount!=0){
   ON orders.orderNumber = orderdetails.orderNumber
   JOIN items
   ON orderdetails.item_id = items.item_id
-  WHERE user_id = '$user_id' AND status <> 'In Cart' 
+  WHERE user_id = '$user_id' AND status <> 'In Cart'
   ";
-  
+
   $detailsResult = mysqli_query($MySQLi_CON, $detailsQuery);
-  
+
   //test if the query failed
   if (!$ordersResult || !$detailsResult){
     die("Database query failed.");
   }
-  
+
 }else{
 	 header("Location: blankOrderHistory.php");
 }
@@ -93,19 +93,19 @@ $MySQLi_CON->close();
   <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  
+
   <link rel="stylesheet" type="text/css" href="css/orderHistory.css">
   <link rel="stylesheet" type="text/css" href="css/navbar.css">
   <link rel="stylesheet" type="text/css" href="css/footer.css">
 
-  
+
 </head>
 
 <body>
   <?php include ('navbar.php'); ?>
   <div id="orders" class="container">
     <?php while($orderRow = mysqli_fetch_assoc($ordersResult)) : ?>
-      <?php $currentOrder = $orderRow['orderNumber']; ?>  
+      <?php $currentOrder = $orderRow['orderNumber']; ?>
       <div class="order">
         <div class="summary">
           <div class="row">
@@ -136,7 +136,7 @@ $MySQLi_CON->close();
                 <div class="row">
                   <div class="col-xs-2">
                     <p class="whitepace">&nbsp;</p>
-                  </div>    
+                  </div>
                   <div class="col-xs-2">
                     <p class="item-img"><?php echo "<img class=\"img-responsive\" width=\"150\" height=\"150\" src=" . $detailRow['image'] . "></img>"; ?></p>
                   </div>

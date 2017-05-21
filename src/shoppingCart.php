@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include_once 'dbconnect.php';
 include_once 'navbar.php';
@@ -32,22 +32,22 @@ $rowCount=$check_cart->num_rows;
 	$tempItemRow = mysqli_fetch_assoc($check_cart);
 	$orderNum = $tempItemRow["orderNumber"];
 	
-//if not empty display the order as a table 
+//if not empty display the order as a table
 if($rowCount!=0){
-	
- //look through join query based off orderdetails and items and display 
+
+ //look through join query based off orderdetails and items and display
  $secondQuery =
  "
  SELECT orderdetails.orderNumber, orderdetails.item_id, orderdetails.quantityOrdered,
-		items.itemName, items.price, items.image 
+		items.itemName, items.price, items.image
  FROM orderdetails
  INNER JOIN items
  ON orderdetails.item_id = items.item_id
  WHERE orderdetails.orderNumber='$orderNum'
  ";
- 
+
  $result=mysqli_query($MySQLi_CON, $secondQuery);
- 
+
   //test if the query failed
   if (!$result){
     die("Database query failed.");
@@ -130,7 +130,7 @@ $MySQLi_CON->close();
     <?php ++$count; ?>
     <?php endwhile; ?>
     </form>
-    
+
     <?php $check = mysqli_data_seek ($result, 0); ?>
     <?php if($check != NULL): ?>
     <div id="checkout-info" class="container">
