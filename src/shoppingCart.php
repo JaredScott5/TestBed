@@ -31,19 +31,18 @@ $rowCount=$check_cart->num_rows;
 //store orderNumber from table orders
 	$tempItemRow = mysqli_fetch_assoc($check_cart);
 	$orderNum = $tempItemRow["orderNumber"];
-	
+
 //if not empty display the order as a table
 if($rowCount!=0){
-
  //look through join query based off orderdetails and items and display
  $secondQuery =
  "
- SELECT orderdetails.orderNumber, orderdetails.item_id, orderdetails.quantityOrdered,
+ SELECT orderDetails.orderNumber, orderDetails.item_id, orderDetails.quantityOrdered,
 		items.itemName, items.price, items.image
- FROM orderdetails
+ FROM orderDetails
  INNER JOIN items
- ON orderdetails.item_id = items.item_id
- WHERE orderdetails.orderNumber='$orderNum'
+ ON orderDetails.item_id = items.item_id
+ WHERE orderDetails.orderNumber='$orderNum'
  ";
 
  $result=mysqli_query($MySQLi_CON, $secondQuery);
@@ -51,6 +50,7 @@ if($rowCount!=0){
   //test if the query failed
   if (!$result){
     die("Database query failed.");
+  }else{
   }
 }
 
@@ -91,7 +91,6 @@ $MySQLi_CON->close();
 </head>
 
 <body>
-
 <form id="cart">
   <div class="container">
   <div class="well">
@@ -109,17 +108,17 @@ $MySQLi_CON->close();
               <p id="item-img"><?php echo "<img class=\"img-responsive\" width=\"150\" height=\"150\" src=" . $itemRow['image'] . "></img>"; ?></p>
             </div>
             <div class="col-xs-2">
-              <span class="item-name"><b>Item: </b><?php echo $itemRow['itemName']; ?></span>
+              <span class="item-name"><strong>Item: </strong><?php echo $itemRow['itemName']; ?></span>
             </div>
             <div class="col-xs-2">
-              <b>Price: </b><span class="price">$<?php echo $itemRow['price']; ?></span>
+              <strong>Price: </strong><span class="price">$<?php echo $itemRow['price']; ?></span>
             </div>
             <div class="col-xs-2">
-              <b>In Cart:</b><input class='form-control' type="number" min="1" value="<?php echo $itemRow['quantityOrdered']; ?>">
+              <strong>In Cart:</strong><input class='form-control' type="number" min="1" value="<?php echo $itemRow['quantityOrdered']; ?>">
               </input>
             </div>
             <div class="col-xs-2">
-              <b>Subtotal: </b><span class="subtotal">$<?php echo $subTotal; ?></span>
+              <strong>Subtotal: </strong><span class="subtotal">$<?php echo $subTotal; ?></span>
             </div>
             <div class="col-xs-2">
               <button class="remove">Remove From Cart</button>
@@ -134,7 +133,7 @@ $MySQLi_CON->close();
     <?php $check = mysqli_data_seek ($result, 0); ?>
     <?php if($check != NULL): ?>
     <div id="checkout-info" class="container">
-      <span><b>Total: </b></span><p id="total">$<?php echo $total ?></p>
+      <span><strong>Total: </strong></span><p id="total">$<?php echo $total ?></p>
       <button class="checkout">Checkout</button>
     </div>
     <?php endif; ?>

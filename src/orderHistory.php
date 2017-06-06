@@ -45,10 +45,10 @@ if($rowCount!=0){
   "
   SELECT *
   FROM orders
-  JOIN orderdetails
-  ON orders.orderNumber = orderdetails.orderNumber
+  JOIN orderDetails
+  ON orders.orderNumber = orderDetails.orderNumber
   JOIN items
-  ON orderdetails.item_id = items.item_id
+  ON orderDetails.item_id = items.item_id
   WHERE user_id = '$user_id' AND status <> 'In Cart'
   ";
 
@@ -110,19 +110,19 @@ $MySQLi_CON->close();
         <div class="summary">
           <div class="row">
             <div class="col-xs-2">
-              <p class="order-number"><b>Order Number: </b><?php echo $orderRow['orderNumber'] ?></p>
+              <p class="order-number"><strong>Order Number: </strong><?php echo $orderRow['orderNumber'] ?></p>
             </div>
             <div class="col-xs-2">
-              <p class="order-date"><b>Date Ordered: </b><?php echo $orderRow['orderDate'] ?></p>
+              <p class="order-date"><strong>Date Ordered: </strong><?php echo $orderRow['orderDate'] ?></p>
             </div>
             <div class="col-xs-2">
-              <p class="shipped-date"><b>Date Shipped: </b><?php echo $orderRow['shippedDate'] ?></p>
+              <p class="shipped-date"><strong>Date Shipped: </strong><?php echo $orderRow['shippedDate'] ?></p>
             </div>
             <div class="col-xs-2">
-              <p class="total-cost"><b>Total: </b>$<?php echo $orderRow['total'] ?></p>
+              <p class="total-cost"><strong>Total: </strong>$<?php echo $orderRow['total'] ?></p>
             </div>
             <div class="col-xs-2">
-              <p class="comments"><b>Comments: </b><?php echo $orderRow['comments'] ?></p>
+              <p class="comments"><strong>Comments: </strong><?php echo $orderRow['comments'] ?></p>
             </div>
             <div class="col-xs-2">
               <a class="exp-col">Show Details</a>

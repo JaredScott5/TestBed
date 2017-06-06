@@ -3,10 +3,10 @@ USE dbtest;
 /* Build tables */
 
 DROP TABLE IF EXISTS orderDetails;
+DROP TABLE IF EXISTS items;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS items;
-  
+
 CREATE TABLE IF NOT EXISTS users (
   user_id int(5) NOT NULL AUTO_INCREMENT,
   username varchar(25) NOT NULL,

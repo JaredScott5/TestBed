@@ -15,7 +15,6 @@ $(document).ready(function(){
         $('#cartCount').html("<span class=\"glyphicon glyphicon-shopping-cart\"></span>" + "&nbsp;" + "Cart(" + data.cartCount + ")");
       },
       error: function(data){
-        console.log(data.msg);
         alert("Failed with " + data + "in data");
         // console.log(data.cartCount);
       }
@@ -37,7 +36,7 @@ function addToCart(item){
 	//document.getElementById("notes").innerHTML = parent;
 
 	var item_id = item;
-	
+
 	httpRequest = new XMLHttpRequest();
 	httpRequest.onreadystatechange = updateCart;
 	httpRequest.open('POST', 'add-to-cart.php');

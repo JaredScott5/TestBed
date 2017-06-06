@@ -15,7 +15,7 @@ $query .= "FROM items ";
 if(isset($_GET['department']))
 {
 	$department = $_GET['department'];//mysqli_real_escape_string($link, $GET['department']);
-$query .= "WHERE department = '$department'";	
+$query .= "WHERE department = '$department'";
 }
 
 $result = mysqli_query($MySQLi_CON, $query);
@@ -54,17 +54,17 @@ if (!$result){
 
 <body>
   <ul>
-    
+
     <p  style='display: block; padding-top: 40px;'></p>
-    		
+
 		<p id ="finalResult"></p>
 		<div id="debug"> </div>
-		
+
     <!-- return items table entries -->
 	<div id="display">
 		<?php while($row = mysqli_fetch_assoc($result)) : ?>
     <div class='container shopListContainer'>
-        
+
         <div class="row" id="<?php echo $row["item_id"]; ?>">
           <p class="itemName"><h1>&nbsp;&nbsp;<?php echo $row["itemName"]; ?></h1><p/>
             <div class="col-lg-2 col-md-4 col-sm-4 column firstCol">
@@ -74,17 +74,17 @@ if (!$result){
                 </a>
               </p>
             </div>
-        
+
             <div class="col-lg-8 col-md-6 col-sm-5 column secondCol">
             <br>
               <p class='desc' style="font-size:20px; float:middle;"><?php echo $row["description"]; ?></p>
             </div>
-        
+
             <div class="col-lg-2 col-md-2 col-sm-3 column thirdCol">
-			<p class='price' style="font-size:20px; float:middle;">$<?php echo $row["price"]; ?></p>
-            <br>
-			<br>			
-			<p class='btn btn-lg btn-primary add-to-cart' id=<?php echo $row["item_id"]; ?> href='#' role='button'>Add To Cart</p>
+			        <p class='price' style="font-size:20px; float:middle;">$<?php echo $row["price"]; ?></p>
+              <br>
+			        <br>
+			        <p class='btn btn-lg btn-primary add-to-cart' id=<?php echo $row["item_id"]; ?> href='#' role='button'>Add To Cart</p>
             </div>
           </div>
         </div>
@@ -92,10 +92,10 @@ if (!$result){
         <?php endwhile; ?>
         <?php mysqli_free_result($result); ?>
     </div>
-  
-  
+
+
   <div id="footer"><?php include_once 'footer.php'; ?></div>
-  
+
 <!-- the passed array is what we use in shopList.js for using the data from array $row-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.1.1.min.js"><\/script>')</script>
